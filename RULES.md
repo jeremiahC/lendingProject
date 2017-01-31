@@ -12,4 +12,5 @@ In this Repository, there three branches and this are:
 
 <h2>Commiting files</h2>
 1. When commiting a file a developer must inform the team
-2. If two developers works on the same file 
+2. If two developers works on the same file they must communicate and discuss who goes first
+3. Pull first before Pushing your commited files.
