@@ -447,3 +447,10 @@ form {
 .sidebar ul li a:hover {
   background-color: #f9f9f9;
 }
+
+/* line 55, ../sass/navbar.scss */
+.content {
+  margin-left: 25%;
+  padding: 1px 16px;
+  height: 1000px;
+}
