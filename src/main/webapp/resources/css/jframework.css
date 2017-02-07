@@ -69,63 +69,69 @@ div {
 }
 
 /* line 7, ../sass/style.scss */
-div, section, article, header, footer {
+div, section, article, header, footer, label {
   clear: both;
 }
 
-/* line 3, ../sass/typography.scss */
+@font-face {
+  font-family: GeosansLight;
+  src: url("../fonts/geosans/GeosansLight.eot?") format("eot"), url("../fonts/geosans/GeosansLight.woff") format("woff"), url("../fonts/geosans/GeosansLight.ttf") format("truetype"), url("../fonts/geosans/GeosansLight.svg#GeosansLight") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* line 10, ../sass/typography.scss */
 body {
-  font-family: "GeosansLight Medium";
+  font-family: "GeosansLight";
   font-size: 14px;
   background-color: #f2f1f1;
 }
 
-/* line 9, ../sass/typography.scss */
+/* line 16, ../sass/typography.scss */
 h1 {
   font-size: 36px;
 }
 
-/* line 13, ../sass/typography.scss */
+/* line 20, ../sass/typography.scss */
 h2 {
   font-size: 30px;
 }
 
-/* line 17, ../sass/typography.scss */
+/* line 24, ../sass/typography.scss */
 h3 {
   font-size: 24px;
 }
 
-/* line 21, ../sass/typography.scss */
+/* line 28, ../sass/typography.scss */
 h4 {
   font-size: 18px;
 }
 
-/* line 25, ../sass/typography.scss */
+/* line 32, ../sass/typography.scss */
 h5 {
   font-size: 14px;
 }
 
-/* line 29, ../sass/typography.scss */
+/* line 36, ../sass/typography.scss */
 h6 {
   font-size: 12px;
 }
 
-/* line 33, ../sass/typography.scss */
+/* line 40, ../sass/typography.scss */
 .small-text {
   font-size: 12px;
 }
 
-/* line 37, ../sass/typography.scss */
+/* line 44, ../sass/typography.scss */
 .medium-text {
   font-size: 30px;
 }
 
-/* line 41, ../sass/typography.scss */
+/* line 48, ../sass/typography.scss */
 .large-text {
   font-size: 50px;
 }
 
-/* line 45, ../sass/typography.scss */
+/* line 52, ../sass/typography.scss */
 .text-center {
   text-align: center;
 }
@@ -179,7 +185,7 @@ form {
 }
 
 /* line 3, ../sass/buttons.scss */
-.button {
+.button, .button-link {
   padding: 10px;
   border: 0px;
   border-radius: 5px;
@@ -192,6 +198,12 @@ form {
 }
 
 /* line 15, ../sass/buttons.scss */
+.button-link {
+  text-decoration: none;
+  text-align: center;
+}
+
+/* line 20, ../sass/buttons.scss */
 .button-large {
   padding: 20px;
   border: 0px;
@@ -199,38 +211,38 @@ form {
   cursor: pointer;
 }
 
-/* line 22, ../sass/buttons.scss */
+/* line 27, ../sass/buttons.scss */
 .button-green {
   background-color: #40c44f;
 }
-/* line 25, ../sass/buttons.scss */
+/* line 30, ../sass/buttons.scss */
 .button-green:hover {
   background-color: #34a741;
 }
 
-/* line 30, ../sass/buttons.scss */
+/* line 35, ../sass/buttons.scss */
 .button-blue {
   background-color: #165cc5;
 }
-/* line 33, ../sass/buttons.scss */
+/* line 38, ../sass/buttons.scss */
 .button-blue:hover {
   background-color: #1350ac;
 }
 
-/* line 38, ../sass/buttons.scss */
+/* line 43, ../sass/buttons.scss */
 .button-red {
   background-color: #fc102c;
 }
-/* line 41, ../sass/buttons.scss */
+/* line 46, ../sass/buttons.scss */
 .button-red:hover {
   background-color: #eb0f29;
 }
 
-/* line 46, ../sass/buttons.scss */
+/* line 51, ../sass/buttons.scss */
 .button-gray {
   background-color: #f2f1f1;
 }
-/* line 49, ../sass/buttons.scss */
+/* line 54, ../sass/buttons.scss */
 .button-gray:hover {
   background-color: #d9d8d8;
 }
@@ -452,5 +464,5 @@ form {
 .content {
   margin-left: 25%;
   padding: 1px 16px;
-  height: 1000px;
+  position: absolute;
 }
