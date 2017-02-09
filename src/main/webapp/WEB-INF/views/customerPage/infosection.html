@@ -1,65 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Basic Info</title>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Basic Info</title>-->
 
-    <link href="../../../resources/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-    <link href="../../../resources/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-    <!--[if IE]>
-    <link href="../../../resources/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
-    <![endif]-->
+    <!--<link rel="stylesheet" href="../../../resources/css/jframework.css">-->
 
-</head>
-<body>
-<div id="form_section">
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
     <form>
-            <div id="customer_info">
-               <ul>
-                   <li>
-                        <p class="form_title">Basic Information</p>
-                       <br/>
-                   </li>
-
-                   <li>
-                         <label>Name:</label>
-                         <br/>
-                         <br/>
-                         <input type="text" name="fname" placeholder="Firstname">
-                         <input type="text" name="mname" placeholder="Middlename">
-                         <input type="text" name="lname" placeholder="Lastname">
-                       <br/>
-                       <br/>
-                   </li>
-                   <li>
-                         <label>Complete Home Address:</label>
-                         <br/>
-                         <input type="text" name="haddress" class="longfield">
-                       <br/>
-                       <br/>
-                   </li>
-                    <li>
-                       <label>Complete Company Address:</label>
-                       <br/>
-                       <input type="text" name="caddress" class="longfield">
-                       <br/>
-                       <br/>
-                    </li>
-                    <li>
-                       <label>Birthdate:</label>
-                       <label>Cellphone no.:</label>
-                       <br/>
-                       <input type="date" name="bdate">
-                       <input type="number" name="cnumber">
-                    </li>
-               </ul>
+            <div class="segment col-12">
+                <h2 class="large-text">Basic Information</h2>
+                <div col-12>
+                    <label>Name:</label>
+                    <input type="text" class="field-clear field-gray">
+                </div>
+                <div col-12>
+                    <label>Complete Home Address:</label>
+                    <input type="text" class="field-clear field-gray">
+                </div>
+                <div col-12>
+                    <label>Complete Company Address:</label>
+                    <input type="text" class="field-clear field-gray">
+                </div>
+                <div class="col-3">
+                    <label>Birthdate:</label>
+                    <input type="text" class="field-clear field-gray">
+                </div>
+                <div class="col-3">
+                    <label>Cellphone no.:</label>
+                    <input type="text" class="field-clear field-gray">
+                </div>
             </div>
-            <div id="button">
-                <input type="button" value="Add Loan">
-                <input type="button" value="Save">
+            <div class="col-2">
+                <input type="button" class="button button-green" value="Add Loan" id="addLoan">
             </div>
-       </form>
-</div>
-
-</body>
-</html>
+            <div class="col-1">
+                <input type="button" class="button button-green" value="Save" id="save">
+            </div>
+    </form>
+<!--</div>-->
+<script src="../../../resources/js/link.js"></script>
+<!--</body>-->
+<!--</html>-->
