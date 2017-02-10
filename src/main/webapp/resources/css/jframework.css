@@ -184,6 +184,36 @@ form {
   border-bottom: 3px solid #d9d8d8;
 }
 
+/* line 43, ../sass/form.scss */
+.field-border-green {
+  border: 2px solid #40c44f;
+  border-radius: 4px;
+}
+
+/* line 48, ../sass/form.scss */
+.field-border-error {
+  border: 2px solid #fc102c;
+  border-radius: 4px;
+}
+
+/* line 53, ../sass/form.scss */
+.field-border-blue {
+  border: 2px solid #165cc5;
+  border-radius: 4px;
+}
+
+/* line 58, ../sass/form.scss */
+.field-border-black {
+  border: 2px solid #090909;
+  border-radius: 4px;
+}
+
+/* line 63, ../sass/form.scss */
+.field-border-gray {
+  border: 2px solid #d9d8d8;
+  border-radius: 4px;
+}
+
 /* line 3, ../sass/buttons.scss */
 .button, .button-link {
   padding: 10px;
@@ -198,12 +228,55 @@ form {
 }
 
 /* line 15, ../sass/buttons.scss */
+.button-circle {
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 50px;
+}
+/* line 21, ../sass/buttons.scss */
+.button-circle span, .button-circle i {
+  color: #fffcfc;
+}
+
+/* line 26, ../sass/buttons.scss */
+.button-circle-small {
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 30px;
+}
+/* line 32, ../sass/buttons.scss */
+.button-circle-small span, .button-circle-small i {
+  color: #fffcfc;
+}
+
+/* line 37, ../sass/buttons.scss */
+.button-circle-large {
+  height: 70px;
+  width: 70px;
+  border: none;
+  border-radius: 70px;
+}
+/* line 43, ../sass/buttons.scss */
+.button-circle-large span, .button-circle-large i {
+  color: #fffcfc;
+}
+
+/* line 48, ../sass/buttons.scss */
+.fixed-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+/* line 54, ../sass/buttons.scss */
 .button-link {
   text-decoration: none;
   text-align: center;
 }
 
-/* line 20, ../sass/buttons.scss */
+/* line 59, ../sass/buttons.scss */
 .button-large {
   padding: 20px;
   border: 0px;
@@ -211,38 +284,38 @@ form {
   cursor: pointer;
 }
 
-/* line 27, ../sass/buttons.scss */
+/* line 66, ../sass/buttons.scss */
 .button-green {
   background-color: #40c44f;
 }
-/* line 30, ../sass/buttons.scss */
+/* line 69, ../sass/buttons.scss */
 .button-green:hover {
   background-color: #34a741;
 }
 
-/* line 35, ../sass/buttons.scss */
+/* line 74, ../sass/buttons.scss */
 .button-blue {
   background-color: #165cc5;
 }
-/* line 38, ../sass/buttons.scss */
+/* line 77, ../sass/buttons.scss */
 .button-blue:hover {
   background-color: #1350ac;
 }
 
-/* line 43, ../sass/buttons.scss */
+/* line 82, ../sass/buttons.scss */
 .button-red {
   background-color: #fc102c;
 }
-/* line 46, ../sass/buttons.scss */
+/* line 85, ../sass/buttons.scss */
 .button-red:hover {
   background-color: #eb0f29;
 }
 
-/* line 51, ../sass/buttons.scss */
+/* line 90, ../sass/buttons.scss */
 .button-gray {
   background-color: #f2f1f1;
 }
-/* line 54, ../sass/buttons.scss */
+/* line 93, ../sass/buttons.scss */
 .button-gray:hover {
   background-color: #d9d8d8;
 }
@@ -466,11 +539,12 @@ form {
 }
 /* line 52, ../sass/navbar.scss */
 .sidebar ul li a:hover {
-  background-color: #f9f9f9;
+  background-color: #34a741;
 }
 
 /* line 60, ../sass/navbar.scss */
 .content {
-  margin-left: 20%;
+  position: relative;
+  margin-left: 23%;
   padding: 10px 50px;
 }
