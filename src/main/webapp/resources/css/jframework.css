@@ -79,59 +79,59 @@ div, section, article, header, footer, label {
   font-weight: normal;
   font-style: normal;
 }
-/* line 10, ../sass/typography.scss */
+/* line 3, ../sass/typography.scss */
 body {
   font-family: "GeosansLight";
-  font-size: 14px;
+  font-size: 18px;
   background-color: #f2f1f1;
 }
 
-/* line 16, ../sass/typography.scss */
+/* line 9, ../sass/typography.scss */
 h1 {
   font-size: 36px;
 }
 
-/* line 20, ../sass/typography.scss */
+/* line 13, ../sass/typography.scss */
 h2 {
   font-size: 30px;
 }
 
-/* line 24, ../sass/typography.scss */
+/* line 17, ../sass/typography.scss */
 h3 {
   font-size: 24px;
 }
 
-/* line 28, ../sass/typography.scss */
+/* line 21, ../sass/typography.scss */
 h4 {
   font-size: 18px;
 }
 
-/* line 32, ../sass/typography.scss */
+/* line 25, ../sass/typography.scss */
 h5 {
   font-size: 14px;
 }
 
-/* line 36, ../sass/typography.scss */
+/* line 29, ../sass/typography.scss */
 h6 {
   font-size: 12px;
 }
 
-/* line 40, ../sass/typography.scss */
+/* line 33, ../sass/typography.scss */
 .small-text {
   font-size: 12px;
 }
 
-/* line 44, ../sass/typography.scss */
+/* line 37, ../sass/typography.scss */
 .medium-text {
   font-size: 30px;
 }
 
-/* line 48, ../sass/typography.scss */
+/* line 41, ../sass/typography.scss */
 .large-text {
   font-size: 50px;
 }
 
-/* line 52, ../sass/typography.scss */
+/* line 45, ../sass/typography.scss */
 .text-center {
   text-align: center;
 }
@@ -441,8 +441,6 @@ form {
 
 /* line 33, ../sass/navbar.scss */
 .sidebar ul {
-  margin:   0;
-  padding:  0;
   position: fixed;
   background-color: #40c44f;
   width: 20%;
@@ -455,20 +453,24 @@ form {
   padding: 10px;
   background-color: #34a741;
 }
-/* line 45, ../sass/navbar.scss */
+/* line 44, ../sass/navbar.scss */
+.sidebar ul li {
+  border-bottom: 2px solid #34a741;
+}
+/* line 46, ../sass/navbar.scss */
 .sidebar ul li a {
   display: block;
   text-decoration: none;
   color: #000;
-  padding: 15px 200px 15px 10px;
+  padding: 20px 15px 20px 10px;
 }
-/* line 51, ../sass/navbar.scss */
+/* line 52, ../sass/navbar.scss */
 .sidebar ul li a:hover {
   background-color: #f9f9f9;
 }
 
-/* line 59, ../sass/navbar.scss */
+/* line 60, ../sass/navbar.scss */
 .content {
-  margin-left: 25%;
-  padding: 1px auto;
+  margin-left: 20%;
+  padding: 10px 50px;
 }
