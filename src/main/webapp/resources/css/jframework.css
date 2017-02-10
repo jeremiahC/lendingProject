@@ -483,37 +483,37 @@ form {
 }
 
 /* line 4, ../sass/navbar.scss */
-.navbar ul {
+#navbar ul {
   box-shadow: 2px 3px 10px 1px #d9d8d8;
   background-color: #fffcfc;
   clear: both;
 }
 /* line 8, ../sass/navbar.scss */
-.navbar ul li {
+#navbar ul li {
   display: inline-block;
   padding: 20px 20px 20px 20px;
 }
 /* line 12, ../sass/navbar.scss */
-.navbar ul li:hover {
+#navbar ul li:hover {
   background-color: #40c44f;
 }
 /* line 15, ../sass/navbar.scss */
-.navbar ul li a {
+#navbar ul li a {
   text-decoration: none;
   color: #090909;
   font-size: 18px;
 }
 /* line 19, ../sass/navbar.scss */
-.navbar ul li a:hover {
+#navbar ul li a:hover {
   color: #fffcfc;
 }
 /* line 26, ../sass/navbar.scss */
-.navbar .green {
+#navbar .green {
   border-bottom: 3px solid #40c44f;
 }
 
 /* line 33, ../sass/navbar.scss */
-.sidebar ul {
+#sidebar ul {
   position: fixed;
   background-color: #40c44f;
   width: 20%;
@@ -522,29 +522,33 @@ form {
   overflow: auto;
 }
 /* line 40, ../sass/navbar.scss */
-.sidebar ul .label {
+#sidebar ul .label {
   padding: 10px;
   background-color: #34a741;
 }
 /* line 44, ../sass/navbar.scss */
-.sidebar ul li {
+#sidebar ul li {
   border-bottom: 2px solid #34a741;
 }
 /* line 46, ../sass/navbar.scss */
-.sidebar ul li a {
+#sidebar ul li a {
   display: block;
   text-decoration: none;
   color: #000;
   padding: 20px 15px 20px 10px;
 }
 /* line 52, ../sass/navbar.scss */
-.sidebar ul li a:hover {
+#sidebar ul li a:hover {
   background-color: #34a741;
 }
 
 /* line 60, ../sass/navbar.scss */
-.content {
+#content {
+  width: 98%;
+  height: auto;
+  min-height: 850px;
+  background-color: #f2f1f1;
   position: relative;
-  margin-left: 23%;
-  padding: 10px 50px;
+  padding: 20px;
+  display: block;
 }

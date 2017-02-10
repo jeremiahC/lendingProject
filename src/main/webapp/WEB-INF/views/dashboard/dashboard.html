@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../../resources/css/jframework.css">
     <link rel="stylesheet" href="../../../resources/css/font-awesome/css/font-awesome.min.css">
     <script src="../../../resources/js/jquery.min.js"></script>
+    <script src="../../../resources/js/jquery-ui.min.js"></script>
     <style>
         table {
             border-collapse: collapse;
@@ -39,7 +40,7 @@
 </head>
 <body>
 
-<section class="sidebar">
+<section id="sidebar">
     <ul>
         <li class="label">
             <a><img src="../../../resources/images/user.png" class="circular-image" width="70px" height="70px"></a>
@@ -49,16 +50,17 @@
     </ul>
 </section>
 
-<section class="content">
+<section id="content">
 
-    <navbar class="navbar col-12">
+    <navbar id="navbar" class="col-12">
         <ul class="green">
-            <li><a href="#"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="#" id="menu"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a></li>
         </ul>
     </navbar>
+
     <div class="col-11">
 
-        <div id="display"></div>
+        <div id="display" class="container"></div>
 
     </div>
 </section>
@@ -68,5 +70,6 @@
 </button>
 
 <script src="../../../resources/js/link.js"></script>
+<script src="../../../resources/js/sidebar.js"></script>
 </body>
 </html>
