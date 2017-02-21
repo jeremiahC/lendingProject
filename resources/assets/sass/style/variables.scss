@@ -1,0 +1,75 @@
+
+//	Created by: Jeremiah
+//	Date: 1/1/2017
+//	You Can change the set-up here and just call it
+
+//colors
+
+//color themes
+
+$gray-light: 			#f2f1f1;
+$green:		 			#40c44f;
+$blue: 					#165cc5;
+$black : 				#090909;
+$white: 				#fffcfc;
+$red:					#fc102c;
+
+$dark-green:			#34a741;
+$dark-blue:				#1350ac;
+$dark-red:				#eb0f29;
+$dark-gray:				#d9d8d8;
+
+
+//container sizes
+
+$width-default:			50px;
+$full-width:			98%;
+$margin-default:		5px;
+$padding-default:		5px;
+
+//Form
+
+$border-radius:			5px;
+$border-line:			1px;
+$border-color-default:	$green;
+$border-color-error:	$red;
+$border-color-blue:		$blue;
+$border-color-black:	$black;
+$border-color-gray:		$dark-gray;
+
+$padding-input-default:	$padding-default + 5;
+$padding-input-large:	20px;
+$padding-input-small:	3px;
+
+$box-shadow:			2px 3px 10px 1px $dark-gray;
+
+$field-background:		$dark-gray;
+
+//button colors
+
+//default
+
+$btn-green: 			$green;
+$btn-blue:				$blue;
+$btn-red:				$red;
+$btn-gray:				$gray-light;
+
+$hover-button-green:	$dark-green;
+$hover-button-blue:		$dark-blue;
+$hover-button-red:		$dark-red;	
+$hover-button-gray:		$dark-gray;
+
+$active-button-green:	$btn-green;
+$active-button-blue:	$btn-blue;
+$active-button-red:		$btn-red;
+$active-button-gray:	$btn-gray;
+
+//responsive
+
+$mobile:				768px;
+$tablet:				1024px;
+
+//sidebar
+
+//images
+

@@ -1,0 +1,21 @@
+@import "variables";
+
+
+.circular-image{
+	border-radius: 	$border-radius * 20;
+}
+
+.rounded-image{
+	border-radius:	$border-radius * 10;
+}
+
+
+header, main, footer {
+	padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+	header, main, footer {
+		padding-left: 0;
+	}
+}

@@ -12,11 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard/index');
 });
 
-Route::get('/about', function () {
-    return view('about/index');
+//Page for customers
+Route::get('/customerPage', function () {
+    return view('customerPage/index');
 });
 
 

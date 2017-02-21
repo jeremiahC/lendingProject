@@ -1,0 +1,26 @@
+.circular-image {
+  border-radius: 100px;
+}
+
+.rounded-image {
+  border-radius: 50px;
+}
+
+header,
+main,
+footer {
+  padding-left: 300px;
+}
+
+main{
+  padding-top: 30px;
+  padding-left: 350px;
+}
+
+@media only screen and (max-width: 992px) {
+  header,
+  main,
+  footer {
+    padding-left: 0;
+  }
+}
