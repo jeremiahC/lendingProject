@@ -3,9 +3,10 @@
 @section('content')
 <div class="row">
     <div class="col s12 m12 l11">
-        <div class="card-panel">
-            <div class="row">
-                <form class="col s12">
+        <div class="row">
+            <form class="col s12">
+                <label>Basic Information</label>
+                <div class="card-panel">
                     <div class="row">
                         <div class="input-field col s12 m12 l4">
                             <input id="first_name" type="text" class="validate">
@@ -41,8 +42,16 @@
                             <label for="cel_no">Cellphone No.</label>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+                <div class="right">
+                    <button class=" btn waves-effect waves-light"  name="action">Add Loan
+                        <i class="material-icons right">add</i>
+                    </button>
+                    <button class=" btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

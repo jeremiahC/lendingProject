@@ -13,8 +13,9 @@ footer {
 }
 
 main{
-  padding-top: 30px;
+  padding-top: 50px;
   padding-left: 350px;
+  padding-bottom: 50px;
 }
 
 @media only screen and (max-width: 992px) {
