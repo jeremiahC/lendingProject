@@ -1,5 +1,5 @@
 {
-  "/js/materialize.js": "/js/materialize.js",
+  "mix.js": "mix.js",
   "/css/materialize.css": "/css/materialize.css",
   "/css/style.css": "/css/style.css"
 }
