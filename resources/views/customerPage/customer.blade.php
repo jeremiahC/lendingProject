@@ -43,19 +43,19 @@
         <div class="col s12 m12 l11">
             <h4>Ledger</h4>
             <div class="card-panel">
-                <table class="striped responsive-table">
+                <table class="cell-table">
                     <thead>
                     <tr>
-                        <th data-field="id">Date</th>
-                        <th data-field="name">Transaction</th>
-                        <th data-field="price">Add Loan</th>
-                        <th data-field="price">Amount</th>
-                        <th data-field="price">Interest</th>
-                        <th data-field="price">Payments</th>
-                        <th data-field="price">Balance</th>
-                        <th data-field="price">Received</th>
-                        <th data-field="price">Approved</th>
-                        <th data-field="price">Date-time</th>
+                        <th data-field="id" class="center-align">Date</th>
+                        <th data-field="name" class="center-align">Transaction</th>
+                        <th data-field="price" class="center-align">Add Loan</th>
+                        <th data-field="price" class="center-align">Amount</th>
+                        <th data-field="price" class="center-align">Interest</th>
+                        <th data-field="price" class="center-align">Payments</th>
+                        <th data-field="price" class="center-align">Balance</th>
+                        <th data-field="price" class="center-align">Received</th>
+                        <th data-field="price" class="center-align">Approved</th>
+                        <th data-field="price" class="center-align">Date-time</th>
                     </tr>
                     </thead>
 
@@ -73,28 +73,28 @@
                         <td>January 1, 2017</td>
                     </tr>
                     <tr>
+                        <td>January 15</td>
+                        <td>Loan</td>
+                        <td></td>
+                        <td>100,000</td>
+                        <td>2.5% / 15days</td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>January 1, 2017</td>
                     </tr>
                     <tr>
+                        <td>January 15</td>
+                        <td>Loan</td>
+                        <td></td>
+                        <td>100,000</td>
+                        <td>2.5% / 15days</td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>January 1, 2017</td>
                     </tr>
                     </tbody>
                 </table>
