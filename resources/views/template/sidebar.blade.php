@@ -1,9 +1,10 @@
 
 <section>
     <ul id="slide-out" class="side-nav fixed">
+        <li><i class="material-icons right white-text" id="logout">power_settings_new</i></li>
         <li class="light-green">
-            <div class="left-image">
-                <img src="/images/profile.png" class="circular-image hoverable" height="200" width="200">
+            <div class="center-image">
+                <img src="/images/profile.png" class="circular-image hoverable" height="120" width="120">
             </div>
         </li>
         <li class="bold"><a href="/"><i class="material-icons waves-effect waves-teal">dashboard</i>Dashboard</a></li>

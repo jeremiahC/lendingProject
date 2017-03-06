@@ -43,7 +43,7 @@
         <div class="col s12 m12 l11">
             <h4>Ledger</h4>
             <div class="card-panel">
-                <table class="cell-table">
+                <table class="striped responsive-table">
                     <thead>
                     <tr>
                         <th data-field="id" class="center-align">Date</th>
