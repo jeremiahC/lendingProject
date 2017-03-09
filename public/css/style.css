@@ -1,5 +1,11 @@
-.circular-image {
+body {
+  background-color: #f2f1f1;
+}
+
+.sm-circular-image {
   border-radius: 100px;
+  height: 60px;
+  width: 60px;
 }
 
 .rounded-image {

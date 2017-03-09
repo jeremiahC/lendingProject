@@ -1,8 +1,14 @@
 @import "variables";
 
+body{
+	background-color: $gray-light;
+}
 
-.circular-image{
+.sm-circular-image{
 	border-radius: 	$border-radius * 20;
+	height:			60px;
+	width:			60px;
+
 }
 
 .rounded-image{
