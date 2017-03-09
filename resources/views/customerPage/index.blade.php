@@ -5,9 +5,9 @@
         <h3>Customer's List</h3>
         <div class="col s12 m12 l11">
             <form>
-                <div class="input-field card light-green">
-                    <input id="search" class="search" type="search" placeholder="search for names...">
-                    <label class="label-icon black-text" for="search"><i class="material-icons">search</i></label>
+                <div class="input-field card" id="search-bar">
+                    <input class="search" type="search" placeholder="search for names...">
+                    <i class="material-icons white-text light-green">search</i>
                 </div>
             </form>
         </div>

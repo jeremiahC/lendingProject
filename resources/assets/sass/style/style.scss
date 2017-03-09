@@ -57,6 +57,24 @@ main{
 	cursor: pointer;
 }
 
+#search-bar{
+	position: relative;
+
+	input[type=search]{
+		height: 70px;
+		padding-left: 10px;
+		border: 4px solid #8bc34a;
+	}
+
+	i{
+		font-size: 50px;
+		position: absolute;
+		right: 0px;
+		padding: 14px;
+	}
+
+}
+
 @media only screen and (max-width : 992px) {
 	header, main, footer {
 		padding-left: 0;

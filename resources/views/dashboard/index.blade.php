@@ -73,9 +73,9 @@
 
         <div class="col s12 m5 l5">
             <div class="card-panel red">
-                <i class="material-icons large">face</i>
-                <span>100</span>
-                <i class="material-icons right">more_vert</i>
+                <i class="material-icons large white-text">face</i>
+                <span class="white-text">100</span>
+                <i class="material-icons right white-text">more_vert</i>
             </div>
         </div>
     </div>
