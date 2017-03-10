@@ -37,6 +37,10 @@ Route::get('/addLoan', function () {
     return view('loanPages/addLoan');
 });
 
+Route::get('/approveAddLoan', function () {
+    return view('loanPages/approveAddLoan');
+});
+
 Route::get('/payLoan', function () {
     return view('loanPages/payLoan');
 });
