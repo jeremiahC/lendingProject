@@ -31,8 +31,6 @@ main {
 
 .center-image {
   margin: 0 auto;
-  width: 50%;
-  padding: 10px;
 }
 
 #nav-label {
@@ -57,9 +55,11 @@ main {
 }
 
 #search-bar input[type=search] {
+  box-shadow: inset 0 0 10px #d9d8d8;
   height: 70px;
   padding-left: 10px;
   border: 4px solid #8bc34a;
+  font-size: 20px;
 }
 
 #search-bar i {

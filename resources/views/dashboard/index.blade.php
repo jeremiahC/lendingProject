@@ -59,7 +59,7 @@
         <div class="col s12 m6 l6">
             <div class="card pink lighten-1">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="images/background.jpg">
+                    <canvas id="myChart"></canvas>
                 </div>
                 <div class="card-content">
                     <span class="card-title activator white-text">Card Title<i class="material-icons right">more_vert</i></span>
@@ -82,3 +82,37 @@
 
 @endsection
 
+@section('script')
+    <script>
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    "Red",
+                    "Blue",
+                    "Yellow"
+                ],
+                datasets: [
+                    {
+                        data: [300, 50, 100],
+                        backgroundColor: [
+                            "red",
+                            "blue",
+                            "#FFCE56"
+                        ],
+                        hoverBackgroundColor: [
+                            "#FF6384",
+                            "#36A2EB",
+                            "#FFCE56"
+                        ]
+                    }]
+            },
+            options: {
+                animation:{
+                    animateScale:true
+                }
+            }
+        });
+    </script>
+@endsection
