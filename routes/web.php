@@ -34,6 +34,7 @@ Route::get('/customerPage/customer', function () {
 });
 
 Route::get('/addLoan', function () {
+
     return view('loanPages/addLoan');
 });
 

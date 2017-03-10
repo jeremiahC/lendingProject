@@ -1,7 +1,5 @@
-@extends('layout')
 
-@section('content')
-    <div class="row">
+    <div class="row" id="for_approver">
         <div class="col s12 m12 l11">
             <div class="card-panel">
                 <div class="row">
@@ -56,16 +54,10 @@
                     <button class=" btn waves-effect waves-light blue" id="click" type="button">Approve
                         <i class="material-icons right">thumb_up</i>
                     </button>
+                    <button class=" btn waves-effec" id="click" type="button">Save
+                        <i class="material-icons right">add</i>
+                    </button>
                 </div>
             </div>
         </div>
-        @endsection
-
-        @section('script')
-            <script>
-                $('.datepicker').pickadate({
-                    selectMonths: true, // Creates a dropdown to control month
-                    selectYears: 15 // Creates a dropdown of 15 years to control year
-                });
-            </script>
-@endsection
+    </div>

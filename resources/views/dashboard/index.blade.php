@@ -72,10 +72,26 @@
         </div>
 
         <div class="col s12 m5 l5">
-            <div class="card-panel red">
-                <i class="material-icons large white-text">face</i>
-                <span class="white-text">100</span>
-                <i class="material-icons right white-text">more_vert</i>
+            <div class="card red">
+                <div class="card-content">
+                    <span class="card-title white-text">Number of Customers<i class="material-icons right">more_vert</i></span>
+                    <i class="material-icons large white-text">face</i>
+                    <span class="white-text">100</span>
+                </div>
+            </div>
+            <div class="card light-blue">
+                <div class="card-content">
+                    <span class="card-title white-text">Number of Customers<i class="material-icons right">more_vert</i></span>
+                    <i class="material-icons large white-text">face</i>
+                    <span class="white-text">100</span>
+                </div>
+            </div>
+            <div class="card light-green">
+                <div class="card-content">
+                    <span class="card-title white-text">Number of Employees<i class="material-icons right">more_vert</i></span>
+                    <i class="material-icons large white-text">face</i>
+                    <span class="white-text">100</span>
+                </div>
             </div>
         </div>
     </div>
