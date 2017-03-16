@@ -11,23 +11,23 @@
                     <div class="row">
                         <div class="col s12 l7">
                             <b>Full Name:</b>
-                            Jeremiah Caballero
+                            {{$customer_id->fname. " " .substr($customer_id->mname,-6,1).". ".$customer_id->lname}}
                         </div>
                         <div class="col s12 l7">
                             <b>Birthday:</b>
-                            November 16,1996
+                            {{$customer_id->birthday}}
                         </div>
                         <div class="col s12 l7">
                             <b>Cellphone No.:</b>
-                            09152480538
+                            +63{{$customer_id->cell_no}}
                         </div>
                         <div class="col s12 l7">
                             <b>Home Address:</b>
-                            Lawaan, Talisay City, Cebu
+                            {{$customer_id->home_add}}
                         </div>
                         <div class="col s12 l7">
                             <b>Company Address:</b>
-                            None
+                            {{$customer_id->comp_add}}
                         </div>
                     </div>
 

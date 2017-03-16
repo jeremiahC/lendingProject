@@ -12,8 +12,6 @@
             </form>
         </div>
         <div class="col s12 m12 l11 ">
-
-
                 <div  class="card-panel">
                     <table class="responsive-table striped black-text">
                         <thead class="green">
@@ -29,31 +27,18 @@
                         </thead>
 
                         <tbody class="list">
-
-                            <tr>
-                                <td class="name">Alvin</td>
-                                <td>Cebu</td>
-                                <td>74,200</td>
-                                <td><a href="/customerPage/customer" class="btn waves-effect waves-light green">view</a></td>
-                            </tr>
-
-                            <tr>
-                                <td class="name">Bob</td>
-                                <td>Talisay</td>
-                                <td>74,200</td>
-                                <td><a href="/customerPage/customer" class="btn waves-effect waves-light green">view</a></td>
-                            </tr>
-
-                            <tr>
-                                <td class="name">Carl</td>
-                                <td>Naga</td>
-                                <td>74,200</td>
-                                <td><a href="/customerPage/customer" class="btn waves-effect waves-light green">view</a></td>
-                            </tr>
-
+                            @foreach($customers as $customer)
+                                <tr>
+                                    <td class="name">{{$customer->lname.", ".$customer->fname." ".substr($customer->mname,-6,1)}}.</td>
+                                    <td>Cebu</td>
+                                    <td>74,200</td>
+                                    <td><a href="/customerPage/customer{{$customer->id}}" class="btn waves-effect waves-light green">view</a></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
+                <a class="btn-large waves-effect waves-light right blue" href="/customerPage/create">New Customer</a>
         </div>
     </div>
 @endsection

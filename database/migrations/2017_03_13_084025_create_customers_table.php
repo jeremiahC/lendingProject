@@ -13,7 +13,7 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::create('lp_customers', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('fname', 20);
             $table->string('mname', 20);
@@ -21,7 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('home_add', 100);
             $table->string('comp_add', 100);
             $table->date('birthday');
-            $table->integer('cell_no');
+            $table->bigInteger('cell_no');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lp_customers');
+        Schema::dropIfExists('customers');
     }
 }

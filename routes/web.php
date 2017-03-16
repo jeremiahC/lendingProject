@@ -15,23 +15,16 @@ Route::get('/', function () {
     return view('dashboard/index');
 });
 
-//Page for customers
-Route::get('/customerPage', function () {
-    return view('customerPage/index');
-});
+//Route for customers page
+Route::get('/customerPage', 'CustomersController@index');
 
-//Page for create customer
-Route::get('/customerPage/create', function () {
-    return view('customerPage/create');
-});
+Route::get('/customerPage/customer{id}', 'CustomersController@show');
 
-Route::get('/customerPage/edit', function () {
-    return view('customerPage/edit');
-});
+Route::get('/customerPage/create', 'CustomersController@create');
 
-Route::get('/customerPage/customer', function () {
-    return view('customerPage/customer');
-});
+Route::get('/customerPage/customer{id}/edit', 'CustomersController@edit');
+
+Route::post('/customerPage/store', 'CustomersController@store');
 
 Route::get('/addLoan', function () {
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddLoanTable extends Migration
+class CreateLoansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAddLoanTable extends Migration
      */
     public function up()
     {
-        Schema::create('lp_add_loan', function (Blueprint $table) {
+        Schema::create('loans', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date_app');
             $table->date('date_prep');
@@ -22,8 +22,7 @@ class CreateAddLoanTable extends Migration
             $table->string('col_off', 50);
             $table->string('co_makers', 50);
             $table->integer('prep_by')->unsigned();
-            $table->foreign('prep_by')->references('id')->on('lp_customers');
-
+            $table->foreign('prep_by')->references('id')->on('customers');
         });
     }
 
@@ -34,6 +33,6 @@ class CreateAddLoanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lp_add_loan');
+        Schema::dropIfExists('loans');
     }
 }
