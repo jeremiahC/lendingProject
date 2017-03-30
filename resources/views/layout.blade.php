@@ -30,10 +30,6 @@
         <main>
             @yield('content')
         </main>
-        {{--footer part--}}
-        @include('template.footer')
-
-        @yield('script')
 
         <div class="fixed-action-btn click-to-toggle">
             <a class="btn-floating btn-large red">
@@ -47,10 +43,16 @@
             </ul>
         </div>
 
+
+        {{--footer part--}}
+        @include('template.footer')
+
+
         <script>
             $("#button").sideNav();
         </script>
 
+        @yield('script')
     </body>
 
 

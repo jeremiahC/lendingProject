@@ -36,25 +36,23 @@ class CustomersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
         // /customerPage/store
-        $this->validate(request(), [
+        $this->validate($request, [
             'fname' => 'required',
             'mname' => 'required',
             'lname' => 'required',
             'home_add' => 'required',
             'comp_add' => 'required',
             'birthday' => 'required',
-            'cell_no' => 'required',
+            'cell_no' => 'required|unique:customers,cell_no|size:11',
         ]);
 
         $customer = new Customer;
 
         $originalDate = request('birthday');
         $newDate = date("Y-m-d", strtotime($originalDate));
-
-
 
         $customer->fname = request('fname');
         $customer->mname = request('mname');

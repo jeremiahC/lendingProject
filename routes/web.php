@@ -26,10 +26,11 @@ Route::get('/customerPage/customer{id}/edit', 'CustomersController@edit');
 
 Route::post('/customerPage/store', 'CustomersController@store');
 
-Route::get('/addLoan', function () {
 
-    return view('loanPages/addLoan');
-});
+//Route for loan pages
+Route::get('/addLoan', 'LoanController@index');
+
+Route::post('/addLoan/store', 'LoanController@store');
 
 Route::get('/approveAddLoan', function () {
     return view('loanPages/approveAddLoan');
