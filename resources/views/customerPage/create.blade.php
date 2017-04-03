@@ -55,9 +55,6 @@
                     </div>
                 </div>
                 <div class="right">
-                    <a href="/addLoan" class=" btn waves-effect waves-light" >Add Loan
-                        <i class="material-icons right">add</i>
-                    </a>
                     <button class=" btn waves-effect waves-light" id="click" type="submit">Submit
                         <i class="material-icons right">send</i>
                     </button>

@@ -28,25 +28,22 @@ Route::post('/customerPage/store', 'CustomersController@store');
 
 
 //Route for loan pages
-Route::get('/addLoan', 'LoanController@index');
+Route::get('/customerPage/customer{id}/addLoan', 'LoanController@index');
 
 Route::post('/addLoan/store', 'LoanController@store');
 
-Route::get('/approveAddLoan', function () {
+Route::get('/customerPage/customer{id}/approveAddLoan', function () {
     return view('loanPages/approveAddLoan');
 });
 
-Route::get('/payLoan', function () {
-    return view('loanPages/payLoan');
-});
+Route::get('/payLoan', 'LoanController@payloan');
 
-Route::get('/addFile', function () {
-    return view('fileManager/addFile');
-});
+
+Route::get('/addFile', 'UploadController@index');
+Route::post('/store', 'UploadController@store');
+
+
 
 Route::get('/login', function () {
     return view('userPages/login');
 });
-
-
-

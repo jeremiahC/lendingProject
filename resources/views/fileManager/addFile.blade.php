@@ -3,7 +3,6 @@
 
 @section('content')
 
-
     <div class="row">
         <form class="col s12">
             <div class="row">
@@ -22,13 +21,14 @@
     </div>
 
 <div class="row">
-    <form class="col s12">
+    <form action="/store" method="post" class="col s12" enctype="multipart/form-data">
+        {{csrf_field()}}
         <div class="row">
             <label>Materialize File Input</label>
             <div class="file-field input-field dropify">
                 <div class="btn">
                     <span>Browse</span>
-                    <input type="file">
+                    <input type="file" name="photo">
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text" placeholder="Upload file">
@@ -43,6 +43,7 @@
 
             </form>
 </div>
+
 {{--</body>--}}
 {{--</html>--}}
 @endsection

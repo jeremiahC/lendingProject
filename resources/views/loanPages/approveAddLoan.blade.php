@@ -54,7 +54,7 @@
                     <button class=" btn waves-effect waves-light blue" id="click" type="button">Approve
                         <i class="material-icons right">thumb_up</i>
                     </button>
-                    <button class=" btn waves-effec" id="click" type="button">Save
+                    <button class=" btn waves-effect" id="click" type="button">Save
                         <i class="material-icons right">add</i>
                     </button>
                 </div>
