@@ -28,11 +28,11 @@ Route::post('/customerPage/store', 'CustomersController@store');
 
 
 //Route for loan pages
-Route::get('/addLoan', 'LoanController@index');
+Route::get('/customerPage/customer{id}/addLoan', 'LoanController@index');
 
 Route::post('/addLoan/store', 'LoanController@store');
 
-Route::get('/approveAddLoan', function () {
+Route::get('/customerPage/customer{id}/approveAddLoan', function () {
     return view('loanPages/approveAddLoan');
 });
 

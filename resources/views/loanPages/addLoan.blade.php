@@ -41,9 +41,10 @@
                     <div class="input-field">
                         <select name="prep_by" id="prep_by">
                             <option value="" disabled selected>Choose your option</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
+                            @foreach($employee as $employees )
+                                <option value="{{$employees->id}}" data-icon="/images/profile.png" class="left circle">{{$employees->fname . " " . $employees->lname}}</option>
+                            @endforeach
+
                         </select>
                         <label>Prepared By</label>
                     </div>
@@ -70,38 +71,38 @@
     <script>
         $(document).ready(function(){
 
-//            $('#save_loan').click(function (e) {
-//
-//                e.preventDefault();
-//                var CSRF_TOKEN = $('input[name="_token"]').val();
-//
-//                $.ajax({
-//                    url: '/addLoan/store',
-//                    type: 'post',
-//                    data: {
-//                        '_token': CSRF_TOKEN,
-//                        'date_app' : $('#date_app').val(),
-//                        'afp_serial' : $('#serial_no').val(),
-//                        'amt_app' : $('#amt_app').val(),
-//                        'col_off' : $('#colat').val(),
-//                        'co_makers' : $('#co_make').val(),
-//                        'date_prep' : $('#date_prep').val(),
-//                        'prep_by' : $('#prep_by').val()
-//
-//                    },
-//                    success: function (data) {
-//                        console.log(data);
-//                    },
-//                    error: function (data) {
-//                        var errors = '';
-//                        for(datos in data.responseJSON){
-//                            errors += data.responseJSON[datos] + '<br>';
-//                        }
-//                        console.log(errors);
-//
-//                    }
-//                });
-//            });
+            $('#save_loan').click(function (e) {
+
+                e.preventDefault();
+                var CSRF_TOKEN = $('input[name="_token"]').val();
+
+                $.ajax({
+                    url: '/addLoan/store',
+                    type: 'post',
+                    data: {
+                        '_token': CSRF_TOKEN,
+                        'date_app' : $('#date_app').val(),
+                        'afp_serial' : $('#serial_no').val(),
+                        'amt_app' : $('#amt_app').val(),
+                        'col_off' : $('#colat').val(),
+                        'co_makers' : $('#co_make').val(),
+                        'date_prep' : $('#date_prep').val(),
+                        'prep_by' : $('#prep_by').val()
+
+                    },
+                    success: function (data) {
+                        console.log(data + "success");
+                    },
+                    error: function (data) {
+                        var errors = '';
+                        for(datos in data.responseJSON){
+                            errors += data.responseJSON[datos] + '<br>';
+                        }
+                        console.log(errors);
+
+                    }
+                });
+            });
 
 
             $('select').material_select();

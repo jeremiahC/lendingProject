@@ -21,8 +21,10 @@ class CreateLoansTable extends Migration
             $table->integer('amt_app');
             $table->string('col_off', 50);
             $table->string('co_makers', 50);
+            $table->integer('loaned_by')->unsigned();
+            $table->foreign('loaned_by')->references('id')->on('customers');
             $table->integer('prep_by')->unsigned();
-            $table->foreign('prep_by')->references('id')->on('customers');
+            $table->foreign('prep_by')->references('id')->on('employees');
             $table->timestamps();
         });
     }

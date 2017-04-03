@@ -32,6 +32,7 @@
                     </div>
 
                     <a href="/customerPage/edit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>
+
                 </div>
             </div>
         </div>
@@ -98,9 +99,11 @@
                     </tr>
                     </tbody>
                 </table>
+
+
             </div>
             <div class="right">
-
+                <a href="/customerPage/customer{{$customer_id->id}}/addLoan" class="btn waves-effect waves-light blue"><i class="left material-icons">add</i>Add Loan</a>
                 <a href="#" class=" btn waves-effect waves-light grey">
                     <i class="material-icons left">import_export</i>Export file
                 </a>

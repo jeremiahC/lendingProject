@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use Illuminate\Http\Request;
 use App\Loan;
+use App\Employee;
 
 
 class LoanController extends Controller
@@ -14,10 +15,15 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    private  $userid;
+
+    public function index($id)
     {
         //redirect in form
-        return view('loanPages.addLoan');
+        $employee = Employee::all();
+
+        return view('loanPages.addLoan',compact('employee'));
     }
 
     /**
@@ -50,12 +56,15 @@ class LoanController extends Controller
 
             $loanData->date_app = $newDateApp;
             $loanData->date_prep = $newDatePrep;
-            $loanData->prep_by = 1;
+            $loanData->loaned_by = 1;
+            $loanData->prep_by = request('prep_by');
             $loanData->afp_serial = request('afp_serial');
             $loanData->amt_app = request('amt_app');
             $loanData->col_off = request('col_off');
             $loanData->co_makers = request('co_makers');
             $loanData->save();
+
+
     }
 
     /**
