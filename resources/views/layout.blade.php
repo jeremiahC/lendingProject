@@ -17,7 +17,11 @@
         <script src="/js/list.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 
-
+        <style>
+            span.error{
+               color: red;
+            }
+        </style>
     </head>
     <body>
         {{--navbar part--}}

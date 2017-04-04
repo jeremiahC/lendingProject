@@ -22,7 +22,6 @@ class CreateEmployeesTable extends Migration
             $table->string('comp_add', 100);
             $table->date('birthday');
             $table->bigInteger('cell_no');
-            $table->timestamps();
         });
     }
 

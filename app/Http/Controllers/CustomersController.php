@@ -39,31 +39,37 @@ class CustomersController extends Controller
     public function store(Request $request)
     {
         // /customerPage/store
-        $this->validate($request, [
-            'fname' => 'required',
-            'mname' => 'required',
-            'lname' => 'required',
-            'home_add' => 'required',
-            'comp_add' => 'required',
-            'birthday' => 'required',
-            'cell_no' => 'required|unique:customers,cell_no|size:11',
-        ]);
+//        $this->validate($request, [
+//            'fname' => 'required',
+//            'mname' => 'required',
+//            'lname' => 'required',
+//            'home_add' => 'required',
+//            'comp_add' => 'required',
+//            'birthday' => 'required',
+//            'cell_no' => 'required|unique:customers,cell_no|size:11',
+//            'afp_serial' =>'required'
+//        ]);
 
         $customer = new Customer;
 
-        $originalDate = request('birthday');
+        $originalDate = $request->birthday;
         $newDate = date("Y-m-d", strtotime($originalDate));
 
-        $customer->fname = request('fname');
-        $customer->mname = request('mname');
-        $customer->lname = request('lname');
-        $customer->home_add = request('home_add');
-        $customer->comp_add = request('comp_add');
+        $customer->fname = $request->fname;
+        $customer->mname = $request->mname;
+        $customer->lname = $request->lname;
+        $customer->home_add = $request->home_add;
+        $customer->comp_add = $request->comp_add;
         $customer->birthday = $newDate;
-        $customer->cell_no = request('cell_no');
+        $customer->cell_no = $request->cell_no;
+        if($request->afp_serial === " "){
+            $customer->afp_serial = null;
+        }else{
+            $customer->afp_serial = $request->afp_serial;
+        }
+
         $customer->save();
 
-//        return request()->all();
     }
 
     /**

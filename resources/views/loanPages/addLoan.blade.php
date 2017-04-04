@@ -12,14 +12,7 @@
                         <input id="date_app" type="date" class="datepicker" name="date_app">
                         <label for="date_app">Date Applied</label>
                     </div>
-                    <div class="input-field">
-                        <div class="row">
-                            <input type="checkbox" class="filled-in" id="filled-in-box"/>
-                            <label for="filled-in-box">check if AFP personel</label>
-                        </div>
-                        <input type="text" id="serial_no" class="validate" name="afp_serial" disabled>
 
-                    </div>
                     <div class="input-field">
                         <input type="number" id="amt_app" class="validate" name="amt_app">
                         <label for="amt_app">Amount applied</label>
@@ -107,14 +100,7 @@
 
             $('select').material_select();
 
-            $('input[type="checkbox"]').change(function(){
-                    if($(this).is(':checked')){
-                        $('#serial_no').removeAttr('disabled');
-                    }else{
-                        $('#serial_no').attr('disabled', 'disabled');
-                    }
 
-            });
 
             var form_for_approver = $('#for_approver');
             form_for_approver.hide();

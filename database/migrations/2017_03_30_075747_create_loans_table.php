@@ -17,7 +17,6 @@ class CreateLoansTable extends Migration
             $table->increments('id');
             $table->date('date_app')->nullable();
             $table->date('date_prep')->nullable();
-            $table->integer('afp_serial');
             $table->integer('amt_app');
             $table->string('col_off', 50);
             $table->string('co_makers', 50);
@@ -25,7 +24,6 @@ class CreateLoansTable extends Migration
             $table->foreign('loaned_by')->references('id')->on('customers');
             $table->integer('prep_by')->unsigned();
             $table->foreign('prep_by')->references('id')->on('employees');
-            $table->timestamps();
         });
     }
 
