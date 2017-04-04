@@ -64,6 +64,13 @@ class LoanController extends Controller
             $loanData->save();
 
 
+
+    }
+    public function payLoan()
+    {
+        $loans=Loan::all();
+        return view('loanPages.payloan', compact('loans'));
+
     }
 
     /**

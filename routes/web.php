@@ -36,17 +36,14 @@ Route::get('/customerPage/customer{id}/approveAddLoan', function () {
     return view('loanPages/approveAddLoan');
 });
 
-Route::get('/payLoan', function () {
-    return view('loanPages/payLoan');
-});
+Route::get('/payLoan', 'LoanController@payloan');
 
-Route::get('/addFile', function () {
-    return view('fileManager/addFile');
-});
+
+Route::get('/addFile', 'UploadController@index');
+Route::post('/store', 'UploadController@store');
+
+
 
 Route::get('/login', function () {
     return view('userPages/login');
 });
-
-
-
