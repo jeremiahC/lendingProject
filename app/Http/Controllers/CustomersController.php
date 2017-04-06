@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Loan;
 use Illuminate\Http\Request;
 use App\Customer;
 
@@ -39,16 +40,15 @@ class CustomersController extends Controller
     public function store(Request $request)
     {
         // /customerPage/store
-//        $this->validate($request, [
-//            'fname' => 'required',
-//            'mname' => 'required',
-//            'lname' => 'required',
-//            'home_add' => 'required',
-//            'comp_add' => 'required',
-//            'birthday' => 'required',
-//            'cell_no' => 'required|unique:customers,cell_no|size:11',
-//            'afp_serial' =>'required'
-//        ]);
+        $this->validate($request, [
+            'fname' => 'required',
+            'mname' => 'required',
+            'lname' => 'required',
+            'home_add' => 'required',
+            'comp_add' => 'required',
+            'birthday' => 'required',
+            'cell_no' => 'required|unique:customers,cell_no|size:11',
+        ]);
 
         $customer = new Customer;
 
@@ -78,11 +78,12 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $id)
+    public function show(Customer $id, Loan $loan)
     {
         // /customerPage/customer{id}
         $customer_id = $id;
-        return view('customerPage/customer', compact('customer_id'));
+        $loans = $loan->all();
+        return view('customerPage/customer', compact('customer_id', 'loans'));
     }
 
     /**
@@ -91,9 +92,21 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Customer $id)
     {
         // /customerPage/customer{id}/edit
+
+        $cstData = $id;
+        $fname = $cstData->fname;
+        $mname = $cstData->mname;
+        $lname = $cstData->lname;
+        $homeAdd = $cstData->home_add;
+        $compAdd = $cstData->comp_add;
+        $cellNo = $cstData->cell_no;
+        $birthday = $cstData->birthday;
+        $id = $cstData->id;
+
+        return view('customerPage.edit', compact('fname', 'mname', 'lname', 'homeAdd', 'compAdd', 'cellNo', 'birthday', 'id'));
     }
 
     /**
@@ -106,6 +119,23 @@ class CustomersController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $originalDate = $request->birthday;
+        $newDate = date("Y-m-d", strtotime($originalDate));
+
+        $customer = Customer::find($id);
+
+        $customer->fname = $request->fname;
+        $customer->mname = $request->mname;
+        $customer->lname = $request->lname;
+        $customer->home_add = $request->home_add;
+        $customer->comp_add = $request->comp_add;
+        $customer->birthday = $newDate;
+        $customer->cell_no = $request->cell_no;
+
+        $customer->save();
+
+        return redirect('/customerPage/customer'.$id);
     }
 
     /**

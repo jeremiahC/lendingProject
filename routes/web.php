@@ -13,7 +13,6 @@
 
 Route::get('/', function () {
     return view('dashboard/index');
-    return view('layouts/app');
 });
 
 //Route for customers page
@@ -25,13 +24,19 @@ Route::get('/customerPage/create', 'CustomersController@create');
 
 Route::get('/customerPage/customer{id}/edit', 'CustomersController@edit');
 
+Route::post('/customerPage/update/{id}', 'CustomersController@update');
+
 Route::post('/customerPage/store', 'CustomersController@store');
 
 
 //Route for loan pages
 Route::get('/customerPage/customer{id}/addLoan', 'LoanController@index');
 
+Route::get('/customerPage/customer{id}/addLoan/amountapprove', 'LoanController@createAmtApp');
+
 Route::post('/addLoan/store', 'LoanController@store');
+
+Route::post('/addLoan/storeAmtApp', 'LoanController@storeAmtApp');
 
 Route::get('/customerPage/customer{id}/approveAddLoan', function () {
     return view('loanPages/approveAddLoan');
@@ -52,3 +57,4 @@ Route::get('/login', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+

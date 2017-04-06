@@ -31,7 +31,7 @@
                         </div>
                     </div>
 
-                    <a href="/customerPage/edit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>
+                    <a href="/customerPage/customer{{$customer_id->id}}/edit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>
 
                 </div>
             </div>
@@ -61,42 +61,20 @@
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td>January 15</td>
-                        <td>Loan</td>
-                        <td></td>
-                        <td>100,000</td>
-                        <td>2.5% / 15days</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>January 1, 2017</td>
-                    </tr>
-                    <tr>
-                        <td>January 15</td>
-                        <td>Loan</td>
-                        <td></td>
-                        <td>100,000</td>
-                        <td>2.5% / 15days</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>January 1, 2017</td>
-                    </tr>
-                    <tr>
-                        <td>January 15</td>
-                        <td>Loan</td>
-                        <td></td>
-                        <td>100,000</td>
-                        <td>2.5% / 15days</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>January 1, 2017</td>
-                    </tr>
+                    @foreach($loans as $myLoans)
+                        <tr>
+                            <td>January 15</td>
+                            <td>Loan</td>
+                            <td></td>
+                            <td>100,000</td>
+                            <td>2.5% / 15days</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>January 1, 2017</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
 

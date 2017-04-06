@@ -16,14 +16,13 @@ class LoanController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private  $userid;
-
-    public function index($id)
+    public function index(Customer $id)
     {
         //redirect in form
         $employee = Employee::all();
+        $customer = $id;
 
-        return view('loanPages.addLoan',compact('employee'));
+        return view('loanPages.addLoan',compact('employee', 'customer'));
     }
 
     /**
@@ -31,9 +30,10 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createAmtApp()
     {
         //
+        return view('loanPages.approveAddLoan');
     }
 
     /**
@@ -62,10 +62,24 @@ class LoanController extends Controller
             $loanData->col_off = request('col_off');
             $loanData->co_makers = request('co_makers');
             $loanData->save();
-
-
-
     }
+
+    public function storeAmtApp(Request $request, Loan $loanData, Customer $customer)
+    {
+        //
+        dd($loanData);
+        $loanData->amt_apr = $request->amount;
+        $loanData->less = $request->less;
+        $loanData->interest = $request->interest;
+        $loanData->serv_change = $request->serv_change;
+        $loanData->notarial = $request->notarial;
+        $loanData->others = $request->others;
+        $loanData->prev_loan = $request->prev_loan;
+        $loanData->total = $request->total;
+
+        $loanData->save();
+    }
+
     public function payLoan()
     {
         $loans=Loan::all();

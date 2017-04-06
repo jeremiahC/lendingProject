@@ -49,14 +49,12 @@
             <button class=" btn waves-effect waves-light" id="save_loan" type="submit">Save
                 <i class="material-icons right">add</i>
             </button>
-            <button class=" btn waves-effect waves-light" id="next" type="button">Next
+            <a href="/customerPage/customer{{$customer->id}}/addLoan/amountapprove" class=" btn waves-effect waves-light" id="next" type="button">Next
                 <i class="material-icons right">send</i>
-            </button>
+            </a>
         </div>
     </form>
 </div>
-
-@include('loanPages.approveAddLoan')
 
 @endsection
 
@@ -64,6 +62,8 @@
     <script>
         $(document).ready(function(){
 
+            //add loan
+            $('#next').hide();
             $('#save_loan').click(function (e) {
 
                 e.preventDefault();
@@ -85,6 +85,7 @@
                     },
                     success: function (data) {
                         console.log(data + "success");
+                        $('#next').show();
                     },
                     error: function (data) {
                         var errors = '';
@@ -97,16 +98,25 @@
                 });
             });
 
+            //add amount
+
 
             $('select').material_select();
 
 
 
             var form_for_approver = $('#for_approver');
+
             form_for_approver.hide();
+
             $('#next').click(function () {
                 $('#addLoan').hide();
                 $(form_for_approver).show();
+            });
+
+            $('#back').click(function () {
+                $('#addLoan').show();
+                $(form_for_approver).hide();
             });
 
 
