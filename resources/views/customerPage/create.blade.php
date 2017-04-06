@@ -68,6 +68,8 @@
                     </button>
                 </div>
             </form>
+            @include('errorMessages.success')
+
         </div>
     </div>
 </div>
@@ -75,91 +77,90 @@
 
 @section('script')
     <script>
-        $('#click').click(function (e) {
+        $(document).ready(function () {
+
+            $('#click').click(function (e) {
 
 
-            var CSRF_TOKEN = $('input[name="_token"]').val();
+                var CSRF_TOKEN = $('input[name="_token"]').val();
 
-            var all_data = {
-                '_token': CSRF_TOKEN,
-                'fname' : $('#first_name').val(),
-                'mname' : $('#middle_name').val(),
-                'lname' : $('#last_name').val(),
-                'home_add' : $('#home_add').val(),
-                'comp_add' : $('#comp_add').val(),
-                'birthday' : $('#birthday').val(),
-                'cell_no' : $('#cel_no').val(),
-                'afp_serial' : $('#serial_no').val(),
-            };
+                var all_data = {
+                    '_token': CSRF_TOKEN,
+                    'fname' : $('#first_name').val(),
+                    'mname' : $('#middle_name').val(),
+                    'lname' : $('#last_name').val(),
+                    'home_add' : $('#home_add').val(),
+                    'comp_add' : $('#comp_add').val(),
+                    'birthday' : $('#birthday').val(),
+                    'cell_no' : $('#cel_no').val(),
+                    'afp_serial' : $('#serial_no').val(),
+                };
 
-            $("#form").validate({
-                    rules:{
-                        fname: "required",
-                        mname: "required",
-                        lname: "required",
-                        home_add: "required",
-                        comp_add: "required",
-                        birthday: "required",
-                        cell_no: {
-                            required: true,
-                            minlength: 11,
-                            maxlength: 11
-                        }
-                    },
-                    messages:{
-                        fname: "Please Enter Your Firstname",
-                        lname: "Please Enter Your Lastname",
-                        mname: "Please Enter Your Middlename",
-                        home_add: "Enter an home address",
-                        comp_add: "Enter an company address"
-
-                    },
-                    submitHandler: function(form) {
-                        console.log(all_data);
-                        $.ajax({
-                            url: form.action,
-                            type: form.method,
-                            data: all_data,
-                            success: function(data){
-                                console.log(data);
-                                alert('as');
-                            },
-                            error: function(data){
-                                alert('ds');
-                                var errors = '';
-                                for(datos in data.responseJSON){
-                                    errors += data.responseJSON[datos] + '<br>';
-                                }
-
-                                $('#error').show().html(errors);//this is my div with messages
+                $("#form").validate({
+                        rules:{
+                            fname: "required",
+                            mname: "required",
+                            lname: "required",
+                            home_add: "required",
+                            comp_add: "required",
+                            birthday: "required",
+                            cell_no: {
+                                required: true,
+                                minlength: 11,
+                                maxlength: 11,
                             }
-                        });
-                    },
-                    errorElement : 'span',
-                    errorPlacement: function(error, element) {
-                        var placement = $(element).data('error');
-                        if (placement) {
-                            $(placement).append(error)
-                        } else {
-                            error.insertAfter(element);
+                        },
+                        messages:{
+                            fname: "Please Enter Your Firstname",
+                            lname: "Please Enter Your Lastname",
+                            mname: "Please Enter Your Middlename",
+                            home_add: "Enter an home address",
+                            comp_add: "Enter an company address",
+
+                        },
+                        submitHandler: function(form) {
+                            $.ajax({
+                                url: form.action,
+                                type: form.method,
+                                data: all_data,
+                                success: function(data){
+                                    console.log('success');
+                                    window.location.replace("/customerPage");
+                                    $('#my-modal').modal('open');
+                                },
+                                error: function(data){
+                                    console.log(data);
+                                }
+                            });
+                        },
+                        errorElement : 'span',
+                        errorPlacement: function(error, element) {
+                            var placement = $(element).data('error');
+                            if (placement) {
+                                $(placement).append(error)
+                            } else {
+                                error.insertAfter(element);
+                            }
                         }
                     }
+                );
+
+            });
+
+            $('input[type="checkbox"]').change(function(){
+                if($(this).is(':checked')){
+                    $('#serial_no').removeAttr('disabled');
+                }else{
+                    $('#serial_no').attr('disabled', 'disabled');
                 }
-            );
 
-        });
-
-        $('input[type="checkbox"]').change(function(){
-            if($(this).is(':checked')){
-                $('#serial_no').removeAttr('disabled');
-            }else{
-                $('#serial_no').attr('disabled', 'disabled');
-            }
-
-        });
+            });
             $('.datepicker').pickadate({
                 selectMonths: true, // Creates a dropdown to control month
                 selectYears: 200 // Creates a dropdown of 15 years to control year
             });
+        });
+
+
     </script>
 @endsection

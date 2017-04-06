@@ -18,8 +18,8 @@ class CreateCustomersTable extends Migration
             $table->string('fname', 20);
             $table->string('mname', 20);
             $table->string('lname', 20);
-            $table->string('home_add', 100);
-            $table->string('comp_add', 100);
+            $table->string('home_add', 100)->nullable;
+            $table->string('comp_add', 100)->nullable;
             $table->date('birthday');
             $table->bigInteger('cell_no');
             $table->integer('afp_serial')->nullable();
