@@ -8,6 +8,7 @@
                     <li>
                         <a href="#" id="nav-label" class="green-text text-darken-2 brand-logo">Lending Project</a>
                     </li>
+
                 </ul>
             </div>
         </nav>

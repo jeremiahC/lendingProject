@@ -13,6 +13,7 @@
 
 Route::get('/', function () {
     return view('dashboard/index');
+    return view('layouts/app');
 });
 
 //Route for customers page
@@ -47,3 +48,7 @@ Route::post('/store', 'UploadController@store');
 Route::get('/login', function () {
     return view('userPages/login');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
