@@ -6,7 +6,7 @@
             <div class="center-image">
                 <img src="/images/profile.png" class="circle hoverable" height="120" width="120">
             <a href="#" class="" data-toggle="dropdown" role="button" aria-expanded="false" >
-                {{ Auth::user()->name }} <span class="caret"></span>
+                {{--{{ Auth::user()->name }} <span class="caret"></span>--}}
             </a>
             </div>
 
