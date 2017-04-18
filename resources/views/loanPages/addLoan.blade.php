@@ -3,8 +3,9 @@
 @section('content')
 
 <div class="row" id="addLoan">
-    <form class="col s12 m12 l11" method="post" action="/addLoan/store">
+    <form class="col s12 m12 l11" method="post">
         {{csrf_field()}}
+        <input type="text" value="{{$customer->id}}" id="customer_id" hidden>
         <div class="card-panel">
             <div class="row">
                 <div class="col s12 m12 l6">
@@ -32,13 +33,8 @@
                         <label for="date_prep">Date Prepared</label>
                     </div>
                     <div class="input-field">
-                        <select name="prep_by" id="prep_by">
-                            <option value="" disabled selected>Choose your option</option>
-                            @foreach($employee as $employees )
-                                <option value="{{$employees->id}}" data-icon="/images/profile.png" class="left circle">{{$employees->fname . " " . $employees->lname}}</option>
-                            @endforeach
-
-                        </select>
+                        <input type="text" value="{{$employee}}" readonly>
+                        <input type="text" id="prep_by" name="prep_by" value="{{$employeeId}}" hidden>
                         <label>Prepared By</label>
                     </div>
                 </div>
@@ -68,9 +64,10 @@
 
                 e.preventDefault();
                 var CSRF_TOKEN = $('input[name="_token"]').val();
+                var customer_id = $('#customer_id').val();
 
                 $.ajax({
-                    url: '/addLoan/store',
+                    url: '/addLoan/store/' + customer_id,
                     type: 'post',
                     data: {
                         '_token': CSRF_TOKEN,
@@ -97,8 +94,6 @@
                     }
                 });
             });
-
-            //add amount
 
 
             $('select').material_select();

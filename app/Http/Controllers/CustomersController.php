@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Loan;
+use App\LoanAmount;
 use Illuminate\Http\Request;
 use App\Customer;
 
@@ -78,12 +79,21 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $id, Loan $loan)
+    public function show(Customer $id)
     {
         // /customerPage/customer{id}
-        $customer_id = $id;
-        $loans = $loan->all();
-        return view('customerPage/customer', compact('customer_id', 'loans'));
+        /* TODO
+            if($loan is approved){
+                display loan
+                if($loan > 2){
+                    add loan
+                }
+            }else{
+                dont display
+            }
+        */
+        $customer = $id;
+        return view('customerPage/customer', compact('customer'));
     }
 
     /**

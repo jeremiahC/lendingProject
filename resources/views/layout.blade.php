@@ -24,39 +24,30 @@
         </style>
     </head>
     <body>
-        {{--navbar part--}}
-        @include('template.navbar')
+        @if (Auth::guest())
+            @include('auth.login')
+        @else
+            {{--navbar part--}}
+            @include('template.navbar')
 
-        {{--sidebar part--}}
-        @include('template.sidebar')
+            {{--sidebar part--}}
+            @include('template.sidebar')
 
-        {{--content part--}}
-        <main>
-            @yield('content')
-        </main>
+            {{--content part--}}
+            <main>
+                @yield('content')
+            </main>
 
-        <div class="fixed-action-btn click-to-toggle">
-            <a class="btn-floating btn-large red">
-                <i class="material-icons">menu</i>
-            </a>
-            <ul>
-                <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-                <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-                <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-                <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-            </ul>
-        </div>
+            {{--footer part--}}
+            @include('template.footer')
 
 
-        {{--footer part--}}
-        @include('template.footer')
+            <script>
+                $("#button").sideNav();
+            </script>
 
-
-        <script>
-            $("#button").sideNav();
-        </script>
-
-        @yield('script')
+            @yield('script')
+        @endif
     </body>
 
 

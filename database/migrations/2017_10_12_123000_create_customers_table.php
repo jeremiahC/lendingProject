@@ -21,7 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('home_add', 100)->nullable;
             $table->string('comp_add', 100)->nullable;
             $table->date('birthday');
-            $table->bigInteger('cell_no');
+            $table->bigInteger('cell_no')->unique;
             $table->integer('afp_serial')->nullable();
 
         });

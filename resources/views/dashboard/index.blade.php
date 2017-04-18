@@ -6,51 +6,21 @@
         <div class="col s12 m12 l11">
             <ul class="collection with-header">
                 <li class="collection-header "><h4>Pending Loans</h4></li>
-                <li class="collection-item avatar">
-                    <img src="images/profile.png" alt="" class="circle">
-                    <span class="title">Jeremiah Caballero</span>
-                    <div class="chip red white-text">
-                        Not yet Approved
-                    </div>
-                    <p>
-                        November 16, 2017
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">more_horiz</i></a>
-                </li>
-                <li class="collection-item avatar">
-                    <img src="images/profile.png" alt="" class="circle">
-                    <span class="title">Mario Quijads</span>
-                    <div class="chip red white-text">
-                        Not yet Approved
-                    </div>
-                    <p>
-                        November 16, 2017
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">more_horiz</i></a>
-                </li>
-                <li class="collection-item avatar">
-                    <img src="images/profile.png" alt="" class="circle">
-                    <span class="title">John Doe</span>
-                    <div class="chip red white-text">
-                        Not yet Approved
-                    </div>
-                    <p>
-                        November 16, 2017
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">more_horiz</i></a>
-                </li>
-                <li class="collection-item avatar">
-                    <img src="images/profile.png" alt="" class="circle">
-                    <span class="title">Chevy Banico</span>
-                    <div class="chip red white-text">
-                        Not yet Approved
-                    </div>
-                    <p>
-                        November 16, 2017
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">more_horiz</i></a>
-                </li>
-
+                @foreach($loans as $loansShow)
+                    @if($loansShow->amount === null || $loansShow->amount->approved === null)
+                        <li class="collection-item avatar">
+                            <img src="images/profile.png" alt="" class="circle">
+                            <span class="title">{{$loansShow->customer->fname . " " . $loansShow->customer->lname}}</span>
+                            <div class="chip red white-text">
+                                Not yet Approved
+                            </div>
+                            <p>
+                                {{$loansShow->date_prep}}
+                            </p>
+                            <a href="/show/loan/{{$loansShow->id}}" class="secondary-content"><i class="material-icons">more_horiz</i></a>
+                        </li>
+                    @endif
+                @endforeach
             </ul>
         </div>
     </div>

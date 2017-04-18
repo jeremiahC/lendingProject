@@ -11,27 +11,27 @@
                     <div class="row">
                         <div class="col s12 l7">
                             <b>Full Name:</b>
-                            {{$customer_id->fname. " " .substr($customer_id->mname,-6,1).". ".$customer_id->lname}}
+                            {{$customer->fname. " " .substr($customer->mname,-6,1).". ".$customer->lname}}
                         </div>
                         <div class="col s12 l7">
                             <b>Birthday:</b>
-                            {{$customer_id->birthday}}
+                            {{$customer->birthday}}
                         </div>
                         <div class="col s12 l7">
                             <b>Cellphone No.:</b>
-                            +63{{$customer_id->cell_no}}
+                            +63{{$customer->cell_no}}
                         </div>
                         <div class="col s12 l7">
                             <b>Home Address:</b>
-                            {{$customer_id->home_add}}
+                            {{$customer->home_add}}
                         </div>
                         <div class="col s12 l7">
                             <b>Company Address:</b>
-                            {{$customer_id->comp_add}}
+                            {{$customer->comp_add}}
                         </div>
                     </div>
 
-                    <a href="/customerPage/customer{{$customer_id->id}}/edit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>
+                    <a href="/customerPage/customer{{$customer->id}}/edit" class="btn-floating halfway-fab waves-effect waves-light red" id="editBtn"><i class="material-icons">edit</i></a>
 
                 </div>
             </div>
@@ -61,38 +61,85 @@
                     </thead>
 
                     <tbody>
-                    @foreach($loans as $myLoans)
-                        <tr>
-                            <td>January 15</td>
-                            <td>Loan</td>
-                            <td></td>
-                            <td>100,000</td>
-                            <td>2.5% / 15days</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>January 1, 2017</td>
-                        </tr>
+                    @foreach($customer->loans as $myLoans)
+                        @if($myLoans->approved !== null)
+                            <tr class="ledger">
+                                <td>{{$myLoans->approved}}</td>
+                                <td>{{$myLoans->transaction}}</td>
+                                <td id="addLoan"></td>
+                                <td id="amount">{{$myLoans->amt_apr}}</td>
+                                <td id="interest">{{$myLoans->interest}}</td>
+                                <td id="payment"></td>
+                                <td id="balance"></td>
+                                <td id="received"></td>
+                                <td></td>
+                                <td>January 1, 2017</td>
+                            </tr>
+                        @endif
                     @endforeach
                     </tbody>
                 </table>
 
 
             </div>
-            <div class="right">
-                <a href="/customerPage/customer{{$customer_id->id}}/addLoan" class="btn waves-effect waves-light blue"><i class="left material-icons">add</i>Add Loan</a>
-                <a href="#" class=" btn waves-effect waves-light grey">
-                    <i class="material-icons left">import_export</i>Export file
-                </a>
 
-                <a href="#" class=" btn waves-effect waves-light grey">
-                    <i class="material-icons left">print</i>Print
+            <div class="right">
+                <a class='dropdown-button btn' href='#' id="dropBtn" data-activates='dropdown1'>
+                    <i class="material-icons left">list</i>Options
                 </a>
+                <!-- Dropdown Structure -->
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li>
+                         <a href="/customerPage/customer{{$customer->id}}/addLoan">Add Loan</a>
+                    </li>
+                    <li>
+                        <a href="/customerPage/customer{{$customer->id}}/addLoan/amountapprove">New Transaction</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Export file
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                           Print
+                        </a>
+                    </li>
+                    {{--<li class="divider"></li>--}}
+                    {{--<li>--}}
+                        {{--<a href="#">interest</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="#">Withdraw</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="#">Pay</a>--}}
+                    {{--</li>--}}
+                </ul>
+
+
+
             </div>
         </div>
 
     </div>
 
 
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            var addLoan = $('#addLoan').text();
+            var interest = $('#interest').text();
+            $('#balance').html("500.00");
+
+            $('.loan_hide').hide();
+
+            @if(Auth::user()->role_id === 3)
+                $('#editBtn').hide();
+                $('#dropBtn').hide();
+            @endif
+        });
+    </script>
 @endsection

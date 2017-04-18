@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
+use App\Loan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +23,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Customer $customer, Loan $loan)
     {
-        return view('dashboard/index');
+        $loans = $loan->all();
+        return view('dashboard/index', compact('loans'));
     }
 }

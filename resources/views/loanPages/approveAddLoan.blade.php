@@ -4,10 +4,12 @@
     <div class="row" id="for_approver">
         <form class="col s12 m12 l11" method="post" action="/addLoan/storeAmtApp">
             {{csrf_field()}}
+            <input type="text" value="{{$id}}" name="loan_id" hidden>
             <div class="card-panel">
 
                 <div class="row">
                     <span class="fill-up-require">Fill up the required fields *</span>
+
                     <div class="col s12 m12 l6">
                         <div class="input-field col s10">
                             <input placeholder="Amount Approved" id="amount" type="text" name="amount" class="validate">
@@ -51,22 +53,34 @@
 
 
                     </div>
+                    <div class="input-field col s12 m12 l4">
+                        <select name="transaction">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="loan">Loan</option>
+                            <option value="withdraw">Withdraw</option>
+                            <option value="pay">Pay</option>
+                            <option value="interest">Interest</option>
+                        </select>
+                        <label>Materialize Select</label>
+                    </div>
                 </div>
-                <div class="right">
-                    <button class=" btn waves-effect waves-light red" >Disapprove
-                        <i class="material-icons right">thumb_down</i>
-                    </button>
-                    <button class=" btn waves-effect waves-light blue" id="click" type="button">Approve
-                        <i class="material-icons right">thumb_up</i>
-                    </button>
-                    <button class=" btn waves-effect" id="back" type="button">Back
-                        <i class="material-icons right">add</i>
-                    </button>
-                    <button class=" btn waves-effect" id="click" type="submit">Save
-                        <i class="material-icons right">add</i>
-                    </button>
-                </div>
+            </div>
+            <div class="right">
+                <button class=" btn waves-effect" id="back" type="button">Back
+                    <i class="material-icons right">add</i>
+                </button>
+                <button class=" btn waves-effect" id="click" type="submit">Save
+                    <i class="material-icons right">add</i>
+                </button>
             </div>
         </form>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+    </script>
 @endsection

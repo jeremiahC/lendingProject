@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\LoanAmount;
+use App\User;
 use Illuminate\Http\Request;
 use App\Loan;
 use App\Employee;
+use Illuminate\Support\Facades\Auth;
 
 
 class LoanController extends Controller
@@ -19,10 +22,12 @@ class LoanController extends Controller
     public function index(Customer $id)
     {
         //redirect in form
-        $employee = Employee::all();
+
+        $employee = Auth::user()->name;
+        $employeeId = Auth::id();
         $customer = $id;
 
-        return view('loanPages.addLoan',compact('employee', 'customer'));
+        return view('loanPages.addLoan',compact('employee', 'customer', 'employeeId'));
     }
 
     /**
@@ -30,10 +35,10 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createAmtApp()
+    public function createAmtApp($id)
     {
         //
-        return view('loanPages.approveAddLoan');
+        return view('loanPages.approveAddLoan', compact('id'));
     }
 
     /**
@@ -42,12 +47,8 @@ class LoanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Loan $loanData, $id)
     {
-        //
-            $loanData = new Loan;
-            $customer = new Customer;
-
             $originalDateApp = request('date_app');
             $newDateApp = date("Y-m-d", strtotime($originalDateApp));
 
@@ -56,7 +57,7 @@ class LoanController extends Controller
 
             $loanData->date_app = $newDateApp;
             $loanData->date_prep = $newDatePrep;
-            $loanData->loaned_by = 1;
+            $loanData->customer_id = $id;
             $loanData->prep_by = request('prep_by');
             $loanData->amt_app = request('amt_app');
             $loanData->col_off = request('col_off');
@@ -64,20 +65,28 @@ class LoanController extends Controller
             $loanData->save();
     }
 
-    public function storeAmtApp(Request $request, Loan $loanData, Customer $customer)
+    public function storeAmtApp(Request $request, LoanAmount $loanData)
     {
-        //
-        dd($loanData);
+        $loanData->loan_id = $request->loan_id;
         $loanData->amt_apr = $request->amount;
         $loanData->less = $request->less;
         $loanData->interest = $request->interest;
-        $loanData->serv_change = $request->serv_change;
+        $loanData->serv_charge = $request->serv_charge;
         $loanData->notarial = $request->notarial;
         $loanData->others = $request->others;
         $loanData->prev_loan = $request->prev_loan;
         $loanData->total = $request->total;
-
+        $loanData->approved = null;
+        $loanData->transaction = $request->transaction;
         $loanData->save();
+
+        return redirect('/customerPage');
+    }
+
+    public function approveLoan(Request $request, LoanAmount $amountData){
+        $amount = $amountData->find($request->amount_id);
+        $amount->approved = date('Y-m-d');
+        $amount->save();
     }
 
     public function payLoan()
@@ -93,9 +102,12 @@ class LoanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Loan $id, User $userId, Customer $customerId)
     {
         //
+        $user = $userId->find($id->prep_by);
+        $customer = $customerId->find($id->customer_id);
+        return view('loanPages.show', compact('id', 'user', 'customer'));
     }
 
     /**
