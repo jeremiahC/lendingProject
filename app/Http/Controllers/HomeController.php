@@ -23,7 +23,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Customer $customer, Loan $loan)
+    public function index(Loan $loan)
     {
         $loans = $loan->all();
         return view('dashboard/index', compact('loans'));

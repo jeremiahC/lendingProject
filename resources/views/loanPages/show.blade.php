@@ -61,7 +61,8 @@
                         <input type="text" value="{{$id->amount->notarial}}" class="amtApr" readonly>
                         <label>Others</label>
                         <input type="text" value="{{$id->amount->others}}" class="amtApr" readonly>
-                        <input type="text" value="{{$id->amount->id}}" name="amount_id" hidden>
+                        <input type="text" value="{{$id->amount->id}}" name="amount_id" id="amount_id" >
+                        {{csrf_field()}}
                     @endif
                 </div>
             </div>
@@ -86,11 +87,24 @@
     $(document).ready(function () {
         $('.modal').modal();
 
-//        $('#approve').click(function () {
-//            $.ajax({
-//                url: '/'
-//            });
-//        });
+        $('#approve').click(function () {
+            var id = $('#amount_id').val();
+            var CSRF_TOKEN = $('input[name="_token"]').val();
+            $.ajax({
+                url: '/amount/approve',
+                type: 'post',
+                data: {
+                    '_token': CSRF_TOKEN,
+                    'amount_id': id
+                },
+                success: function(){
+                    window.location.replace("/");
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            });
+        });
     });
 </script>
 @endsection

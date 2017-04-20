@@ -9,6 +9,11 @@ use App\Customer;
 
 class CustomersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,6 +46,7 @@ class CustomersController extends Controller
     public function store(Request $request)
     {
         // /customerPage/store
+
         $this->validate($request, [
             'fname' => 'required',
             'mname' => 'required',
@@ -50,7 +56,6 @@ class CustomersController extends Controller
             'birthday' => 'required',
             'cell_no' => 'required|unique:customers,cell_no|size:11',
         ]);
-
         $customer = new Customer;
 
         $originalDate = $request->birthday;

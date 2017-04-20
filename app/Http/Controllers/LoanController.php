@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class LoanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -83,7 +88,8 @@ class LoanController extends Controller
         return redirect('/customerPage');
     }
 
-    public function approveLoan(Request $request, LoanAmount $amountData){
+    public function approveLoan(Request $request, LoanAmount $amountData)
+    {
         $amount = $amountData->find($request->amount_id);
         $amount->approved = date('Y-m-d');
         $amount->save();

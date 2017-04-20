@@ -81,20 +81,7 @@
 
             $('#click').click(function (e) {
 
-
                 var CSRF_TOKEN = $('input[name="_token"]').val();
-
-                var all_data = {
-                    '_token': CSRF_TOKEN,
-                    'fname' : $('#first_name').val(),
-                    'mname' : $('#middle_name').val(),
-                    'lname' : $('#last_name').val(),
-                    'home_add' : $('#home_add').val(),
-                    'comp_add' : $('#comp_add').val(),
-                    'birthday' : $('#birthday').val(),
-                    'cell_no' : $('#cel_no').val(),
-                    'afp_serial' : $('#serial_no').val(),
-                };
 
                 $("#form").validate({
                         rules:{
@@ -119,6 +106,19 @@
 
                         },
                         submitHandler: function(form) {
+
+                            var all_data = {
+                                '_token': CSRF_TOKEN,
+                                'fname' : $('#first_name').val(),
+                                'mname' : $('#middle_name').val(),
+                                'lname' : $('#last_name').val(),
+                                'home_add' : $('#home_add').val(),
+                                'comp_add' : $('#comp_add').val(),
+                                'birthday' : $('#birthday').val(),
+                                'cell_no' : $('#cel_no').val(),
+                                'afp_serial' : $('#serial_no').val(),
+                            };
+
                             $.ajax({
                                 url: form.action,
                                 type: form.method,
