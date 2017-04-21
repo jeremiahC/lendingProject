@@ -38,51 +38,50 @@
         </div>
     </div>
 
-
-
     <div class="row">
         <div class="col s12 m12 l11">
-            <h4>Ledger</h4>
-            <div class="card-panel">
-                <table class="striped responsive-table">
-                    <thead>
-                    <tr>
-                        <th data-field="id" class="center-align">Date</th>
-                        <th data-field="name" class="center-align">Transaction</th>
-                        <th data-field="price" class="center-align">Add Loan</th>
-                        <th data-field="price" class="center-align">Amount</th>
-                        <th data-field="price" class="center-align">Interest</th>
-                        <th data-field="price" class="center-align">Payments</th>
-                        <th data-field="price" class="center-align">Balance</th>
-                        <th data-field="price" class="center-align">Received</th>
-                        <th data-field="price" class="center-align">Approved</th>
-                        <th data-field="price" class="center-align">Date-time</th>
-                    </tr>
-                    </thead>
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Ledger</span>
+                    <table class="striped responsive-table">
+                        <thead>
+                        <tr>
+                            <th data-field="id" class="center-align">Date</th>
+                            <th data-field="name" class="center-align">Transaction</th>
+                            <th data-field="price" class="center-align">Add Loan</th>
+                            <th data-field="price" class="center-align">Amount</th>
+                            <th data-field="price" class="center-align">Interest</th>
+                            <th data-field="price" class="center-align">Payments</th>
+                            <th data-field="price" class="center-align">Balance</th>
+                            <th data-field="price" class="center-align">Received</th>
+                            <th data-field="price" class="center-align">Approved</th>
+                            <th data-field="price" class="center-align">Date-time</th>
+                        </tr>
+                        </thead>
 
-                    <tbody>
-                    @foreach($customer->loans as $myLoans)
-                        @if($myLoans->approved !== null)
-                            <tr class="ledger">
-                                <td>{{$myLoans->approved}}</td>
-                                <td>{{$myLoans->transaction}}</td>
-                                <td id="addLoan"></td>
-                                <td id="amount">{{$myLoans->amt_apr}}</td>
-                                <td id="interest">{{$myLoans->interest}}</td>
-                                <td id="payment"></td>
-                                <td id="balance"></td>
-                                <td id="received"></td>
-                                <td></td>
-                                <td>January 1, 2017</td>
-                            </tr>
-                        @endif
-                    @endforeach
-                    </tbody>
-                </table>
+                        <tbody>
+                        @foreach($customer->loans as $myLoans)
+                            @if($myLoans->approved !== null)
+                                <tr class="ledger">
+                                    <td>{{$myLoans->approved}}</td>
+                                    <td>{{$myLoans->transaction}}</td>
+                                    <td id="addLoan"></td>
+                                    <td id="amount">{{$myLoans->amt_apr}}</td>
+                                    <td id="interest">{{$myLoans->interest}}</td>
+                                    <td id="payment"></td>
+                                    <td id="balance"></td>
+                                    <td id="received"></td>
+                                    <td></td>
+                                    <td>January 1, 2017</td>
+                                </tr>
+                            @endif
+                        @endforeach
+                        </tbody>
+                    </table>
 
-
+                </div>
             </div>
-
+            <button class="btn" id="intrt">Interest</button>
             <div class="right">
                 <a class='dropdown-button btn' href='#' id="dropBtn" data-activates='dropdown1'>
                     <i class="material-icons left">list</i>Options
@@ -135,6 +134,15 @@
             $('#balance').html("500.00");
 
             $('.loan_hide').hide();
+
+            $('#intrt').click(function () {
+                $.ajax({
+                    url: '/customerPage/customer'+ {{$customer->id}} +'/generateIntrst',
+                    success: function(data){
+                        console.log(data);
+                    }
+                });
+            });
 
             @if(Auth::user()->role_id === 3)
                 $('#editBtn').hide();

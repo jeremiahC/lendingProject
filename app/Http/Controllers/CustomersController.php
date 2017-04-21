@@ -86,17 +86,7 @@ class CustomersController extends Controller
      */
     public function show(Customer $id)
     {
-        // /customerPage/customer{id}
-        /* TODO
-            if($loan is approved){
-                display loan
-                if($loan > 2){
-                    add loan
-                }
-            }else{
-                dont display
-            }
-        */
+
         $customer = $id;
         return view('customerPage/customer', compact('customer'));
     }
@@ -162,5 +152,22 @@ class CustomersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function generateIntrst(Customer $id){
+
+        foreach ($id->loans as $approvedLn){
+
+            $currentDate = date('Y-m-d');
+            $dateAppr = date_create($approvedLn->approved);
+            date_add($dateAppr, date_interval_create_from_date_string('15 days'));
+            $intrstDate = date_format($dateAppr, 'Y-m-d');
+
+            if($intrstDate === $currentDate){
+                return "add interest";
+            }else{
+                return "not add";
+            }
+        }
     }
 }

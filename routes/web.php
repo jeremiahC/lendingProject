@@ -10,7 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/login', function () {
+    return view('auth.login');
+});
 
+Auth::routes();
+
+Route::get('/', 'HomeController@index');
 
 Route::get('/pendingLoans', 'HomeController@listOfLoans');
 
@@ -41,11 +47,5 @@ Route::post('/store', 'UploadController@store');
 
 
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
-
-Auth::routes();
-
-Route::get('/', 'HomeController@index');
+Route::get('/customerPage/customer{id}/generateIntrst', 'CustomersController@generateIntrst');
 
