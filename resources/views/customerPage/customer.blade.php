@@ -55,26 +55,23 @@
                             <th data-field="price" class="center-align">Balance</th>
                             <th data-field="price" class="center-align">Received</th>
                             <th data-field="price" class="center-align">Approved</th>
-                            <th data-field="price" class="center-align">Date-time</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                        @foreach($customer->loans as $myLoans)
-                            @if($myLoans->approved !== null)
+                        @foreach($customer->ledger as $myLoans)
                                 <tr class="ledger">
-                                    <td>{{$myLoans->approved}}</td>
+                                    <td>{{$myLoans->date}}</td>
                                     <td>{{$myLoans->transaction}}</td>
                                     <td id="addLoan"></td>
-                                    <td id="amount">{{$myLoans->amt_apr}}</td>
+                                    <td id="amount">{{$myLoans->amount}}</td>
                                     <td id="interest">{{$myLoans->interest}}</td>
-                                    <td id="payment"></td>
-                                    <td id="balance"></td>
+                                    <td id="payment">{{$myLoans->payments}}</td>
+                                    <td id="balance">{{$myLoans->balance}}</td>
                                     <td id="received"></td>
                                     <td></td>
-                                    <td>January 1, 2017</td>
                                 </tr>
-                            @endif
+
                         @endforeach
                         </tbody>
                     </table>
@@ -92,31 +89,9 @@
                          <a href="/customerPage/customer{{$customer->id}}/addLoan">Add Loan</a>
                     </li>
                     <li>
-                        <a href="/customerPage/customer{{$customer->id}}/addLoan/amountapprove">New Transaction</a>
+                        <a href="/customer{{$customer->id}}/payLoan">Pay</a>
                     </li>
-                    <li>
-                        <a href="#">
-                            Export file
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                           Print
-                        </a>
-                    </li>
-                    {{--<li class="divider"></li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">interest</a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Withdraw</a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Pay</a>--}}
-                    {{--</li>--}}
                 </ul>
-
-
 
             </div>
         </div>
@@ -131,7 +106,6 @@
         $(document).ready(function () {
             var addLoan = $('#addLoan').text();
             var interest = $('#interest').text();
-            $('#balance').html("500.00");
 
             $('.loan_hide').hide();
 

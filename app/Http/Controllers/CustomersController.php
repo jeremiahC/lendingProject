@@ -154,20 +154,4 @@ class CustomersController extends Controller
         //
     }
 
-    public function generateIntrst(Customer $id){
-
-        foreach ($id->loans as $approvedLn){
-
-            $currentDate = date('Y-m-d');
-            $dateAppr = date_create($approvedLn->approved);
-            date_add($dateAppr, date_interval_create_from_date_string('15 days'));
-            $intrstDate = date_format($dateAppr, 'Y-m-d');
-
-            if($intrstDate === $currentDate){
-                return "add interest";
-            }else{
-                return "not add";
-            }
-        }
-    }
 }

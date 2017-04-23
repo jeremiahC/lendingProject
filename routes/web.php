@@ -39,7 +39,8 @@ Route::get('/customerPage/customer{id}/approveAddLoan', function () {
     return view('loanPages/approveAddLoan');
 });
 Route::get('/show/loan/{id}', 'LoanController@show');
-Route::get('/payLoan', 'LoanController@payloan');
+Route::get('/customer{id}/payLoan', 'LoanController@payLoanPage');
+Route::post('/pay', 'LoanController@payLoan');
 
 
 Route::get('/addFile', 'UploadController@index');
@@ -47,5 +48,5 @@ Route::post('/store', 'UploadController@store');
 
 
 
-Route::get('/customerPage/customer{id}/generateIntrst', 'CustomersController@generateIntrst');
+Route::get('/customerPage/customer{id}/generateIntrst', 'LoanController@generateIntrst');
 

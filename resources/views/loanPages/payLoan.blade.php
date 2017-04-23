@@ -5,17 +5,13 @@
         <div class="col s12 m12 l12">
             <h4>Pay Loan</h4>
             <div class="row">
-                <div class="col s12 m12 l6">
+                <form class="col s12 m12 l6" method="post" action="/pay">
+                    {{csrf_field()}}
+                    <input type="text" value="{{$id->id}}" id="customer_id" hidden>
                     <div class="card-panel">
                         <div class="row">
                             <div class="input-field">
-                                <select name="prep_by" id="prep_by">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    {{--@foreach($employee as $employees )--}}
-                                        {{--<option value="{{$employees->id}}" data-icon="/images/profile.png" class="left circle">{{$employees->fname . " " . $employees->lname}}</option>--}}
-                                    {{--@endforeach--}}
-
-                                </select>
+                                <input type="text" value="{{$id->fname . " " .$id->lname}}" readonly>
                                 <label>Customer's Name</label>
                             </div>
 
@@ -30,8 +26,8 @@
                                 <label>Payment for</label>
                             </div>
                             <div class="input-field col s12 m12 l12">
-                                <input type="text" class="validate" id="fname">
-                                <label for="fname">Amount</label>
+                                <input type="text" class="validate" id="amount">
+                                <label for="amount">Amount</label>
                             </div>
                             <div class="input-field col s12 m12 l12">
                                 <div class="row">
@@ -52,8 +48,8 @@
 
                         </div>
                     </div>
-                    <a href="#" class="btn right">Pay</a>
-                </div>
+                    <button id="pay" type="button" class="btn right">Pay</button>
+                </form>
                 <div class="col s12 m12 l5">
                     <div class="card-panel">
                         <table>
@@ -96,6 +92,28 @@
             $('#check_no').attr('disabled', 'disabled');
         }
 
+    });
+
+    $('#pay').click(function () {
+        var customer_id = $('#customer_id').val();
+        var amount = $('#amount').val();
+        var CSRF_TOKEN = $('input[name="_token"]').val();
+
+        $.ajax({
+            url: '/pay',
+            type: 'post',
+            data: {
+                '_token': CSRF_TOKEN,
+                'customer_id':  customer_id,
+                'amount':   amount,
+            },
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
     });
 </script>
     @endsection

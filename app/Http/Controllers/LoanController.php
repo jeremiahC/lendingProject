@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Ledger;
 use App\LoanAmount;
 use App\User;
 use Illuminate\Http\Request;
@@ -88,19 +89,51 @@ class LoanController extends Controller
         return redirect('/customerPage');
     }
 
-    public function approveLoan(Request $request, LoanAmount $amountData)
+    public function approveLoan(Request $request, LoanAmount $amountData, Ledger $ledgerData)
     {
         $amount = $amountData->find($request->amount_id);
         $amount->approved = date('Y-m-d');
         $amount->save();
+
+        $interest = $amount->interest;
+        $theAmount = $amount->amt_apr;
+
+        $ledgerData->customer_id = $amount->loan->customer_id;
+        $ledgerData->date = $amount->approved;
+        $ledgerData->transaction = $amount->transaction;
+        $ledgerData->amount =  $theAmount;
+        $ledgerData->interest = $interest;
+        $ledgerData->balance = $theAmount;
+        $ledgerData->save();
+
     }
 
-    public function payLoan()
+    public function payLoanPage(Customer $id)
     {
         $loans=Loan::all();
-        return view('loanPages.payloan', compact('loans'));
+        return view('loanPages.payloan', compact('loans', 'id'));
 
     }
+
+    public function payLoan(Request $request, Ledger $ledger, Customer $customer){
+        $customerId = $request->customer_id;
+        $ledgerArray = $customer->find($request->customer_id)->ledger;
+        $arrayLength = sizeof($ledgerArray) - 1;
+
+        $balance = $ledgerArray[$arrayLength]->balance;
+        $payAmount =  $request->amount;
+
+        $ledger->customer_id = $customerId;
+        $ledger->transaction = "withdraw";
+        $ledger->date = date('Y-m-d');
+        $ledger->payments = $payAmount;
+        $ledger->balance = $balance - $payAmount;
+        $ledger->save();
+
+        return  $balance - $payAmount;
+    }
+
+
 
     /**
      * Display the specified resource.
@@ -114,6 +147,34 @@ class LoanController extends Controller
         $user = $userId->find($id->prep_by);
         $customer = $customerId->find($id->customer_id);
         return view('loanPages.show', compact('id', 'user', 'customer'));
+    }
+
+    public function generateIntrst(Customer $id, Ledger $ledgerData){
+
+        foreach ($id->loans as $approvedLn){
+
+            $currentDate = date('Y-m-d');
+            $dateAppr = date_create($approvedLn->approved);
+            date_add($dateAppr, date_interval_create_from_date_string('15 days'));
+            $intrstDate = date_format($dateAppr, 'Y-m-d');
+
+            if($intrstDate){
+                    foreach ($id->ledger as $loans) {
+                        $interest = $loans->interest / 100;
+                        $amount = $loans->balance;
+                        $amountInt = $amount * $interest;
+                        $balance = $amount + $amountInt;
+
+                        $ledgerData->customer_id = $id->id;
+                        $ledgerData->transaction = "interest";
+                        $ledgerData->date = $intrstDate;
+                        $ledgerData->interest = $amountInt;
+                        $ledgerData->balance = $balance;
+                        $ledgerData->save();
+                    }
+
+            }
+        }
     }
 
     /**

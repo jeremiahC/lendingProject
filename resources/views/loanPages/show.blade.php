@@ -97,7 +97,7 @@
                     '_token': CSRF_TOKEN,
                     'amount_id': id
                 },
-                success: function(){
+                success: function(data){
                     window.location.replace("/");
                 },
                 error: function(data){

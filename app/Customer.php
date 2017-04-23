@@ -19,4 +19,10 @@ class Customer extends Model
         return $this->hasManyThrough(LoanAmount::class,Loan::class);
 
     }
+
+    public function ledger(){
+
+        return $this->hasMany(Ledger::class);
+
+    }
 }
