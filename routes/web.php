@@ -39,7 +39,7 @@ Route::get('/customerPage/customer{id}/approveAddLoan', function () {
     return view('loanPages/approveAddLoan');
 });
 Route::get('/show/loan/{id}', 'LoanController@show');
-Route::get('/customer{id}/payLoan', 'LoanController@payLoanPage');
+Route::get('/customer{id}/loan{ledId}/payLoan', 'LoanController@payLoanPage');
 Route::post('/pay', 'LoanController@payLoan');
 
 

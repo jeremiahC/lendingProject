@@ -8,6 +8,7 @@
                 <form class="col s12 m12 l6" method="post" action="/pay">
                     {{csrf_field()}}
                     <input type="text" value="{{$id->id}}" id="customer_id" hidden>
+                    <input type="text" value="{{$ledId}}" id="led_id" hidden>
                     <div class="card-panel">
                         <div class="row">
                             <div class="input-field">
@@ -16,12 +17,10 @@
                             </div>
 
                             <div class="input-field col s12 m12 l12">
-                                <select name="prep_by" id="prep_by">
+                                <select name="payment_for" id="payment_for">
                                     <option value="" disabled selected>Choose your option</option>
-                                    {{--@foreach($employee as $employees )--}}
-                                    {{--<option value="{{$employees->id}}" data-icon="/images/profile.png" class="left circle">{{$employees->fname . " " . $employees->lname}}</option>--}}
-                                    {{--@endforeach--}}
-
+                                    <option value="interest">Interest</option>
+                                    <option value="balance">Balance</option>
                                 </select>
                                 <label>Payment for</label>
                             </div>
@@ -98,6 +97,8 @@
         var customer_id = $('#customer_id').val();
         var amount = $('#amount').val();
         var CSRF_TOKEN = $('input[name="_token"]').val();
+        var payment_for = $('#payment_for').val();
+        var ledId = $('#led_id').val();
 
         $.ajax({
             url: '/pay',
@@ -106,6 +107,8 @@
                 '_token': CSRF_TOKEN,
                 'customer_id':  customer_id,
                 'amount':   amount,
+                'payment_for': payment_for,
+                'ledId': ledId
             },
             success: function (data) {
                 console.log(data);

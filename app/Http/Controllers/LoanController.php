@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Ledger;
 use App\LoanAmount;
+use App\Payment;
 use App\User;
 use Illuminate\Http\Request;
 use App\Loan;
@@ -108,15 +109,24 @@ class LoanController extends Controller
 
     }
 
-    public function payLoanPage(Customer $id)
+    public function payLoanPage(Customer $id, $ledId)
     {
         $loans=Loan::all();
-        return view('loanPages.payloan', compact('loans', 'id'));
+        return view('loanPages.payloan', compact('loans', 'id', 'ledId'));
 
     }
 
-    public function payLoan(Request $request, Ledger $ledger, Customer $customer){
+    public function payLoan(Request $request, Ledger $ledger, Customer $customer, Payment $payment){
         $customerId = $request->customer_id;
+
+        //save to payments table
+
+        $payment->customer_id = $customerId;
+        $payment->payment_for = $request->payment_for;
+        $payment->amount = $request->amount;
+        $payment->ledger_id = $request->ledId;
+        $payment->save();
+
         $ledgerArray = $customer->find($request->customer_id)->ledger;
         $arrayLength = sizeof($ledgerArray) - 1;
 
@@ -151,28 +161,39 @@ class LoanController extends Controller
 
     public function generateIntrst(Customer $id, Ledger $ledgerData){
 
-        foreach ($id->loans as $approvedLn){
+        $ledgerArray = $id->ledger;
+        $arrayLength = sizeof($ledgerArray);
+        for($i=0;$i < $arrayLength; $i++ ) {
+            if ($ledgerArray[$i]->transaction === "interest") {
+                $date = $ledgerArray[$i]->date;
+            }else{
+                $date = $ledgerArray[0]->date;
+            }
+        }
 
+        foreach ($id->ledger as $loans) {
             $currentDate = date('Y-m-d');
-            $dateAppr = date_create($approvedLn->approved);
+            $dateAppr = date_create($date);
             date_add($dateAppr, date_interval_create_from_date_string('15 days'));
             $intrstDate = date_format($dateAppr, 'Y-m-d');
 
             if($intrstDate){
-                    foreach ($id->ledger as $loans) {
-                        $interest = $loans->interest / 100;
-                        $amount = $loans->balance;
-                        $amountInt = $amount * $interest;
-                        $balance = $amount + $amountInt;
+                    $ledgerArray =  $id->ledger;
+                    $arrayLength = sizeof($ledgerArray)-1;
 
-                        $ledgerData->customer_id = $id->id;
-                        $ledgerData->transaction = "interest";
-                        $ledgerData->date = $intrstDate;
-                        $ledgerData->interest = $amountInt;
-                        $ledgerData->balance = $balance;
-                        $ledgerData->save();
-                    }
+                    $balance = $ledgerArray[$arrayLength]->balance;
 
+                    $interest = $loans->interest / 100;
+                    $currentBal = $balance;
+                    $amountInt = $currentBal * $interest;
+                    $newBal = $currentBal + $amountInt;
+
+                    $ledgerData->customer_id = $id->id;
+                    $ledgerData->transaction = "interest";
+                    $ledgerData->date = $intrstDate;
+                    $ledgerData->interest = $amountInt;
+                    $ledgerData->balance = $newBal;
+                    $ledgerData->save();
             }
         }
     }

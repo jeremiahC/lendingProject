@@ -73,6 +73,7 @@
                                 </tr>
 
                         @endforeach
+                        {{$ledId = $myLoans->id}}
                         </tbody>
                     </table>
 
@@ -89,7 +90,7 @@
                          <a href="/customerPage/customer{{$customer->id}}/addLoan">Add Loan</a>
                     </li>
                     <li>
-                        <a href="/customer{{$customer->id}}/payLoan">Pay</a>
+                        <a href="/customer{{$customer->id}}/loan{{$ledId}}/payLoan">Pay</a>
                     </li>
                 </ul>
 
@@ -114,7 +115,11 @@
                     url: '/customerPage/customer'+ {{$customer->id}} +'/generateIntrst',
                     success: function(data){
                         console.log(data);
+                    },
+                    error: function(data){
+                        console.log(data);
                     }
+
                 });
             });
 

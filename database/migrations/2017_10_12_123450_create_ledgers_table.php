@@ -27,6 +27,18 @@ class CreateLedgersTable extends Migration
             $table->foreign('customer_id')->references('id')->on('customers');
 
         });
+
+        Schema::create('payments', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('customer_id')->unsigned()->nullable();
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->string('payment_for');
+            $table->decimal('amount');
+            $table->string('acnt_no')->nullable();
+            $table->integer('ledger_id')->unsigned()->nullable();
+            $table->foreign('ledger_id')->references('id')->on('ledgers');
+
+        });
     }
 
     /**
