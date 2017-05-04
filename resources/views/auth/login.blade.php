@@ -2,13 +2,11 @@
 <html lang="{{ config('app.locale') }}">
     @include('template.header')
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+    <div class="row center-align">
+        <div class="col s12 m3 l3">
+            <h4>Robredo Loaning Company</h4>
+            <div class="card-panel">
+                    <form role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -51,24 +49,21 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn col s12 m12 l12">
                                     Login
                                 </button>
+                                <div>
+                                    <a  href="{{ route('password.request') }}">
+                                        Forgot Your Password?
+                                    </a>
+                                </div>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-
-                                <a href="{{ route('register') }}">Register</a>
                             </div>
                         </div>
                     </form>
-                </div>
             </div>
+            <a href="{{ route('register') }}">Register</a>
         </div>
     </div>
-</div>
-
-
 </body>
 </html>

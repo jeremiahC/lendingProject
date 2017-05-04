@@ -19,6 +19,8 @@
 
             <script>
                 $("#button").sideNav();
+
+                $('.dropdown-link').dropdown();
             </script>
 
             @yield('script')

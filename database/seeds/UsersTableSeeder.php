@@ -12,8 +12,9 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            ['name' => 'User B. User', 'email' => 'user@yahoo.com', 'password' => bcrypt('user123'), 'role_id' => 2],
-            ['name' => 'Manager B. User', 'email' => 'manager@yahoo.com', 'password' => bcrypt('manager123'), 'role_id' => 3],
+            ['name' => 'User B. User', 'email' => 'user@yahoo.com', 'password' => bcrypt('user123')],
+            ['name' => 'Manager B. User', 'email' => 'manager@yahoo.com', 'password' => bcrypt('manager123')],
+            ['name' => 'Admin B. User', 'email' => 'admin@yahoo.com', 'password' => bcrypt('admin123')],
         ]);
     }
 }

@@ -38,7 +38,9 @@
                         </tbody>
                     </table>
                 </div>
-                <a class="btn-large waves-effect waves-light right blue" href="/customerPage/create">New Customer</a>
+                @ability('REG-EMPLOYEE', 'add_customer')
+                    <a class="btn-large waves-effect waves-light right blue" href="/customerPage/create">New Customer</a>
+                @endability
         </div>
     </div>
 @endsection

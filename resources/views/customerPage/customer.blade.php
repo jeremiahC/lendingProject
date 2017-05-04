@@ -30,9 +30,9 @@
                             {{$customer->comp_add}}
                         </div>
                     </div>
-
-                    <a href="/customerPage/customer{{$customer->id}}/edit" class="btn-floating halfway-fab waves-effect waves-light red" id="editBtn"><i class="material-icons">edit</i></a>
-
+                    @role('REG-EMPLOYEE')
+                        <a href="/customerPage/customer{{$customer->id}}/edit" class="btn-floating halfway-fab waves-effect waves-light red" id="editBtn"><i class="material-icons">edit</i></a>
+                    @endrole
                 </div>
             </div>
         </div>
@@ -71,30 +71,30 @@
                                     <td id="received"></td>
                                     <td></td>
                                 </tr>
-
                         @endforeach
-                        {{$ledId = $myLoans->id}}
                         </tbody>
                     </table>
 
                 </div>
             </div>
-            <button class="btn" id="intrt">Interest</button>
-            <div class="right">
-                <a class='dropdown-button btn' href='#' id="dropBtn" data-activates='dropdown1'>
-                    <i class="material-icons left">list</i>Options
-                </a>
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li>
-                         <a href="/customerPage/customer{{$customer->id}}/addLoan">Add Loan</a>
-                    </li>
-                    <li>
-                        <a href="/customer{{$customer->id}}/loan{{$ledId}}/payLoan">Pay</a>
-                    </li>
-                </ul>
+            @role('REG-EMPLOYEE')
+                <button class="btn" id="intrt">Interest</button>
+                <div class="right">
+                    <a class='dropdown-button btn' href='#' id="dropBtn" data-activates='dropdown1'>
+                        <i class="material-icons left">list</i>Options
+                    </a>
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li>
+                             <a href="/customerPage/customer{{$customer->id}}/addLoan">Add Loan</a>
+                        </li>
+                        <li>
+                            <a href="/customer{{$customer->id}}/loan/payLoan">Pay</a>
+                        </li>
+                    </ul>
 
-            </div>
+                </div>
+            @endrole
         </div>
 
     </div>
