@@ -20,6 +20,10 @@
                 <div class="card-content">
                     <div class="row">
                         <input type="text" value="{{$id->id}}" id="user_id" hidden>
+                        @foreach($userRoles as $userRole)
+                            <input type="text" class="user-roles" value="{{$userRole->name}}" hidden>
+                        @endforeach
+                        <div class="chips"></div>
                             <form class="input-field col s12 m6">
                                 {{csrf_field()}}
                                 <select id="role">
@@ -36,7 +40,7 @@
             </div>
         </div>
     </div>
-
+    <a class="btn" href="/userList">Back To List</a>
 @endsection
 
 @section('script')
@@ -45,6 +49,37 @@
             $('select').material_select();
 
             var CSRF_TOKEN = $('input[name="_token"]').val();
+
+            $('.chips').material_chip({
+                data: [
+                    @foreach($userRoles as $userRole)
+                        {
+                            tag : '{{$userRole->name}}',
+                            id  : '{{$userRole->id}}',
+                            userid  : '{{$userRole->user_id}}',
+                        },
+                    @endforeach
+                ]
+            });
+
+            $('.chips').on('chip.delete', function(e, chip){
+               $.ajax({
+                    url: '/deletRole/' + chip.id,
+                    type: 'post',
+                    data: {
+                        '_token'    : CSRF_TOKEN,
+                        'user_id'   : chip.userid,
+                    },
+                    success: function (data) {
+                        Materialize.toast('you have successfully deleted ' + chip.tag, 5000);
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+               });
+            });
+
+
             $('#submit').click(function () {
                 var data = {
                     '_token'    : CSRF_TOKEN,
@@ -57,7 +92,7 @@
                     type: 'post',
                     data: data,
                     success: function (data) {
-                        console.log(data);
+                        Materialize.toast('you have added a role', 5000);
                     },
                     error: function (data) {
                         console.log(data);

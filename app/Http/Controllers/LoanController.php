@@ -25,8 +25,15 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index(Loan $loan, LoanAmount $loanAmount){
 
-    public function index(Customer $id)
+        $loans = $loan->all();
+        $apprLoans = $loanAmount->all();
+
+        return view('loanPages.index', compact('loans', 'apprLoans'));
+    }
+
+    public function create(Customer $id)
     {
         //redirect in form
 

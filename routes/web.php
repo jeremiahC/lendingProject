@@ -32,7 +32,8 @@ Route::post('/customerPage/update/{id}', 'CustomersController@update');
 
 //Route for loan pages
 
-Route::get('/customerPage/customer{id}/addLoan', 'LoanController@index');
+Route::get('/loanPage', 'LoanController@index');
+Route::get('/customerPage/customer{id}/addLoan', 'LoanController@create');
 Route::get('/loan/{id}/amountapprove', 'LoanController@createAmtApp');
 Route::post('/addLoan/store/{id}', 'LoanController@store');
 Route::get('/customer{id}/loan{ledId}/payLoan', 'LoanController@payLoanPage');
@@ -65,6 +66,7 @@ Route::get('/passSet', function (){
 
 Route::get('/rolesPrev', 'RolePermissionController@index');
 Route::post('/storeRole', 'RolePermissionController@createRolePerm');
+Route::post('/deletRole/{id}', 'RolePermissionController@destroyRoleUser');
 Route::get('/userList', 'UserController@index');
 Route::get('/user/{id}', 'UserController@show');
 Route::post('/addRole', 'RolePermissionController@addRole');

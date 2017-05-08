@@ -20,6 +20,7 @@ class UserController extends Controller
 
     public function show(User $id, Role $role){
         $roles = $role->all();
-        return view('settings.user.show', compact('id', 'roles'));
+        $userRoles = $id->role($id->id);
+        return view('settings.user.show', compact('id', 'roles', 'userRoles'));
     }
 }

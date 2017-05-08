@@ -49,8 +49,9 @@ class RolePermissionController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroyRoleUser($id, Role $role, Request $request)
     {
-        //
+        $role->deleteRole($request->user_id, $id);
+        return "success";
     }
 }

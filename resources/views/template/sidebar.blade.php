@@ -33,6 +33,10 @@
             <li class="bold"><a href="/customerPage"><i class="material-icons waves-effect waves-teal">perm_identity</i>Customers</a></li>
         @endability
 
+        @ability('REG-EMPLOYEE,MANAGER-EMPLOYEE', 'loan_page')
+            <li class="bold"><a href="/loanPage"><i class="material-icons waves-effect waves-teal">perm_identity</i>Loans List</a></li>
+        @endability
+
         @role('MANAGER-EMPLOYEE')
             <li class="bold"><a href="/addFile"><i class="material-icons waves-effect waves-teal">perm_media</i>File Manager</a></li>
         @endrole
