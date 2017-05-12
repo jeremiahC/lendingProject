@@ -86,7 +86,6 @@ class CustomersController extends Controller
      */
     public function show(Customer $id)
     {
-
         $customer = $id;
         return view('customerPage/customer', compact('customer'));
     }

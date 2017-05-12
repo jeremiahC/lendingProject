@@ -28,7 +28,7 @@ class CreateLoansTable extends Migration
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->integer('prep_by')->unsigned();
             $table->foreign('prep_by')->references('id')->on('users');
-
+            $table->timestamps();
 
         });
 
@@ -48,7 +48,7 @@ class CreateLoansTable extends Migration
             $table->decimal('total')->nullable();
             $table->date('approved')->nullable();
             $table->string('transaction');
-
+            $table->timestamps();
         });
 
 

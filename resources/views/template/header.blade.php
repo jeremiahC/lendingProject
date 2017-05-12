@@ -14,6 +14,7 @@
     <script src="/js/app.js"></script>
     <script src="/js/list.js"></script>
     <script src="/js/bin/materialize.min.js"></script>
+    <script src="/js/bin/materialize-pagination.min.js"></script>
 
     <style>
         span.error{

@@ -25,7 +25,7 @@ class CreateLedgersTable extends Migration
             $table->decimal('received')->nullable();
             $table->integer('customer_id')->unsigned()->nullable();
             $table->foreign('customer_id')->references('id')->on('customers');
-
+            $table->timestamps();
         });
 
         Schema::create('payments', function (Blueprint $table) {
@@ -37,7 +37,7 @@ class CreateLedgersTable extends Migration
             $table->string('acnt_no')->nullable();
             $table->integer('ledger_id')->unsigned()->nullable();
             $table->foreign('ledger_id')->references('id')->on('ledgers');
-
+            $table->timestamps();
         });
     }
 

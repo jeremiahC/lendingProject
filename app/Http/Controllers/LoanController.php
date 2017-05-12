@@ -25,12 +25,13 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Loan $loan, LoanAmount $loanAmount){
-
-        $loans = $loan->all();
-        $apprLoans = $loanAmount->all();
-
-        return view('loanPages.index', compact('loans', 'apprLoans'));
+    public function index(Request $request){
+        $loans = Loan::paginate(5);
+        $amounts = LoanAmount::all();
+        if ($request->ajax()) {
+            return view('loanPages.pending', ['loans' => $loans])->render();
+        }
+        return view('loanPages.index', compact('loans', 'amounts'));
     }
 
     public function create(Customer $id)
@@ -94,7 +95,7 @@ class LoanController extends Controller
         $loanData->transaction = $request->transaction;
         $loanData->save();
 
-        return redirect('/customerPage');
+        return redirect('/show/loan/'.$request->loan_id);
     }
 
     public function approveLoan(Request $request, LoanAmount $amountData, Ledger $ledgerData)
@@ -116,10 +117,10 @@ class LoanController extends Controller
 
     }
 
-    public function payLoanPage(Customer $id, $ledId)
+    public function payLoanPage(Customer $id)
     {
         $loans=Loan::all();
-        return view('loanPages.payloan', compact('loans', 'id', 'ledId'));
+        return view('loanPages.payloan', compact('loans', 'id'));
 
     }
 
@@ -202,6 +203,7 @@ class LoanController extends Controller
                     $ledgerData->balance = $newBal;
                     $ledgerData->save();
             }
+            return $ledgerData;
         }
     }
 

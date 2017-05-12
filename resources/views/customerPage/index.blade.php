@@ -20,8 +20,8 @@
                                 Name
                                 <i class="material-icons right icon-hover sort" data-sort="name">sort_by_alpha</i>
                             </th>
-                            <th data-field="name" class="t-heads">Category</th>
-                            <th data-field="price" class="t-heads">Balance</th>
+                            <th data-field="name" class="t-heads">Cell No.</th>
+                            <th data-field="price" class="t-heads">No. of Loans</th>
                             <th data-field="action" class="t-heads">Action</th>
                         </tr>
                         </thead>
@@ -30,14 +30,15 @@
                             @foreach($customers as $customer)
                                 <tr>
                                     <td class="name">{{$customer->lname.", ".$customer->fname." ".substr($customer->mname,-6,1)}}.</td>
-                                    <td>Cebu</td>
-                                    <td>74,200</td>
+                                    <td>0{{$customer->cell_no}}</td>
+                                    <td>{{count($customer->loan)}}</td>
                                     <td><a href="/customerPage/customer{{$customer->id}}" class="btn waves-effect waves-light green">view</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+                <div id="pagination"></div>
                 @ability('REG-EMPLOYEE', 'add_customer')
                     <a class="btn-large waves-effect waves-light right blue" href="/customerPage/create">New Customer</a>
                 @endability
@@ -47,6 +48,17 @@
 
 @section('script')
     <script>
+        $('#pagination').materializePagination({
+            align: 'center',
+            lastPage:  10,
+            firstPage:  1,
+            urlParameter: 'page',
+            useUrlParameter: true,
+            onClickCallback: function(requestedPage){
+                console.log('Requested page is '+ requestedPage);
+            }
+        });
+
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 15 // Creates a dropdown of 15 years to control year

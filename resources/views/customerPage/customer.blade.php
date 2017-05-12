@@ -39,6 +39,64 @@
     </div>
 
     <div class="row">
+        <div class="col s12 m4 l4">
+            <div class="card blue white-text">
+                <div class="card-title">Pending Loans</div>
+                <div class="card-content">
+                    <table class="responsive-table">
+                        <thead>
+                        <tr>
+                            <th>Amount</th>
+                            <th>action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="loans">
+                        @foreach($customer->loan as $loan)
+                            @if(empty($loan->amount))
+                                <tr>
+                                    <td>{{$loan->amt_app}}</td>
+                                    <td><a class="btn" href="/show/loan/{{$loan->id}}">view</a></td>
+                                </tr>
+                            @endif
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m4 l4">
+            <div class="card blue white-text">
+                <div class="card-title">Pending Loans</div>
+                <div class="card-content">
+                    <table class="responsive-table">
+                        <thead>
+                        <tr>
+                            <th>Amount</th>
+                            <th>action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="loans">
+                        @foreach($customer->loan as $loan)
+                            @if(empty($loan->amount))
+                                <tr>
+                                    <td>{{$loan->amount->loan_id}}</td>
+                                    <td><a class="btn" href="/show/loan/{{$loan->id}}">view</a></td>
+                                </tr>
+                            @endif
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col s12 m12 l11">
             <div class="card">
                 <div class="card-content">
@@ -58,7 +116,7 @@
                         </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody id="ledger">
                         @foreach($customer->ledger as $myLoans)
                                 <tr class="ledger">
                                     <td>{{$myLoans->date}}</td>
@@ -89,7 +147,7 @@
                              <a href="/customerPage/customer{{$customer->id}}/addLoan">Add Loan</a>
                         </li>
                         <li>
-                            <a href="/customer{{$customer->id}}/loan/payLoan">Pay</a>
+                            <a href="/customer{{$customer->id}}/payLoan">Pay</a>
                         </li>
                     </ul>
 
@@ -111,10 +169,23 @@
             $('.loan_hide').hide();
 
             $('#intrt').click(function () {
+                var txt = "";
                 $.ajax({
                     url: '/customerPage/customer'+ {{$customer->id}} +'/generateIntrst',
                     success: function(data){
                         console.log(data);
+                        txt += "<tr>";
+                        txt += "<td>" + data.date+ "</td>";
+                        txt += "<td>" + data.transaction + "</td>";
+                        txt += "<td></td>";
+                        txt += "<td></td>";
+                        txt += "<td>" + data.interest  + "</td>";
+                        txt += "<td></td>";
+                        txt += "<td>" + data.balance + "</td>";
+                        txt += "<td></td>";
+                        txt += "</tr>";
+
+                        $('#ledger').append(txt);
                     },
                     error: function(data){
                         console.log(data);
@@ -123,10 +194,6 @@
                 });
             });
 
-            @if(Auth::user()->role_id === 3)
-                $('#editBtn').hide();
-                $('#dropBtn').hide();
-            @endif
         });
     </script>
 @endsection

@@ -54,13 +54,7 @@
 
                     </div>
                     <div class="input-field col s12 m12 l4">
-                        <select name="transaction">
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="loan">Loan</option>
-                            <option value="withdraw">Withdraw</option>
-                            <option value="pay">Pay</option>
-                            <option value="interest">Interest</option>
-                        </select>
+                        <input type="text" value="Loan" name="transaction">
                         <label>Materialize Select</label>
                     </div>
                 </div>

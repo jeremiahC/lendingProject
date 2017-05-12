@@ -33,10 +33,12 @@ Route::post('/customerPage/update/{id}', 'CustomersController@update');
 //Route for loan pages
 
 Route::get('/loanPage', 'LoanController@index');
+Route::get('/loanPage/show', 'LoanController@showAllLoan');
+Route::get('/loanPage/showAppr', 'LoanController@showAllLoanAppr');
 Route::get('/customerPage/customer{id}/addLoan', 'LoanController@create');
 Route::get('/loan/{id}/amountapprove', 'LoanController@createAmtApp');
 Route::post('/addLoan/store/{id}', 'LoanController@store');
-Route::get('/customer{id}/loan{ledId}/payLoan', 'LoanController@payLoanPage');
+Route::get('/customer{id}/payLoan', 'LoanController@payLoanPage');
 Route::post('/pay', 'LoanController@payLoan');
 
 Route::post('/addLoan/storeAmtApp', 'LoanController@storeAmtApp');

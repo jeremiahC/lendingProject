@@ -48,7 +48,13 @@
                             Add Amount
                         </div>
                     @else
-                        <span class="card-title">Amount For Approval</span>
+                        @if($id->amount->approved === null)
+                            <span class="card-title">Amount For Approval</span>
+                        @else
+                            <span class="card-title">Amount Approved</span>
+                            <label>Date Approved</label>
+                            <input type="text" value="{{$id->amount->approved}}"  class="apprDate" readonly>
+                        @endif
                         <label>Amount</label>
                         <input type="text" value="{{$id->amount->amt_apr}}"  class="amtApr" readonly>
                         <label>Interest</label>
@@ -66,18 +72,21 @@
                     @endif
                 </div>
             </div>
+            <a class="btn" href="/loanPage">Go To Loans</a>
             @if(!empty($id->amount))
                 <!-- Dropdown Trigger -->
-                <a class='dropdown-button btn right red' href='#' data-activates='dropdown1'>Options</a>
+                    @if($id->amount->approved === null)
+                        <a class='dropdown-button btn right red' href='#' data-activates='dropdown1'>Options</a>
 
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content '>
-                    @role('MANAGER-EMPLOYEE')
-                        <li><a href="#!" class="green-text" id="approve">Approve</a></li>
-                        <li><a href="#!" class="red-text">Disapprove</a></li>
-                    @endrole
-                    <li><a href="#!" class="yellow-text">Edit</a></li>
-                </ul>
+                        <!-- Dropdown Structure -->
+                        <ul id='dropdown1' class='dropdown-content '>
+                            @role('MANAGER-EMPLOYEE')
+                                <li><a href="#!" class="green-text" id="approve">Approve</a></li>
+                                <li><a href="#!" class="red-text">Disapprove</a></li>
+                            @endrole
+                            <li><a href="#!" class="yellow-text">Edit</a></li>
+                        </ul>
+                    @endif
             @endif
         </div>
     </div>
@@ -100,7 +109,7 @@
                     'amount_id': id
                 },
                 success: function(data){
-                    window.location.replace("/");
+                    Materialize.toast('You have Approved this Loan', 5000);
                 },
                 error: function(data){
                     console.log(data);

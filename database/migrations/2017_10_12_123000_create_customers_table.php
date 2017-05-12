@@ -23,7 +23,7 @@ class CreateCustomersTable extends Migration
             $table->date('birthday');
             $table->bigInteger('cell_no')->unique;
             $table->integer('afp_serial')->nullable();
-
+            $table->timestamps();
         });
     }
 

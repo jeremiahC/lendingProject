@@ -8,7 +8,7 @@
                 <form class="col s12 m12 l6" method="post" action="/pay">
                     {{csrf_field()}}
                     <input type="text" value="{{$id->id}}" id="customer_id" hidden>
-                    <input type="text" value="{{$ledId}}" id="led_id" hidden>
+                    {{--<input type="text" value="{{$ledId}}" id="led_id" hidden>--}}
                     <div class="card-panel">
                         <div class="row">
                             <div class="input-field">
@@ -54,19 +54,15 @@
                         <table>
                             <thead>
                             <tr>
-                                <th>Name</th>
                                 <th>Running Balance</th>
                                 <th>Running Interest</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($loans as $loan)
-                            <tr>
-                                <td>{{$loan->id}}</td>
-                                <td>Eclair</td>
-                                <td>$0.87</td>
-                            </tr>
-                                @endforeach
+                                <tr>
+                                    <td>eclair</td>
+                                    <td>$0.87</td>
+                                </tr>
                             </tbody>
                         </table>
 

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ledger extends Model
 {
-    public $timestamps = false;
 
     public function payment(){
 
