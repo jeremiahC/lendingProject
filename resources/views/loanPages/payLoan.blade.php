@@ -8,7 +8,7 @@
                 <form class="col s12 m12 l6" method="post" action="/pay">
                     {{csrf_field()}}
                     <input type="text" value="{{$id->id}}" id="customer_id" hidden>
-                    {{--<input type="text" value="{{$ledId}}" id="led_id" hidden>--}}
+                    <input type="text" value="{{$ledgId->id}}" id="led_id" hidden>
                     <div class="card-panel">
                         <div class="row">
                             <div class="input-field">
@@ -60,8 +60,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>eclair</td>
-                                    <td>$0.87</td>
+                                    <td>{{$ledgId->balance}} php</td>
+                                    <td>{{$ledgId->interest}} php</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -85,6 +85,7 @@
             $('#check_no').removeAttr('disabled');
         }else{
             $('#check_no').attr('disabled', 'disabled');
+            $('#check_no').val('');
         }
 
     });

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Customer extends Model
 {
@@ -23,5 +24,11 @@ class Customer extends Model
 
         return $this->hasMany(Ledger::class);
 
+    }
+
+    public function count(){
+        $customers = DB::table('customers')->count();
+
+        return $customers;
     }
 }

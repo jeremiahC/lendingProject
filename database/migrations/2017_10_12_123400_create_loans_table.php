@@ -28,6 +28,8 @@ class CreateLoansTable extends Migration
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->integer('prep_by')->unsigned();
             $table->foreign('prep_by')->references('id')->on('users');
+            $table->string('short_term')->nullable();
+            $table->string('months_to_pay')->nullable();
             $table->timestamps();
 
         });

@@ -39,6 +39,17 @@
                     </div>
                 </div>
 
+                <div class="col s12 m12 l5 right">
+                    <input type="checkbox" value="yes" id="short_term" name="short_term">
+                    <label for="short_term">Is this loan for short term?</label>
+                    <select id="months" name="months">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1 month">1 month</option>
+                        <option value="2 months">2 months</option>
+                        <option value="3 months">3 months</option>
+                        <option value="4 months">4 months</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="right">
@@ -58,8 +69,18 @@
     <script>
         $(document).ready(function(){
 
+            $('input[type="checkbox"]').change(function(){
+//                if($(this).is(':checked')){
+//                    $('select').removeAttr('disabled');
+//                    console.log('fill');
+//                }else{
+//                    $('select').attr('disabled', 'disabled');
+//                }
+            });
+
             //add loan
             $('#next').hide();
+
             $('#save_loan').click(function (e) {
 
                 e.preventDefault();
@@ -70,14 +91,16 @@
                     url: '/addLoan/store/' + customer_id,
                     type: 'post',
                     data: {
-                        '_token': CSRF_TOKEN,
-                        'date_app' : $('#date_app').val(),
+                        '_token'     : CSRF_TOKEN,
+                        'date_app'   : $('#date_app').val(),
                         'afp_serial' : $('#serial_no').val(),
-                        'amt_app' : $('#amt_app').val(),
-                        'col_off' : $('#colat').val(),
-                        'co_makers' : $('#co_make').val(),
-                        'date_prep' : $('#date_prep').val(),
-                        'prep_by' : $('#prep_by').val()
+                        'amt_app'    : $('#amt_app').val(),
+                        'col_off'    : $('#colat').val(),
+                        'co_makers'  : $('#co_make').val(),
+                        'date_prep'  : $('#date_prep').val(),
+                        'prep_by'    : $('#prep_by').val(),
+                        'short_term' : $('#short_term').val(),
+                        'months'     : $('#months').val()
 
                     },
                     success: function (data) {
@@ -114,6 +137,8 @@
                 $(form_for_approver).hide();
             });
 
+
+            $('select').material_select();
 
             $('.datepicker').pickadate({
                 selectMonths: true, // Creates a dropdown to control month

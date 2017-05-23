@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Loan extends Model
 {
@@ -14,5 +15,11 @@ class Loan extends Model
 
     public function customer(){
         return $this->belongsTo(Customer::class);
+    }
+
+    public function count(){
+        $loans = DB::table('loans')->count();
+
+        return $loans;
     }
 }

@@ -31,6 +31,9 @@
                     <input type="text" value="{{$id->co_makers}}" readonly>
                     <label>Prepared By</label>
                     <input type="text" value="{{$user->name}}" readonly>
+                    @if($id->short_term === "yes")
+                        <label>for short term "{{$id->months_to_pay}} to pay"</label>
+                    @endif
                 </div>
             </div>
         </div>

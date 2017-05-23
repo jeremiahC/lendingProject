@@ -39,58 +39,50 @@
     </div>
 
     <div class="row">
-        <div class="col s12 m4 l4">
-            <div class="card blue white-text">
-                <div class="card-title">Pending Loans</div>
+        <div class="col s12 m12 l11">
+            <div class="card">
                 <div class="card-content">
-                    <table class="responsive-table">
+                    <span class="card-title">
+                        Amount: 13,000 php
+                        <br>
+                        Interest:
+                        <br>
+                        Date:
+
+                    </span>
+                    <table class="striped responsive-table">
                         <thead>
                         <tr>
-                            <th>Amount</th>
-                            <th>action</th>
+                            <th data-field="date" class="center-align">Date</th>
+                            <th data-field="gives" class="center-align">Gives</th>
+                            <th data-field="withdraw" class="center-align">Withdraw</th>
+                            <th data-field="deduction" class="center-align">Deduction</th>
+                            <th data-field="net" class="center-align">Net</th>
+                            <th data-field="signature" class="center-align">Signature</th>
                         </tr>
                         </thead>
 
-                        <tbody id="loans">
+                        <tbody id="ledger">
                         @foreach($customer->loan as $loan)
-                            @if(empty($loan->amount))
-                                <tr>
-                                    <td>{{$loan->amt_app}}</td>
-                                    <td><a class="btn" href="/show/loan/{{$loan->id}}">view</a></td>
-                                </tr>
+                            @if($loan->short_term !== "yes")
+                                @foreach($customer->ledger as $myLoans)
+                                    <tr class="ledger">
+                                        <td>{{$myLoans->date}}</td>
+                                        <td>{{$myLoans->transaction}}</td>
+                                        <td id="addLoan"></td>
+                                        <td id="amount">{{$myLoans->amount}}</td>
+                                        <td id="interest">{{$myLoans->interest}}</td>
+                                        <td id="payment">{{$myLoans->payments}}</td>
+                                        <td id="balance">{{$myLoans->balance}}</td>
+                                        <td id="received"></td>
+                                        <td></td>
+                                    </tr>
+                                @endforeach
                             @endif
                         @endforeach
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col s12 m4 l4">
-            <div class="card blue white-text">
-                <div class="card-title">Pending Loans</div>
-                <div class="card-content">
-                    <table class="responsive-table">
-                        <thead>
-                        <tr>
-                            <th>Amount</th>
-                            <th>action</th>
-                        </tr>
-                        </thead>
-
-                        <tbody id="loans">
-                        @foreach($customer->loan as $loan)
-                            @if(empty($loan->amount))
-                                <tr>
-                                    <td>{{$loan->amount->loan_id}}</td>
-                                    <td><a class="btn" href="/show/loan/{{$loan->id}}">view</a></td>
-                                </tr>
-                            @endif
-                        @endforeach
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
@@ -117,18 +109,22 @@
                         </thead>
 
                         <tbody id="ledger">
-                        @foreach($customer->ledger as $myLoans)
-                                <tr class="ledger">
-                                    <td>{{$myLoans->date}}</td>
-                                    <td>{{$myLoans->transaction}}</td>
-                                    <td id="addLoan"></td>
-                                    <td id="amount">{{$myLoans->amount}}</td>
-                                    <td id="interest">{{$myLoans->interest}}</td>
-                                    <td id="payment">{{$myLoans->payments}}</td>
-                                    <td id="balance">{{$myLoans->balance}}</td>
-                                    <td id="received"></td>
-                                    <td></td>
-                                </tr>
+                        @foreach($customer->loan as $loan)
+                            @if($loan->short_term !== "yes")
+                                @foreach($customer->ledger as $myLoans)
+                                        <tr class="ledger">
+                                            <td>{{$myLoans->date}}</td>
+                                            <td>{{$myLoans->transaction}}</td>
+                                            <td id="addLoan"></td>
+                                            <td id="amount">{{$myLoans->amount}}</td>
+                                            <td id="interest">{{$myLoans->interest}}</td>
+                                            <td id="payment">{{$myLoans->payments}}</td>
+                                            <td id="balance">{{$myLoans->balance}}</td>
+                                            <td id="received"></td>
+                                            <td></td>
+                                        </tr>
+                                @endforeach
+                            @endif
                         @endforeach
                         </tbody>
                     </table>

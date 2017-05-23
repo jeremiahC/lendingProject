@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Loan;
 use App\Employee;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class LoanController extends Controller
@@ -77,6 +78,8 @@ class LoanController extends Controller
             $loanData->amt_app = request('amt_app');
             $loanData->col_off = request('col_off');
             $loanData->co_makers = request('co_makers');
+            $loanData->short_term = request('short_term');
+            $loanData->months_to_pay = request('months');
             $loanData->save();
     }
 
@@ -117,10 +120,11 @@ class LoanController extends Controller
 
     }
 
-    public function payLoanPage(Customer $id)
+    public function payLoanPage(Customer $id, Ledger $ledger)
     {
-        $loans=Loan::all();
-        return view('loanPages.payloan', compact('loans', 'id'));
+        $loans = Loan::all();
+        $ledgId = $ledger->findLatestId($id->id);
+        return view('loanPages.payloan', compact('loans', 'id', 'ledgId'));
 
     }
 

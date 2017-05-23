@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Loan;
+use App\LoanAmount;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,9 +24,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Loan $loan)
+    public function index(Loan $loan, Customer $customer, LoanAmount $loanAmount)
     {
-        $loans = $loan->all();
-        return view('dashboard/index', compact('loans'));
+        $customers = $customer->count();
+        $noLoans = $loan->count();
+        $amounts = $loanAmount->count();
+        $totalLoans = $noLoans + $amounts;
+        $amount = $loanAmount->countAllForAppr();
+        $amountAppr = $loanAmount->countAllApproved();
+
+        return view('dashboard/index', compact('customers', 'totalLoans', 'amount', 'amountAppr'));
     }
+
 }
