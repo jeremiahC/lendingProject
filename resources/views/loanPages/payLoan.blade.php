@@ -59,10 +59,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>{{$ledgId->balance}} php</td>
-                                    <td>{{$ledgId->interest}} php</td>
-                                </tr>
+                            @foreach($id->loan as $loan)
+                                @if($loan->short_term === "yes")
+                                    <tr>
+                                        <td id="balance">{{$ledgId->gives}}</td>
+                                        <td>{{$ledgId->interest}}</td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td id="balance">{{$ledgId->balance}}</td>
+                                        <td>{{$ledgId->interest}}</td>
+                                    </tr>
+                                @endif
+
+                            @endforeach
                             </tbody>
                         </table>
 
@@ -96,6 +106,7 @@
         var CSRF_TOKEN = $('input[name="_token"]').val();
         var payment_for = $('#payment_for').val();
         var ledId = $('#led_id').val();
+        var balance = $('#balance').html();
 
         $.ajax({
             url: '/pay',
@@ -105,10 +116,12 @@
                 'customer_id':  customer_id,
                 'amount':   amount,
                 'payment_for': payment_for,
-                'ledId': ledId
+                'ledId': ledId,
+                'balance': balance
             },
             success: function (data) {
-                console.log(data);
+                Materialize.toast('You have payed', 5000);
+                Materialize.toast('Go To <a href="/customerPage/customer{{$id->id}}"> {{$id->fname . "'s'"}} </a> profile');
             },
             error: function (data) {
                 console.log(data);

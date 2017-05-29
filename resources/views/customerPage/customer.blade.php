@@ -37,128 +37,74 @@
             </div>
         </div>
     </div>
-
     <div class="row">
-        <div class="col s12 m12 l11">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title">
-                        Amount: 13,000 php
-                        <br>
-                        Interest:
-                        <br>
-                        Date:
-
-                    </span>
-                    <table class="striped responsive-table">
-                        <thead>
-                        <tr>
-                            <th data-field="date" class="center-align">Date</th>
-                            <th data-field="gives" class="center-align">Gives</th>
-                            <th data-field="withdraw" class="center-align">Withdraw</th>
-                            <th data-field="deduction" class="center-align">Deduction</th>
-                            <th data-field="net" class="center-align">Net</th>
-                            <th data-field="signature" class="center-align">Signature</th>
-                        </tr>
-                        </thead>
-
-                        <tbody id="ledger">
-                        @foreach($customer->loan as $loan)
-                            @if($loan->short_term !== "yes")
-                                @foreach($customer->ledger as $myLoans)
-                                    <tr class="ledger">
-                                        <td>{{$myLoans->date}}</td>
-                                        <td>{{$myLoans->transaction}}</td>
-                                        <td id="addLoan"></td>
-                                        <td id="amount">{{$myLoans->amount}}</td>
-                                        <td id="interest">{{$myLoans->interest}}</td>
-                                        <td id="payment">{{$myLoans->payments}}</td>
-                                        <td id="balance">{{$myLoans->balance}}</td>
-                                        <td id="received"></td>
-                                        <td></td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                        @endforeach
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
+        <div class="col s12 m11 l11">
+            <ul class="tabs">
+                <li class="tab col s3"><a class="active" href="#test1">Ledger</a></li>
+                <li class="tab col s3"><a href="#test2">Statistics</a></li>
+                <li class="tab col s3"><a href="#test3">Archives</a></li>
+            </ul>
         </div>
-    </div>
+        <div id="test1" class="col s12">
 
-    <div class="row">
-        <div class="col s12 m12 l11">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title">Ledger</span>
-                    <table class="striped responsive-table">
-                        <thead>
-                        <tr>
-                            <th data-field="id" class="center-align">Date</th>
-                            <th data-field="name" class="center-align">Transaction</th>
-                            <th data-field="price" class="center-align">Add Loan</th>
-                            <th data-field="price" class="center-align">Amount</th>
-                            <th data-field="price" class="center-align">Interest</th>
-                            <th data-field="price" class="center-align">Payments</th>
-                            <th data-field="price" class="center-align">Balance</th>
-                            <th data-field="price" class="center-align">Received</th>
-                            <th data-field="price" class="center-align">Approved</th>
-                        </tr>
-                        </thead>
-
-                        <tbody id="ledger">
-                        @foreach($customer->loan as $loan)
-                            @if($loan->short_term !== "yes")
-                                @foreach($customer->ledger as $myLoans)
-                                        <tr class="ledger">
-                                            <td>{{$myLoans->date}}</td>
-                                            <td>{{$myLoans->transaction}}</td>
-                                            <td id="addLoan"></td>
-                                            <td id="amount">{{$myLoans->amount}}</td>
-                                            <td id="interest">{{$myLoans->interest}}</td>
-                                            <td id="payment">{{$myLoans->payments}}</td>
-                                            <td id="balance">{{$myLoans->balance}}</td>
-                                            <td id="received"></td>
-                                            <td></td>
-                                        </tr>
-                                @endforeach
-                            @endif
-                        @endforeach
-                        </tbody>
-                    </table>
-
+            @if($customer->ledger->count() > 0)
+                @foreach($customer->loan as $loans)
+                    @if($loans->short_term === "yes")
+                        @include('customerPage.ledgers.short')
+                    @else
+                        @include('customerPage.ledgers.long')
+                    @endif
+                @endforeach
+            @else
+                <div class="row">
+                    <div class="col s12 m11 l11">
+                        <div class="card">
+                            <div class="card-content center-align">No Ledger</div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+        <div id="test2" class="col s12 m11 l11">
+            <div class="row">
+                <div class="card red">
+                    <div class="card-content white-text center-align">
+                        <span>Total Loans</span>
+                        <h3>100</h3>
+                    </div>
                 </div>
             </div>
-            @role('REG-EMPLOYEE')
-                <button class="btn" id="intrt">Interest</button>
-                <div class="right">
-                    <a class='dropdown-button btn' href='#' id="dropBtn" data-activates='dropdown1'>
-                        <i class="material-icons left">list</i>Options
-                    </a>
-                    <!-- Dropdown Structure -->
-                    <ul id='dropdown1' class='dropdown-content'>
-                        <li>
-                             <a href="/customerPage/customer{{$customer->id}}/addLoan">Add Loan</a>
-                        </li>
-                        <li>
-                            <a href="/customer{{$customer->id}}/payLoan">Pay</a>
-                        </li>
-                    </ul>
-
+           <div class="row">
+                <div class="card">
+                    <canvas id="myChart" height="50" width="100"></canvas>
                 </div>
-            @endrole
+           </div>
+        </div>
+        <div id="test3" class="col s12 m11 l11">
+           archive
         </div>
 
     </div>
-
-
+    <div class="fixed-action-btn click-to-toggle">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">assignment</i>
+        </a>
+        <ul>
+            <li>
+                <a class="btn-floating green" href="/customerPage/customer{{$customer->id}}/addLoan">
+                    <i class="material-icons">add</i>
+                </a>
+            </li>
+        </ul>
+    </div>
 @endsection
 
 @section('script')
     <script>
         $(document).ready(function () {
+
+
+
             var addLoan = $('#addLoan').text();
             var interest = $('#interest').text();
 
@@ -190,6 +136,35 @@
                 });
             });
 
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+                type: 'bubble',
+                data: {
+                    datasets: [
+                        {
+                            label: 'First Dataset',
+                            data: [
+                                {
+                                    x: 20,
+                                    y: 30,
+                                    r: 15
+                                },
+                                {
+                                    x: 40,
+                                    y: 10,
+                                    r: 10
+                                }
+                            ],
+                            backgroundColor:"#FF6384",
+                            hoverBackgroundColor: "#FF6384",
+                        }]
+                },
+                options: {
+                    animation:{
+                        animateScale:true
+                    }
+                }
+            });
         });
     </script>
 @endsection

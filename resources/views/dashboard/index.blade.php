@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l3">
             <div class="card red">
                 <div class="card-content center-align white-text">
                     <span>Total Customers</span>
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l3">
             <div class="card light-blue">
                 <div class="card-content center-align white-text">
                     <span>Total Loans</span>
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l3">
             <div class="card light-green">
                 <div class="card-content center-align white-text">
                     <span>Total Approved Loans</span>
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l3">
             <div class="card yellow">
                 <div class="card-content center-align white-text">
                     <span>Total Loans For Approval</span>

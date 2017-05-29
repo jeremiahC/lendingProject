@@ -23,6 +23,10 @@ class CreateLedgersTable extends Migration
             $table->decimal('payments')->nullable();
             $table->decimal('balance')->nullable();
             $table->decimal('received')->nullable();
+            $table->decimal('gives')->nullable();
+            $table->decimal('withdraw')->nullable();
+            $table->decimal('deduction')->nullable();
+            $table->decimal('net')->nullable();
             $table->integer('customer_id')->unsigned()->nullable();
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->timestamps();

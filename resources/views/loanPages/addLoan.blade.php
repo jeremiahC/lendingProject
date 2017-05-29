@@ -44,10 +44,10 @@
                     <label for="short_term">Is this loan for short term?</label>
                     <select id="months" name="months">
                         <option value="" disabled selected>Choose your option</option>
-                        <option value="1 month">1 month</option>
-                        <option value="2 months">2 months</option>
-                        <option value="3 months">3 months</option>
-                        <option value="4 months">4 months</option>
+                        <option value="1">1 month</option>
+                        <option value="2">2 months</option>
+                        <option value="3">3 months</option>
+                        <option value="4">4 months</option>
                     </select>
                 </div>
             </div>
@@ -69,13 +69,9 @@
     <script>
         $(document).ready(function(){
 
-            $('input[type="checkbox"]').change(function(){
-//                if($(this).is(':checked')){
-//                    $('select').removeAttr('disabled');
-//                    console.log('fill');
-//                }else{
-//                    $('select').attr('disabled', 'disabled');
-//                }
+            var short_term = '';
+            $('#short_term').change(function () {
+                short_term = $(this).val();
             });
 
             //add loan
@@ -99,13 +95,13 @@
                         'co_makers'  : $('#co_make').val(),
                         'date_prep'  : $('#date_prep').val(),
                         'prep_by'    : $('#prep_by').val(),
-                        'short_term' : $('#short_term').val(),
+                        'short_term' : short_term,
                         'months'     : $('#months').val()
 
                     },
                     success: function (data) {
                         console.log(data + "success");
-                        $('#next').show();
+                        window.location.replace("/show/loan/" + data);
                     },
                     error: function (data) {
                         var errors = '';

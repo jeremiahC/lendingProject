@@ -51,7 +51,7 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createAmtApp($id)
+    public function createAmtApp(Loan $id)
     {
         //
         return view('loanPages.approveAddLoan', compact('id'));
@@ -81,10 +81,15 @@ class LoanController extends Controller
             $loanData->short_term = request('short_term');
             $loanData->months_to_pay = request('months');
             $loanData->save();
+
+            return $loanData->id;
     }
 
     public function storeAmtApp(Request $request, LoanAmount $loanData)
     {
+        $originalDate = $request->date_start;
+        $newDate = date("Y-m-d", strtotime($originalDate));
+
         $loanData->loan_id = $request->loan_id;
         $loanData->amt_apr = $request->amount;
         $loanData->less = $request->less;
@@ -96,12 +101,14 @@ class LoanController extends Controller
         $loanData->total = $request->total;
         $loanData->approved = null;
         $loanData->transaction = $request->transaction;
+        $loanData->gives = $request->gives;
+        $loanData->date_start = $newDate;
         $loanData->save();
 
         return redirect('/show/loan/'.$request->loan_id);
     }
 
-    public function approveLoan(Request $request, LoanAmount $amountData, Ledger $ledgerData)
+    public function approveLoan(Request $request, LoanAmount $amountData)
     {
         $amount = $amountData->find($request->amount_id);
         $amount->approved = date('Y-m-d');
@@ -110,15 +117,30 @@ class LoanController extends Controller
         $interest = $amount->interest;
         $theAmount = $amount->amt_apr;
 
-        $ledgerData->customer_id = $amount->loan->customer_id;
-        $ledgerData->date = $amount->approved;
-        $ledgerData->transaction = $amount->transaction;
-        $ledgerData->amount =  $theAmount;
-        $ledgerData->interest = $interest;
-        $ledgerData->balance = $theAmount;
-        $ledgerData->save();
+        if($amount->loan->short_term === "yes"){
+            $months = $amount->loan->months_to_pay * 2;
+            for($i = 0; $i < $months; $i++) {
+                $ledgerData = new Ledger();
+                $ledgerData->date = $amount->date_start;
+                $ledgerData->gives = $amount->gives;
+                $ledgerData->customer_id = $amount->loan->customer_id;
+                $ledgerData->amount = $theAmount;
+                $ledgerData->interest = $interest;
+                $ledgerData->save();
+            }
+        }else{
+            $ledgerData = new Ledger();
+            $ledgerData->customer_id = $amount->loan->customer_id;
+            $ledgerData->amount = $theAmount;
+            $ledgerData->interest = $interest;
+            $ledgerData->date = $amount->date_start;
+            $ledgerData->transaction = $amount->transaction;
+            $ledgerData->balance = $theAmount;
+            $ledgerData->save();
+        }
 
     }
+
 
     public function payLoanPage(Customer $id, Ledger $ledger)
     {
@@ -130,7 +152,7 @@ class LoanController extends Controller
 
     public function payLoan(Request $request, Ledger $ledger, Customer $customer, Payment $payment){
         $customerId = $request->customer_id;
-
+        $cust = $customer->find($customerId);
         //save to payments table
 
         $payment->customer_id = $customerId;
@@ -139,16 +161,16 @@ class LoanController extends Controller
         $payment->ledger_id = $request->ledId;
         $payment->save();
 
-        $ledgerArray = $customer->find($request->customer_id)->ledger;
-        $arrayLength = sizeof($ledgerArray) - 1;
+//        $ledgerArray = $customer->find($request->customer_id)->ledger;
+//        $arrayLength = sizeof($ledgerArray) - 1;
 
-        $balance = $ledgerArray[$arrayLength]->balance;
+        $balance = $request->balance;
         $payAmount =  $request->amount;
 
         $ledger->customer_id = $customerId;
-        $ledger->transaction = "withdraw";
         $ledger->date = date('Y-m-d');
         $ledger->payments = $payAmount;
+        $ledger->transaction = "withdraw";
         $ledger->balance = $balance - $payAmount;
         $ledger->save();
 
