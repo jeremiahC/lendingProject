@@ -99,7 +99,7 @@
                                 <li><a href="#!" class="green-text" id="approve">Approve</a></li>
                                 <li><a href="#!" class="red-text">Disapprove</a></li>
                             @endrole
-                            <li><a href="#!" class="yellow-text">Edit</a></li>
+                            <li><a href="/loan/{{$id->amount->id}}/edit" class="yellow-text">Edit</a></li>
                         </ul>
                     @endif
             @endif

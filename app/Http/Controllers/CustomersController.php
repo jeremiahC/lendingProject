@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ledger;
 use App\Loan;
 use App\LoanAmount;
 use Illuminate\Http\Request;
@@ -84,10 +85,13 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $id)
+    public function show(Customer $id, Ledger $ledger)
     {
         $customer = $id;
-        return view('customerPage/customer', compact('customer'));
+        if($customer->ledger->count() > 0) {
+            $ledgerId = $ledger->findLatestId($id->id)->id;
+        }
+        return view('customerPage/customer', compact('customer', 'ledgerId'));
     }
 
     /**

@@ -142,15 +142,14 @@ class LoanController extends Controller
     }
 
 
-    public function payLoanPage(Customer $id, Ledger $ledger)
+    public function payLoanPage(Customer $id, Ledger $ledgId)
     {
         $loans = Loan::all();
-        $ledgId = $ledger->findLatestId($id->id);
         return view('loanPages.payloan', compact('loans', 'id', 'ledgId'));
 
     }
 
-    public function payLoan(Request $request, Ledger $ledger, Customer $customer, Payment $payment){
+    public function payLoan(Request $request, Customer $customer, Payment $payment){
         $customerId = $request->customer_id;
         $cust = $customer->find($customerId);
         //save to payments table
@@ -161,17 +160,26 @@ class LoanController extends Controller
         $payment->ledger_id = $request->ledId;
         $payment->save();
 
-//        $ledgerArray = $customer->find($request->customer_id)->ledger;
-//        $arrayLength = sizeof($ledgerArray) - 1;
-
         $balance = $request->balance;
         $payAmount =  $request->amount;
 
-        $ledger->customer_id = $customerId;
-        $ledger->date = date('Y-m-d');
-        $ledger->payments = $payAmount;
-        $ledger->transaction = "withdraw";
-        $ledger->balance = $balance - $payAmount;
+
+
+        foreach ($cust->loan as $loan){
+            if($loan->short_term === "yes") {
+                $ledger = Ledger::find($request->ledId);
+                $ledger->withdraw = $payAmount;
+                $ledger->net = $payAmount - $balance;
+            }else{
+                $ledger = new Ledger();
+                $ledger->customer_id = $customerId;
+                $ledger->date = date('Y-m-d');
+                $ledger->payments = $payAmount;
+                $ledger->transaction = "withdraw";
+                $ledger->balance = $balance - $payAmount;
+            }
+        }
+
         $ledger->save();
 
         return  $balance - $payAmount;
@@ -239,9 +247,9 @@ class LoanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Loan $id)
     {
-        //
+        return view('loanPages.edit', compact('id'));
     }
 
     /**
@@ -251,9 +259,28 @@ class LoanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, LoanAmount $id)
     {
-        //
+        $originalDate = $request->date_start;
+        $newDate = date("Y-m-d", strtotime($originalDate));
+
+        $loanData = $id;
+
+        $loanData->loan_id = $request->loan_id;
+        $loanData->amt_apr = $request->amount;
+        $loanData->less = $request->less;
+        $loanData->interest = $request->interest;
+        $loanData->serv_charge = $request->serv_charge;
+        $loanData->notarial = $request->notarial;
+        $loanData->others = $request->others;
+        $loanData->prev_loan = $request->prev_loan;
+        $loanData->total = $request->total;
+        $loanData->transaction = $request->transaction;
+        $loanData->gives = $request->gives;
+        $loanData->date_start = $newDate;
+        $loanData->save();
+
+        return redirect('/show/loan/'.$request->loan_id);
     }
 
     /**

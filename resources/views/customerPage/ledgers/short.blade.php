@@ -34,7 +34,12 @@
                             <td>{{$ledger->withdraw}}</td>
                             <td>{{$ledger->deduction}}</td>
                             <td>{{$ledger->net}}</td>
-                            <td><a class="btn" href="/customer{{$customer->id}}/payLoan/{{$ledger->id}}">pay</a></td>
+                            <td>
+                                @if($ledger->withdraw === null)
+                                    <a class="btn" href="/customer{{$customer->id}}/payLoan/{{$ledger->id}}">pay</a>
+                                @endif
+                            </td>
+
                         </tr>
                     @endforeach
                     </tbody>

@@ -15,7 +15,7 @@ class CreateLedgersTable extends Migration
     {
         Schema::create('ledgers', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('date');
+            $table->date('date')->nullable();
             $table->string('transaction')->nullable();
             $table->decimal('loan')->nullable();
             $table->decimal('amount')->nullable();

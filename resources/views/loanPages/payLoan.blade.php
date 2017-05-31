@@ -52,28 +52,38 @@
                 <div class="col s12 m12 l5">
                     <div class="card-panel">
                         <table>
-                            <thead>
-                            <tr>
-                                <th>Running Balance</th>
-                                <th>Running Interest</th>
-                            </tr>
-                            </thead>
-                            <tbody>
                             @foreach($id->loan as $loan)
                                 @if($loan->short_term === "yes")
+                                    <thead>
                                     <tr>
-                                        <td id="balance">{{$ledgId->gives}}</td>
-                                        <td>{{$ledgId->interest}}</td>
+                                        <th>Gives</th>
+                                        <th>Interest</th>
                                     </tr>
-                                @else
-                                    <tr>
-                                        <td id="balance">{{$ledgId->balance}}</td>
-                                        <td>{{$ledgId->interest}}</td>
-                                    </tr>
-                                @endif
+                                    </thead>
+                                    <tbody>
 
+                                            <tr>
+                                                <td id="balance">{{$ledgId->gives}}</td>
+                                                <td>{{$ledgId->interest}}</td>
+                                            </tr>
+                                    </tbody>
+                                @else
+                                    <thead>
+                                    <tr>
+                                        <th>Gives</th>
+                                        <th>Interest</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td id="balance">{{$ledgId->balance}}</td>
+                                            <td>{{$ledgId->interest}}</td>
+                                        </tr>
+
+                                    </tbody>
+                            @endif
                             @endforeach
-                            </tbody>
                         </table>
 
 
@@ -122,6 +132,7 @@
             success: function (data) {
                 Materialize.toast('You have payed', 5000);
                 Materialize.toast('Go To <a href="/customerPage/customer{{$id->id}}"> {{$id->fname . "'s'"}} </a> profile');
+                console.log(data);
             },
             error: function (data) {
                 console.log(data);
