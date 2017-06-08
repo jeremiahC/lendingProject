@@ -1,49 +1,44 @@
-
 @extends('layout')
 
 @section('content')
-
     <div class="row">
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                    <label for="first_name">First Name</label>
-                </div>
-                <div class="input-field col s6">
-                    <input id="last_name" type="text" class="validate">
-                    <label for="last_name">Last Name</label>
+        <div class="col sm12 m11 l11">
+            <h4>File manager</h4>
+            <div class="card">
+                <div class="card-content">
+                    <div class="filemanager">
+
+                        <div class="search">
+                            <input type="search" placeholder="Find a file.." />
+                        </div>
+
+                        <div class="breadcrumbs"></div>
+
+                        <ul class="data"></ul>
+
+                        <div class="nothingfound">
+                            <div class="nofiles"></div>
+                            <span>No files here.</span>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+            <a class='dropdown-button btn-large blue waves-effect waves-light right' href='#' data-activates='dropdown1'>New</a>
 
-        </form>
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!">New Folder</a></li>
+                <li><a href="#modal1">Upload File</a></li>
+            </ul>
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <form action="{{ url('/upload')}}" class="dropzone" id="my-awesome-dropzone">
+                        {{csrf_field()}}
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-<div class="row">
-    <form action="/store" method="post" class="col s12" enctype="multipart/form-data">
-        {{csrf_field()}}
-        <div class="row">
-            <label>Materialize File Input</label>
-            <div class="file-field input-field dropify">
-                <div class="btn">
-                    <span>Browse</span>
-                    <input type="file" name="photo">
-                </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="Upload file">
-                </div>
-            </div>
-        </div>
-        <div>
-            <button class="btn waves-effect waves-light btn-large red" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
-            </button>
-        </div>
-
-            </form>
-</div>
-
-{{--</body>--}}
-{{--</html>--}}
 @endsection
+<!-- Include o

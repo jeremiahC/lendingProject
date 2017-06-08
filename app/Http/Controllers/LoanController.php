@@ -201,16 +201,13 @@ class LoanController extends Controller
         return view('loanPages.show', compact('id', 'user', 'customer'));
     }
 
-    public function generateIntrst(Customer $id, Ledger $ledgerData){
+    public function generateIntrst(Customer $id, Ledger $ledgerData)
+    {
 
-        $ledgerArray = $id->ledger;
-        $arrayLength = sizeof($ledgerArray);
-        for($i=0;$i < $arrayLength; $i++ ) {
-            if ($ledgerArray[$i]->transaction === "interest") {
-                $date = $ledgerArray[$i]->date;
-            }else{
-                $date = $ledgerArray[0]->date;
-            }
+        if ($ledgerData->findIdByTrans('interest', $id->id)){
+            $date = $ledgerData->findIdByTrans('interest', $id->id)->date;
+        }else{
+            $date = $ledgerData->findLatestId($id->id)->date;
         }
 
         foreach ($id->ledger as $loans) {
@@ -219,7 +216,7 @@ class LoanController extends Controller
             date_add($dateAppr, date_interval_create_from_date_string('15 days'));
             $intrstDate = date_format($dateAppr, 'Y-m-d');
 
-            if($intrstDate){
+            if($intrstDate === $currentDate){
                     $ledgerArray =  $id->ledger;
                     $arrayLength = sizeof($ledgerArray)-1;
 

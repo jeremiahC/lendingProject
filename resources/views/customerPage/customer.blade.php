@@ -110,31 +110,45 @@
 
             $('.loan_hide').hide();
 
-            $('#intrt').click(function () {
-                var txt = "";
+
+            var txt = "";
                 $.ajax({
-                    url: '/customerPage/customer'+ {{$customer->id}} +'/generateIntrst',
-                    success: function(data){
-                        console.log(data);
+                    url: '/customerPage/customer{{$customer->id}}',
+                    success: function(data) {
                         txt += "<tr>";
-                        txt += "<td>" + data.date+ "</td>";
+                        txt += "<td>" + data.date + "</td>";
                         txt += "<td>" + data.transaction + "</td>";
                         txt += "<td></td>";
                         txt += "<td></td>";
-                        txt += "<td>" + data.interest  + "</td>";
+                        txt += "<td>" + data.interest + "</td>";
                         txt += "<td></td>";
                         txt += "<td>" + data.balance + "</td>";
                         txt += "<td></td>";
                         txt += "</tr>";
 
-                        $('#ledger').append(txt);
+                        var today = new Date();
+                        var dd = today.getDate();
+                        var mm = today.getMonth()+1; //January is 0!
+
+                        var yyyy = today.getFullYear();
+                        if(dd<10){
+                            dd='0'+dd;
+                        }
+                        if(mm<10){
+                            mm='0'+mm;
+                        }
+
+                        var today = yyyy+'-'+mm+'-'+dd;
+
+                        if(data.date === today) {
+                            $('#ledger').append(txt);
+                        }
                     },
                     error: function(data){
                         console.log(data);
                     }
 
                 });
-            });
 
             var ctx = document.getElementById("myChart");
             var myChart = new Chart(ctx, {

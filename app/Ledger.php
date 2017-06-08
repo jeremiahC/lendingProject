@@ -14,11 +14,23 @@ class Ledger extends Model
 
     }
 
-    public  function findLatestId($customerId){
+    public function findLatestId($customerId){
         $ledger = DB::table('ledgers')
                     ->where('customer_id', '=', $customerId)
                     ->orderBy('id', 'desc')
                     ->first();
+
+        return $ledger;
+    }
+
+    public function findIdByTrans($transaction, $customerId){
+        $ledger = DB::table('ledgers')
+            ->where([
+                ['transaction', '=', $transaction],
+                ['customer_id', '=', $customerId]
+            ])
+            ->orderBy('id', 'desc')
+            ->first();
 
         return $ledger;
     }

@@ -10,11 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" type="text/css">
     <link href="/css/materialize.css" rel="stylesheet" type="text/css">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
-
-    <script src="/js/app.js"></script>
-    <script src="/js/list.js"></script>
-    <script src="/js/bin/materialize.min.js"></script>
-    <script src="/js/bin/materialize-pagination.min.js"></script>
+    <link href="/css/styles.css" rel="stylesheet"/>
+    <link href="/css/dropzone.css" rel="stylesheet"/>
 
     <style>
         span.error{

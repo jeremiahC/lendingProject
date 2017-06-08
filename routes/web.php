@@ -75,3 +75,5 @@ Route::get('/userList', 'UserController@index');
 Route::get('/user/{id}', 'UserController@show');
 Route::post('/addRole', 'RolePermissionController@addRole');
 
+Route::get('/scan/{dir}', 'FileManagerController@scan');
+Route::post('/upload', 'FileManagerController@upload');

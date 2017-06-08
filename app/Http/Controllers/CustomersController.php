@@ -85,12 +85,18 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $id, Ledger $ledger)
+    public function show(Request $request, Customer $id, Ledger $ledger)
     {
         $customer = $id;
         if($customer->ledger->count() > 0) {
             $ledgerId = $ledger->findLatestId($id->id)->id;
+
+            if($request->ajax()){
+                $loan = new LoanController();
+                return $loan->generateIntrst($id, $ledger);
+            }
         }
+
         return view('customerPage/customer', compact('customer', 'ledgerId'));
     }
 
