@@ -3,12 +3,10 @@
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper white">
-                <ul id="nav-mobile">
-                    <li class="hide-on-large-only"><a href="#" data-activates="slide-out" id="button"><i class="green-text text-darken-2 material-icons">menu</i></a></li>
-                    <li>
-                        <a href="#" id="nav-label" class="green-text text-darken-2 brand-logo">Lending Project</a>
-                    </li>
-
+                <a href="#" class="green-text text-darken-2 brand-logo">Robredo Lending</a>
+                <a href="#" data-activates="slide-out" id="button" class="button-collapse green-text text-darken-2"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right">
+                    <li><a href="#" class="green-text text-darken-2"><i class="material-icons">notifications_none</i></a></li>
                 </ul>
             </div>
         </nav>

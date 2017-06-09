@@ -8,4 +8,4 @@ var myChart = new Chart({});
 
 //jquery validation
 
-global.valdiate = require('jquery-validation/dist/jquery.validate');
+global.validate = require('jquery-validation/dist/jquery.validate');

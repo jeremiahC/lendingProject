@@ -41,4 +41,7 @@
         </div>
     </div>
 @endsection
-<!-- Include o
+
+@section('script')
+    <script src="/js/filescript.js"></script>
+@endsection

@@ -24,4 +24,10 @@ class LoanAmount extends Model
 
         return $amounts;
     }
+
+    public function totalAmount(){
+        $amount = DB::table('amount_approved')->sum('amt_apr');
+
+        return $amount;
+    }
 }

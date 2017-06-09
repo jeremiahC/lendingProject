@@ -41,7 +41,7 @@
         <div class="col s12 m11 l11">
             <ul class="tabs">
                 <li class="tab col s3"><a class="active" href="#test1">Ledger</a></li>
-                <li class="tab col s3"><a href="#test2">Statistics</a></li>
+                <li class="tab col s3"><a href="#test2">Insights</a></li>
                 <li class="tab col s3"><a href="#test3">Archives</a></li>
             </ul>
         </div>
@@ -70,7 +70,7 @@
                 <div class="card red">
                     <div class="card-content white-text center-align">
                         <span>Total Loans</span>
-                        <h3>100</h3>
+                        <h3>{{$customer->loans->count()}}</h3>
                     </div>
                 </div>
             </div>
@@ -97,88 +97,9 @@
             </li>
         </ul>
     </div>
+    <input type="text" value="{{$customer->id}}" id="customer_id" hidden>
 @endsection
 
 @section('script')
-    <script>
-        $(document).ready(function () {
-
-
-
-            var addLoan = $('#addLoan').text();
-            var interest = $('#interest').text();
-
-            $('.loan_hide').hide();
-
-
-            var txt = "";
-                $.ajax({
-                    url: '/customerPage/customer{{$customer->id}}',
-                    success: function(data) {
-                        txt += "<tr>";
-                        txt += "<td>" + data.date + "</td>";
-                        txt += "<td>" + data.transaction + "</td>";
-                        txt += "<td></td>";
-                        txt += "<td></td>";
-                        txt += "<td>" + data.interest + "</td>";
-                        txt += "<td></td>";
-                        txt += "<td>" + data.balance + "</td>";
-                        txt += "<td></td>";
-                        txt += "</tr>";
-
-                        var today = new Date();
-                        var dd = today.getDate();
-                        var mm = today.getMonth()+1; //January is 0!
-
-                        var yyyy = today.getFullYear();
-                        if(dd<10){
-                            dd='0'+dd;
-                        }
-                        if(mm<10){
-                            mm='0'+mm;
-                        }
-
-                        var today = yyyy+'-'+mm+'-'+dd;
-
-                        if(data.date === today) {
-                            $('#ledger').append(txt);
-                        }
-                    },
-                    error: function(data){
-                        console.log(data);
-                    }
-
-                });
-
-            var ctx = document.getElementById("myChart");
-            var myChart = new Chart(ctx, {
-                type: 'bubble',
-                data: {
-                    datasets: [
-                        {
-                            label: 'First Dataset',
-                            data: [
-                                {
-                                    x: 20,
-                                    y: 30,
-                                    r: 15
-                                },
-                                {
-                                    x: 40,
-                                    y: 10,
-                                    r: 10
-                                }
-                            ],
-                            backgroundColor:"#FF6384",
-                            hoverBackgroundColor: "#FF6384",
-                        }]
-                },
-                options: {
-                    animation:{
-                        animateScale:true
-                    }
-                }
-            });
-        });
-    </script>
+    <script src="/js/script.js"></script>
 @endsection

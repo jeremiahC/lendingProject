@@ -28,7 +28,7 @@
                             <td id="amount">{{$myLoans->amount}}</td>
                             <td id="interest">{{$myLoans->interest}}</td>
                             <td id="payment">{{$myLoans->payments}}</td>
-                            <td id="balance">{{$myLoans->balance}}</td>
+                            <td class="balance">{{$myLoans->balance}}</td>
                             <td id="received"></td>
                             <td></td>
                         </tr>

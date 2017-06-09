@@ -4,56 +4,66 @@
 
     <div class="row">
         <div class="col s12 m6 l3">
-            <div class="card red">
+            <div class="card  waves-effect waves-light waves-block red">
                 <div class="card-content center-align white-text">
                     <span>Total Customers</span>
-                    <h4><i class="material-icons">perm_identity</i>{{$customers}}</h4>
+                    <h4><i class="material-icons">perm_identity</i><span class="count">{{$customers}}</span></h4>
                 </div>
                 <div class="card-action  red darken-3">
-                    <a href="#"class="white-text waves-effect waves-light">
+                    <a href="/customerPage"class="white-text waves-effect waves-light">
                         Go to List
                     </a>
                 </div>
             </div>
         </div>
         <div class="col s12 m6 l3">
-            <div class="card light-blue">
+            <div class="card waves-effect waves-light waves-block light-blue">
                 <div class="card-content center-align white-text">
                     <span>Total Loans</span>
-                    <h4><i class="material-icons">list</i>{{$totalLoans}}</h4>
+                    <h4><i class="material-icons">list</i><span class="count">{{$totalLoans}}</span></h4>
                 </div>
                 <div class="card-action  light-blue darken-3 ">
-                    <a href="#"class="white-text waves-effect waves-light">Go To List</a>
+                    <a href="/loanPage"class="white-text waves-effect waves-light">Go To List</a>
                 </div>
             </div>
         </div>
         <div class="col s12 m6 l3">
-            <div class="card light-green">
+            <div class="card waves-effect waves-light waves-block light-green">
                 <div class="card-content center-align white-text">
                     <span>Total Approved Loans</span>
-                    <h4><i class="material-icons">list</i>{{$amountAppr}}</h4>
+                    <h4><i class="material-icons">list</i><span class="count">{{$amountAppr}}</span></h4>
                 </div>
                 <div class="card-action light-green darken-3">
-                    <a href="#"class="white-text">Go To List</a>
+                    <a href="/loanPage"class="white-text">Go To List</a>
                 </div>
             </div>
         </div>
         <div class="col s12 m6 l3">
-            <div class="card yellow">
+            <div class="card waves-effect waves-light waves-block yellow">
                 <div class="card-content center-align white-text">
                     <span>Total Loans For Approval</span>
-                    <h4><i class="material-icons">list</i>{{$amount}}</h4>
+                    <h4><i class="material-icons">list</i><span class="count">{{$amount}}</span></h4>
 
                 </div>
                 <div class="card-action yellow darken-3">
-                    <a href="#"class="white-text">Go To List</a>
+                    <a href="/loanPage"class="white-text">Go To List</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col s12 m12 l12">
-            <div class="card teal lighten-1">
+            <div class="card waves-effect waves-light waves-block teal">
+                <div class="card-content center-align white-text">
+                    <span>Total Amount of Approved Loans</span>
+                    <h2>&#8369;{{$totalLoanAmt}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card lighten-1">
                 <div class="card-image waves-effect waves-block waves-light">
                     <canvas id="myChart"></canvas>
                 </div>
@@ -74,6 +84,18 @@
 
 @section('script')
     <script>
+        $('.count').each(function () {
+            var totalNum = $(this).text();
+            console.log(totalNum);
+            $(this).animationCounter({
+                start: 0,
+                end: totalNum,
+                step: 1,
+                delay: 10
+            });
+        })
+
+
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
             type: 'line',

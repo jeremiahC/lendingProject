@@ -32,8 +32,9 @@ class HomeController extends Controller
         $totalLoans = $noLoans + $amounts;
         $amount = $loanAmount->countAllForAppr();
         $amountAppr = $loanAmount->countAllApproved();
+        $totalLoanAmt = $loanAmount->totalAmount();
 
-        return view('dashboard/index', compact('customers', 'totalLoans', 'amount', 'amountAppr'));
+        return view('dashboard/index', compact('customers', 'totalLoans', 'amount', 'amountAppr', 'totalLoanAmt'));
     }
 
 }
