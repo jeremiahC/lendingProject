@@ -42,10 +42,13 @@ Route::post('/loan/{id}/update', 'LoanController@update');
 Route::post('/addLoan/store/{id}', 'LoanController@store');
 Route::get('/customer{id}/payLoan/{ledgId}', 'LoanController@payLoanPage');
 Route::post('/pay', 'LoanController@payLoan');
+Route::get('/newTransaction/{id}', 'LoanController@newTransac');
+Route::post('/storeTransaction', 'LoanController@storeTransac');
 
 Route::post('/addLoan/storeAmtApp', 'LoanController@storeAmtApp');
 
 Route::post('/amount/approve', 'LoanController@approveLoan');
+Route::post('/amount/disapprove', 'LoanController@disapproveLoan');
 Route::get('/customerPage/customer{id}/approveAddLoan', function () {
     return view('loanPages/approveAddLoan');
 });

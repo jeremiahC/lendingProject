@@ -97,7 +97,7 @@
                         <ul id='dropdown1' class='dropdown-content '>
                             @role('MANAGER-EMPLOYEE')
                                 <li><a href="#!" class="green-text" id="approve">Approve</a></li>
-                                <li><a href="#!" class="red-text">Disapprove</a></li>
+                                <li><a href="#!" class="red-text" id="disapprove">Disapprove</a></li>
                             @endrole
                             <li><a href="/loan/{{$id->amount->id}}/edit" class="yellow-text">Edit</a></li>
                         </ul>
@@ -125,6 +125,26 @@
                 },
                 success: function(data){
                     Materialize.toast('You have Approved this Loan', 5000);
+                    console.log(data);
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            });
+        });
+
+        $('#disapprove').click(function () {
+            var id = $('#amount_id').val();
+            var CSRF_TOKEN = $('input[name="_token"]').val();
+            $.ajax({
+                url: '/amount/disapprove',
+                type: 'post',
+                data: {
+                    '_token': CSRF_TOKEN,
+                    'amount_id': id
+                },
+                success: function(data){
+                    Materialize.toast('You have Dispproved this Loan', 5000);
                     console.log(data);
                 },
                 error: function(data){

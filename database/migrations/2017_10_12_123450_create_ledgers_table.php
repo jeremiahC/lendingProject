@@ -17,16 +17,17 @@ class CreateLedgersTable extends Migration
             $table->increments('id');
             $table->date('date')->nullable();
             $table->string('transaction')->nullable();
-            $table->decimal('loan')->nullable();
-            $table->decimal('amount')->nullable();
-            $table->decimal('interest')->nullable();
-            $table->decimal('payments')->nullable();
-            $table->decimal('balance')->nullable();
-            $table->decimal('received')->nullable();
-            $table->decimal('gives')->nullable();
-            $table->decimal('withdraw')->nullable();
-            $table->decimal('deduction')->nullable();
-            $table->decimal('net')->nullable();
+            $table->string('loan')->nullable();
+            $table->string('amount')->nullable();
+            $table->string('interest')->nullable();
+            $table->string('payments')->nullable();
+            $table->string('balance')->nullable();
+            $table->string('received')->nullable();
+            $table->string('approved')->nullable();
+            $table->string('gives')->nullable();
+            $table->string('withdraw')->nullable();
+            $table->string('deduction')->nullable();
+            $table->string('net')->nullable();
             $table->integer('customer_id')->unsigned()->nullable();
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->timestamps();
@@ -53,5 +54,6 @@ class CreateLedgersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('ledgers');
+        Schema::dropIfExists('payments');
     }
 }

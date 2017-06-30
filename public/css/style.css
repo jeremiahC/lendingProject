@@ -116,3 +116,38 @@ main {
 .fill-up-require {
   color: red;
 }
+
+@media only screen and (min-width :720px) {
+
+
+  table.scroll {
+    width: 100%; /* Optional */
+    /* border-collapse: collapse; */
+  }
+
+  table.scroll tbody,
+  table.scroll thead { display: block; }
+
+    #apprHead tr th {
+    height: 30px;
+    line-height: 30px;
+    /*text-align: left;*/
+  }
+
+  table.scroll tbody {
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  #apprloans td, #apprHead th {
+    width: 25%; /* Optional */
+  }
+
+  .login-form{
+    margin: 0 auto;
+    width: 40%;
+    margin-top: 100px;
+  }
+}
+

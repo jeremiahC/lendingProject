@@ -31,4 +31,17 @@ class Customer extends Model
 
         return $customers;
     }
+
+    public function findIdByName($lname, $fname){
+        $ledger = Db::table('customers')
+            ->where([
+                ['lname', '=', $lname],
+                ['fname', '=', $fname],
+            ])
+            ->get();
+
+        foreach ($ledger as $ledge){
+            return $ledge->id;
+        }
+    }
 }

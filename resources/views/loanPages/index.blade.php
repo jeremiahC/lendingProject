@@ -7,11 +7,9 @@
         <div class="col s12 m12 l11">
             <div class="card blue white-text">
                 <div class="card-title">Pending Loans</div>
-                @if(count($loans) > 0)
                     <div class="card-content articles">
                         @include('loanPages.pending')
                     </div>
-                @endif
             </div>
         </div>
     </div>
@@ -20,11 +18,9 @@
         <div class="col s12 m12 l11">
             <div class="card red lighten-1">
                 <div class="card-title">Loans To be Approved</div>
-                @if(count($amounts) > 0)
                 <div class="card-content">
                     @include('loanPages.forappr')
                 </div>
-                @endif
             </div>
         </div>
     </div>
@@ -34,8 +30,8 @@
             <div class="card">
                 <div class="card-title">Approved Loans</div>
                 <div class="card-content">
-                    <table class="responsive-table">
-                        <thead>
+                    <table class="responsive-table scroll">
+                        <thead id="apprHead">
                         <tr>
                             <th>Date Approved</th>
                             <th>Amount</th>
@@ -67,75 +63,22 @@
 
 @section('script')
     <script>
-        $(document).ready(function () {
-            $('body').on('click', '.pagination a', function(e) {
-                e.preventDefault();
+        // Change the selector if needed
+        var $table = $('.scroll'),
+            $bodyCells = $table.find('tbody tr:first').children(),
+            colWidth;
 
-                var url = $(this).attr('href');
-                getArticles(url);
-                window.history.pushState("", "", url);
+        // Adjust the width of thead cells when window resizes
+        $(window).resize(function() {
+            // Get the tbody columns width array
+            colWidth = $bodyCells.map(function() {
+                return $(this).width();
+            }).get();
+
+            // Set the width of thead columns
+            $table.find('thead tr').children().each(function(i, v) {
+                $(v).width(colWidth[i]);
             });
-
-            function getArticles(url) {
-                $.ajax({
-                    url : url
-                }).done(function (data) {
-                    $('.articles').html(data);
-                }).fail(function () {
-                    alert('Articles could not be loaded.');
-                });
-            }
-        });
-//            $.ajax({
-//                url: '/loanPage/show',
-//                type: 'get',
-//                success: function (data) {
-//                    var loans = $.parseJSON(data);
-//                    var txt = "";
-//
-//                    for(x in loans){
-//                        txt += "<tr>";
-//                        txt += "<td>" + loans[x].date_prep + "</td>";
-//                        txt += "<td>" + loans[x].amt_app + "</td>";
-//                        txt += "<td>" + loans[x].customer_id + "</td>";
-//                        txt += "<td>" + loans[x].prep_by + "</td>";
-//                        txt += "<td><a class='btn' href='/show/loan/" + loans[x].id + "'>view</a></td>"
-//                        txt += "</tr>";
-//                    }
-//
-//                    $('#loans').append(txt);
-//
-//                },
-//                error: function (data) {
-//                  console.log(data);
-//                }
-//            });
-//
-//            $.ajax({
-//                url: '/loanPage/showAppr',
-//                type: 'get',
-//                success: function (data) {
-//                    var loans = $.parseJSON(data);
-//                    var txt = "";
-//
-//                    for(x in loans){
-//                        if(loans[x].approved !== null){
-//                            txt += "<tr>";
-//                            txt += "<td>" + loans[x].approved + "</td>";
-//                            txt += "<td>" + loans[x].amt_apr + "</td>";
-//                            txt += "<td>" + loans[x].transaction + "</td>";
-//                            txt += "<td>" + loans[x].interest + "</td>";
-//                            txt += "<td><a class='btn' href='/show/loan/" + loans[x].loan_id + "'>view</a></td>"
-//                            txt += "</tr>";
-//                        }
-//                    }
-//
-//                    $('#apprloans').append(txt);
-//
-//                },
-//                error: function (data) {
-//                    console.log(data);
-//                }
-//            });
+        }).resize(); // Trigger resize handler
     </script>
 @endsection

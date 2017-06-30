@@ -2,8 +2,9 @@
 <html lang="{{ config('app.locale') }}">
     @include('template.header')
 <body>
-    <div class="row center-align">
-        <div class="col s12 m3 l3">
+
+    <div class="row center-align  login-form">
+        <div class="col s12 m12 l12">
             <h4>Robredo Loaning Company</h4>
             <div class="card-panel">
                     <form role="form" method="POST" action="{{ route('login') }}">
@@ -65,5 +66,6 @@
             <a href="{{ route('register') }}">Register</a>
         </div>
     </div>
+    
 </body>
 </html>

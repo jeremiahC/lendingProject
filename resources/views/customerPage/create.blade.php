@@ -37,7 +37,7 @@
                         </div>
                         <div class="input-field col s12">
                             <span></span>
-                            <input id="comp_add" type="text" name="comp_add" class="validate" required>
+                            <input id="comp_add" type="text" name="comp_add" class="validate">
                             <label for="comp_add">Company Address</label>
                         </div>
                     </div>
@@ -89,7 +89,6 @@
                             mname: "required",
                             lname: "required",
                             home_add: "required",
-                            comp_add: "required",
                             birthday: "required",
                             cell_no: {
                                 required: true,
@@ -102,7 +101,6 @@
                             lname: "Please Enter Your Lastname",
                             mname: "Please Enter Your Middlename",
                             home_add: "Enter an home address",
-                            comp_add: "Enter an company address",
 
                         },
                         submitHandler: function(form) {

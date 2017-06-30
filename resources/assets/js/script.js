@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     var txt = "";
     $.ajax({
-        url: '/customerPage/customer' + customer_id,
+        url: '/customerPage/customer' + customer_id + '/generateIntrst',
         success: function(data) {
             txt += "<tr>";
             txt += "<td>" + data.date + "</td>";

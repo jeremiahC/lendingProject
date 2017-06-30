@@ -50,7 +50,7 @@ class CreateLoansTable extends Migration
             $table->decimal('total')->nullable();
             $table->decimal('gives')->nullable();
             $table->date('date_start')->nullable();
-            $table->date('approved')->nullable();
+            $table->string('approved')->nullable();
             $table->string('transaction');
             $table->timestamps();
         });

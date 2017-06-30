@@ -26,12 +26,10 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request){
-        $loans = Loan::paginate(5);
+    public function index(){
+        $loans = Loan::all();
         $amounts = LoanAmount::all();
-        if ($request->ajax()) {
-            return view('loanPages.pending', ['loans' => $loans])->render();
-        }
+
         return view('loanPages.index', compact('loans', 'amounts'));
     }
 
@@ -108,10 +106,39 @@ class LoanController extends Controller
         return redirect('/show/loan/'.$request->loan_id);
     }
 
+    public function newTransac($id){
+        return view('loanPages.newTransaction', compact('id'));
+    }
+
+    public function storeTransac(Request $request){
+        $ledger = new Ledger();
+
+        $balance =  $ledger->findLatestId($request->customer_id)->balance;
+        $newBal = $balance + $request->amount;
+
+        $ledger->transaction = $request->transaction;
+        $ledger->customer_id = $request->customer_id;
+        if($request->transaction === "CASH" ||
+            $request->transaction === "Cash" ||
+            $request->transaction === "Palawan" ||
+            $request->transaction === "P-PADALA" ||
+            $request->transaction === "ATTY. FEE") {
+
+            $ledger->loan = $request->amount;
+        }else{
+            $ledger->amount = $request->amount;
+        }
+
+        $ledger->balance = $newBal;
+        $ledger->save();
+
+        return redirect('/customerPage');
+    }
+
     public function approveLoan(Request $request, LoanAmount $amountData)
     {
         $amount = $amountData->find($request->amount_id);
-        $amount->approved = date('Y-m-d');
+        $amount->approved = "yes";
         $amount->save();
 
         $interest = $amount->interest;
@@ -139,6 +166,12 @@ class LoanController extends Controller
             $ledgerData->save();
         }
 
+    }
+
+    public function disapproveLoan(Request $request, LoanAmount $amountData){
+        $amount = $amountData->find($request->amount_id);
+        $amount->approved = "no";
+        $amount->save();
     }
 
 

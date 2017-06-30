@@ -20,10 +20,14 @@ class CustomersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // /customerPage
-        $customers = Customer::all();
+        $customers = Customer::paginate(5);
+
+        if ($request->ajax()) {
+            return view('customerPage.list', ['customers' => $customers])->render();
+        }
         return view('customerPage/index', compact('customers'));
     }
 
@@ -53,7 +57,6 @@ class CustomersController extends Controller
             'mname' => 'required',
             'lname' => 'required',
             'home_add' => 'required',
-            'comp_add' => 'required',
             'birthday' => 'required',
             'cell_no' => 'required|unique:customers,cell_no|size:11',
         ]);

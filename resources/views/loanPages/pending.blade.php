@@ -28,5 +28,5 @@
     </tbody>
 </table>
 
-{{$loans->links()}}
+
 

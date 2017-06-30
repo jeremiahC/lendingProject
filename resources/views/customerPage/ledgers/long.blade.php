@@ -24,7 +24,7 @@
                         <tr class="ledger">
                             <td>{{$myLoans->date}}</td>
                             <td>{{$myLoans->transaction}}</td>
-                            <td id="addLoan"></td>
+                            <td id="addLoan">{{$myLoans->loan}}</td>
                             <td id="amount">{{$myLoans->amount}}</td>
                             <td id="interest">{{$myLoans->interest}}</td>
                             <td id="payment">{{$myLoans->payments}}</td>
@@ -49,6 +49,9 @@
             <ul id='dropdown1' class='dropdown-content'>
                 <li>
                     <a href="/customer{{$customer->id}}/payLoan/{{$ledgerId}}">Pay</a>
+                </li>
+                <li>
+                    <a href="/newTransaction/{{$customer->id}}">New Transaction</a>
                 </li>
             </ul>
 
