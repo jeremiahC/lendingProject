@@ -66,6 +66,6 @@
             <a href="{{ route('register') }}">Register</a>
         </div>
     </div>
-    
+
 </body>
 </html>
