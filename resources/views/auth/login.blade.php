@@ -5,7 +5,7 @@
 
     <div class="row center-align  login-form">
         <div class="col s12 m12 l12">
-            <h4>Robredo Loaning Company</h4>
+            <h4>Rodred Lending</h4>
             <div class="card-panel">
                     <form role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
