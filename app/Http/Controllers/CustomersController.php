@@ -26,7 +26,7 @@ class CustomersController extends Controller
         $customers = Customer::paginate(5);
 
         if ($request->ajax()) {
-            return view('customerPage.list', ['customers' => $customers])->render();
+            return view('customerPage.list', compact('customers'))->render();
         }
         return view('customerPage/index', compact('customers'));
     }

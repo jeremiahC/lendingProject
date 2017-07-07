@@ -36,7 +36,8 @@
 @section('script')
     <script>
         $(document).ready(function () {
-            $('#add_trans').click(function () {
+            $('#add_trans').click(function (e) {
+                e.preventDefault();
                 $('#trasaction').append(
                     '<div class="col s12 m5 l5">' +
                     '<label>Amount</label>' +

@@ -115,9 +115,11 @@ class LoanController extends Controller
 
         $balance =  $ledger->findLatestId($request->customer_id)->balance;
         $newBal = $balance + $request->amount;
+        dd(gettype($newBal));
 
         $ledger->transaction = $request->transaction;
         $ledger->customer_id = $request->customer_id;
+
         if($request->transaction === "CASH" ||
             $request->transaction === "Cash" ||
             $request->transaction === "Palawan" ||
@@ -249,7 +251,7 @@ class LoanController extends Controller
             date_add($dateAppr, date_interval_create_from_date_string('15 days'));
             $intrstDate = date_format($dateAppr, 'Y-m-d');
 
-            if($intrstDate === $currentDate){
+            if($intrstDate){
                     $ledgerArray =  $id->ledger;
                     $arrayLength = sizeof($ledgerArray)-1;
 
@@ -262,7 +264,7 @@ class LoanController extends Controller
 
                     $ledgerData->customer_id = $id->id;
                     $ledgerData->transaction = "interest";
-                    $ledgerData->date = $intrstDate;
+//                    $ledgerData->date = $intrstDate;
                     $ledgerData->interest = $amountInt;
                     $ledgerData->balance = $newBal;
                     $ledgerData->save();

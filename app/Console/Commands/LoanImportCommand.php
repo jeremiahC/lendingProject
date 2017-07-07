@@ -49,8 +49,12 @@ class LoanImportCommand extends Command
                     $ledgerData = new Ledger();
                     $customer = new Customer();
 
-                    $originalDate = $data[0];
-                    $newDate = date("Y-m-d", strtotime($originalDate));
+                    if ($data[0] !== ""){
+                        $originalDate = $data[0];
+                        $newDate = date("Y-m-d", strtotime($originalDate));
+                    }else{
+                        $newDate = null;
+                    }
 
                     $ledgerData->date = $newDate;
                     $ledgerData->transaction = $data[1];

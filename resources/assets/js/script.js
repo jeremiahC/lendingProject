@@ -16,43 +16,46 @@ $(document).ready(function () {
 
 
     var txt = "";
-    $.ajax({
-        url: '/customerPage/customer' + customer_id + '/generateIntrst',
-        success: function(data) {
-            txt += "<tr>";
-            txt += "<td>" + data.date + "</td>";
-            txt += "<td>" + data.transaction + "</td>";
-            txt += "<td></td>";
-            txt += "<td></td>";
-            txt += "<td>" + data.interest + "</td>";
-            txt += "<td></td>";
-            txt += "<td>" + data.balance + "</td>";
-            txt += "<td></td>";
-            txt += "</tr>";
+    $('#interest').click(function () {
+        $.ajax({
+            url: '/customerPage/customer' + customer_id + '/generateIntrst',
+            success: function(data) {
+                txt += "<tr>";
+                txt += "<td>" + data.date + "</td>";
+                txt += "<td>" + data.transaction + "</td>";
+                txt += "<td></td>";
+                txt += "<td></td>";
+                txt += "<td>" + data.interest + "</td>";
+                txt += "<td></td>";
+                txt += "<td>" + data.balance + "</td>";
+                txt += "<td></td>";
+                txt += "</tr>";
 
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1; //January is 0!
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth()+1; //January is 0!
 
-            var yyyy = today.getFullYear();
-            if(dd<10){
-                dd='0'+dd;
+                var yyyy = today.getFullYear();
+                if(dd<10){
+                    dd='0'+dd;
+                }
+                if(mm<10){
+                    mm='0'+mm;
+                }
+
+                var today = yyyy+'-'+mm+'-'+dd;
+
+                if(data.date === today) {
+                    $('#ledger').append(txt);
+                }
+            },
+            error: function(data){
+                console.log(data);
             }
-            if(mm<10){
-                mm='0'+mm;
-            }
 
-            var today = yyyy+'-'+mm+'-'+dd;
-
-            if(data.date === today) {
-                $('#ledger').append(txt);
-            }
-        },
-        error: function(data){
-            console.log(data);
-        }
-
+        });
     });
+
 
     var balanceData = [];
     $('.balance').each(function(){
