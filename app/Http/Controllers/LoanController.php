@@ -180,7 +180,7 @@ class LoanController extends Controller
     public function payLoanPage(Customer $id, Ledger $ledgId)
     {
         $loans = Loan::all();
-        return view('loanPages.payloan', compact('loans', 'id', 'ledgId'));
+        return view('loanPages.payLoan', compact('loans', 'id', 'ledgId'));
 
     }
 
@@ -251,7 +251,7 @@ class LoanController extends Controller
             date_add($dateAppr, date_interval_create_from_date_string('15 days'));
             $intrstDate = date_format($dateAppr, 'Y-m-d');
 
-            if($intrstDate){
+            if($intrstDate === $currentDate){
                     $ledgerArray =  $id->ledger;
                     $arrayLength = sizeof($ledgerArray)-1;
 

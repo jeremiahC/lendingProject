@@ -53,7 +53,7 @@ class CreateLedgersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ledgers');
         Schema::dropIfExists('payments');
+        Schema::dropIfExists('ledgers');
     }
 }

@@ -46,8 +46,8 @@
             </a>
             <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content'>
-                <li>
-                    <a href="#" id="interest">Interest</a>
+                <li id="interest">
+                    <span>Interest</span>
                 </li>
                 <li>
                     <a href="/customer{{$customer->id}}/payLoan/{{$ledgerId}}">Pay</a>

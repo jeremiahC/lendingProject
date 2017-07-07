@@ -17,6 +17,7 @@ $(document).ready(function () {
 
     var txt = "";
     $('#interest').click(function () {
+        console.log('data');
         $.ajax({
             url: '/customerPage/customer' + customer_id + '/generateIntrst',
             success: function(data) {
