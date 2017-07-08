@@ -65,7 +65,7 @@ class CreateLoansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loans');
         Schema::dropIfExists('amount_approved');
+        Schema::dropIfExists('loans');
     }
 }
