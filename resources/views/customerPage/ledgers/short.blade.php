@@ -7,7 +7,7 @@
                             @foreach($customer->loans as $amount)
                                 Amount: {{$amount->amt_apr}} php
                                 <br>
-                                Interest: {{$amount->interest/100 * $amount->amt_apr}}
+                                Interest: {{$amount->interest/100 * str_replace(',','',$amount->amt_apr)}}
                                 <br>
                                 Date: {{$amount->approved}}
                                 <br>

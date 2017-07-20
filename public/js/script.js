@@ -81,20 +81,21 @@ $(document).ready(function () {
             Customer Page
      -------------------------*/
 
-    var addLoan = $('#addLoan').text();
-    var interest = $('#interest').text();
-    var customer_id = $('#customer_id').val();
-
     $('.loan_hide').hide();
 
-    var txt = "";
-    $('#interest').click(function () {
-        console.log('data');
+    $('#int').click(function () {
+
+        var addLoan = $('#addLoan').text();
+        var interest = $('#interest').text();
+        var customer_id = $('#customer_id').val();
+
+        var txt = "";
+
         $.ajax({
             url: '/customerPage/customer' + customer_id + '/generateIntrst',
             success: function success(data) {
                 txt += "<tr>";
-                txt += "<td>" + data.date + "</td>";
+                txt += "<td></td>";
                 txt += "<td>" + data.transaction + "</td>";
                 txt += "<td></td>";
                 txt += "<td></td>";
@@ -104,26 +105,27 @@ $(document).ready(function () {
                 txt += "<td></td>";
                 txt += "</tr>";
 
-                var today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth() + 1; //January is 0!
-
-                var yyyy = today.getFullYear();
-                if (dd < 10) {
-                    dd = '0' + dd;
-                }
-                if (mm < 10) {
-                    mm = '0' + mm;
-                }
-
-                var today = yyyy + '-' + mm + '-' + dd;
-
-                if (data.date === today) {
-                    $('#ledger').append(txt);
-                }
+                // var today = new Date();
+                // var dd = today.getDate();
+                // var mm = today.getMonth()+1; //January is 0!
+                //
+                // var yyyy = today.getFullYear();
+                // if(dd<10){
+                //     dd='0'+dd;
+                // }
+                // if(mm<10){
+                //     mm='0'+mm;
+                // }
+                //
+                // var today = yyyy+'-'+mm+'-'+dd;
+                //
+                // if(data.date === today) {
+                $('#ledger').append(txt);
+                console.log(data);
+                // }
             },
             error: function error(data) {
-                console.log(data);
+                console.log(data + 'error');
             }
 
         });
@@ -134,7 +136,7 @@ $(document).ready(function () {
         var balance = $(this).text();
         balanceData.push(balance);
     });
-    console.log(balanceData);
+
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
         type: 'line',

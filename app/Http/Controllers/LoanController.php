@@ -92,6 +92,7 @@ class LoanController extends Controller
         $loanData->amt_apr = $request->amount;
         $loanData->less = $request->less;
         $loanData->interest = $request->interest;
+        $loanData->interest_month = $request->int_month;
         $loanData->serv_charge = $request->serv_charge;
         $loanData->notarial = $request->notarial;
         $loanData->others = $request->others;
@@ -114,8 +115,7 @@ class LoanController extends Controller
         $ledger = new Ledger();
 
         $balance =  $ledger->findLatestId($request->customer_id)->balance;
-        $newBal = $balance + $request->amount;
-        dd(gettype($newBal));
+        $newBal = $balance + str_replace(',','',$request->amount);
 
         $ledger->transaction = $request->transaction;
         $ledger->customer_id = $request->customer_id;
@@ -236,41 +236,28 @@ class LoanController extends Controller
         return view('loanPages.show', compact('id', 'user', 'customer'));
     }
 
-    public function generateIntrst(Customer $id, Ledger $ledgerData)
-    {
+    public function getIntrst(Customer $id, Ledger $ledger){
+        $loanIntrate = $id->findFirstId($id->id);
+        $currentBal = $ledger->findLatestId($id->id)->balance;
 
-        if ($ledgerData->findIdByTrans('interest', $id->id)){
-            $date = $ledgerData->findIdByTrans('interest', $id->id)->date;
-        }else{
-            $date = $ledgerData->findLatestId($id->id)->date;
-        }
+        return view('loanPages.addInterest', compact('id', 'loanIntrate', 'currentBal'));
+    }
 
-        foreach ($id->ledger as $loans) {
-            $currentDate = date('Y-m-d');
-            $dateAppr = date_create($date);
-            date_add($dateAppr, date_interval_create_from_date_string('15 days'));
-            $intrstDate = date_format($dateAppr, 'Y-m-d');
+    public function storeIntrst(Request $request, Ledger $ledger){
+        $intRate = $request->intrate/100;
+        $currtBal = str_replace(',','',$request->currtBal);
+        $cutomerId = $request->id;
 
-            if($intrstDate === $currentDate){
-                    $ledgerArray =  $id->ledger;
-                    $arrayLength = sizeof($ledgerArray)-1;
+        $amountInt = $currtBal * $intRate;
+        $newBal = $currtBal + $amountInt;
 
-                    $balance = $ledgerArray[$arrayLength]->balance;
+        $ledger->customer_id = $request->id;
+        $ledger->transaction = "Interest";
+        $ledger->interest = round($amountInt);
+        $ledger->balance = round($newBal);
+        $ledger->save();
 
-                    $interest = $loans->interest / 100;
-                    $currentBal = $balance;
-                    $amountInt = $currentBal * $interest;
-                    $newBal = $currentBal + $amountInt;
-
-                    $ledgerData->customer_id = $id->id;
-                    $ledgerData->transaction = "interest";
-//                    $ledgerData->date = $intrstDate;
-                    $ledgerData->interest = $amountInt;
-                    $ledgerData->balance = $newBal;
-                    $ledgerData->save();
-            }
-            return $ledgerData;
-        }
+        return redirect('/customerPage/customer'. $request->id);
     }
 
     /**

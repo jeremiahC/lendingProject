@@ -82,7 +82,7 @@
                             <label>Others</label>
                             <input type="text" value="{{$id->amount->others}}" class="amtApr" readonly>
 
-                            <input type="text" value="{{$id->amount->id}}" name="amount_id" id="amount_id" >
+                            <input type="text" value="{{$id->amount->id}}" name="amount_id" id="amount_id" hidden>
                             {{csrf_field()}}
                     @endif
                 </div>

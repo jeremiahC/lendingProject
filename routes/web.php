@@ -32,6 +32,8 @@ Route::post('/customerPage/update/{id}', 'CustomersController@update');
 
 //Route for loan pages
 
+Route::get('/interest/{id}', 'LoanController@getIntrst');
+Route::post('/interest/store', 'LoanController@storeIntrst');
 Route::get('/loanPage', 'LoanController@index');
 Route::get('/loanPage/show', 'LoanController@showAllLoan');
 Route::get('/loanPage/showAppr', 'LoanController@showAllLoanAppr');
