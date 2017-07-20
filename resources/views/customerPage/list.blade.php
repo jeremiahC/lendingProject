@@ -1,5 +1,5 @@
-<table class="responsive-table striped black-text">
-    <thead class="green">
+<table class="responsive-table striped black-text scroll">
+    <thead class="green" id="chead">
     <tr>
         <th data-field="id" class="t-heads">
             Name
@@ -11,7 +11,7 @@
     </tr>
     </thead>
 
-    <tbody class="list">
+    <tbody class="list" id="clist">
     @foreach($customers as $customer)
         <tr>
             <td class="name">{{$customer->lname.", ".$customer->fname." ".substr($customer->mname,-6,1)}}.</td>
@@ -22,5 +22,3 @@
     @endforeach
     </tbody>
 </table>
-
-{{$customers->links()}}
