@@ -115,7 +115,7 @@ class LoanController extends Controller
         $ledger = new Ledger();
 
         $balance =  $ledger->findLatestId($request->customer_id)->balance;
-        $newBal = $balance + $request->amount;
+        $newBal = $balance + str_replace(',','',$request->amount);
 
         $ledger->transaction = $request->transaction;
         $ledger->customer_id = $request->customer_id;
