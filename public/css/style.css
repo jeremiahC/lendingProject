@@ -25,7 +25,7 @@ main {
 }
 
 .user-background {
-  background-image: url("/images/background.jpg");
+  /*background-image: url("/images/background.jpg");*/
   height: 150px;
 }
 
@@ -128,7 +128,7 @@ main {
   table.scroll tbody,
   table.scroll thead { display: block; }
 
-    #apprHead tr th {
+  #apprHead tr th {
     height: 30px;
     line-height: 30px;
     /*text-align: left;*/
@@ -143,6 +143,10 @@ main {
   #apprloans td, #apprHead th {
     width: 25%; /* Optional */
   }
+  #clist td, #chead th{
+    width: 30%; /* Optional */
+  }
+
 
   .login-form{
     margin: 0 auto;
@@ -150,4 +154,3 @@ main {
     margin-top: 100px;
   }
 }
-

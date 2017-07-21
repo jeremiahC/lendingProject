@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="input-field">
-                        <input type="number" id="amt_app" class="validate" name="amt_app">
+                        <input type="text" id="amt_app" class="currency" name="amt_app"/>
                         <label for="amt_app">Amount applied</label>
                     </div>
                     <div class="input-field">
@@ -68,6 +68,8 @@
 @section('script')
     <script>
         $(document).ready(function(){
+
+            $('.currency').maskMoney();
 
             var short_term = '';
             $('#short_term').change(function () {

@@ -44,4 +44,13 @@ class Customer extends Model
             return $ledge->id;
         }
     }
+
+    public function findFirstId($customerId){
+        $ledger = DB::table('ledgers')
+            ->where('customer_id', '=', $customerId)
+            ->first();
+
+        return $ledger;
+    }
+
 }

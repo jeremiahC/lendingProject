@@ -3,6 +3,9 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">Ledger</span>
+                @foreach($customer->loans as $loan)
+                    <span>Interst date(s):{{$loan->interest_month}}</span>
+                @endforeach
                 <table class="striped responsive-table">
                     <thead>
                     <tr>
@@ -40,7 +43,7 @@
             </div>
         </div>
         @role('REG-EMPLOYEE')
-        <button class="btn" id="intrt">Interest</button>
+        {{--<button id="int" class="btn">interest</button>--}}
         <div class="right">
             <a class='dropdown-button btn' href='#' id="dropBtn" data-activates='dropdown1'>
                 <i class="material-icons left">list</i>Options
@@ -49,6 +52,9 @@
             <ul id='dropdown1' class='dropdown-content'>
                 <li>
                     <a href="/customer{{$customer->id}}/payLoan/{{$ledgerId}}">Pay</a>
+                </li>
+                <li>
+                    <a href="/interest/{{$customer->id}}">Add Interest</a>
                 </li>
                 <li>
                     <a href="/newTransaction/{{$customer->id}}">New Transaction</a>

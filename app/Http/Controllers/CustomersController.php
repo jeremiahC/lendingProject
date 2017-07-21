@@ -23,11 +23,8 @@ class CustomersController extends Controller
     public function index(Request $request)
     {
         // /customerPage
-        $customers = Customer::paginate(5);
+        $customers =  Customer::all();
 
-        if ($request->ajax()) {
-            return view('customerPage.list', ['customers' => $customers])->render();
-        }
         return view('customerPage/index', compact('customers'));
     }
 
