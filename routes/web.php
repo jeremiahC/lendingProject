@@ -82,3 +82,24 @@ Route::post('/addRole', 'RolePermissionController@addRole');
 
 Route::get('/scan/{dir}', 'FileManagerController@scan');
 Route::post('/upload', 'FileManagerController@upload');
+
+//Notification
+Route::get('/markAsRead', function (){
+    auth()->user()->unreadNotifications->markAsRead();
+});
+
+/*admin routes*/
+
+//Route::get('/database/amountApprove','AdminController@index')->name('LoanAmount');
+//Route::get('/database/customers','AdminController@index')->name('Customer');
+//Route::get('/database/ledgers','AdminController@index')->name('Ledger');
+//Route::get('/database/loans','AdminController@index')->name('Loan');
+////Route::get('/database/notifications','AdminController@')->name('');
+//Route::get('/database/passwordreset','AdminController@index')->name();
+//Route::get('/database/payments','AdminController@index')->name('Payment');
+//Route::get('/database/permissionroles','AdminController@index')->name('Permission');
+//Route::get('/database/permissions','AdminController@index')->name('');
+//Route::get('/database/roles','AdminController@index')->name();
+//Route::get('/database/roleuser','AdminController@index')->name();
+//Route::get('/database/users','AdminController@index')->name();
+//Route::get('/database/','AdminController@index')->name();

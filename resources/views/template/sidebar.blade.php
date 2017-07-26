@@ -40,6 +40,33 @@
         @role('MANAGER-EMPLOYEE')
             <li class="bold"><a href="/addFile"><i class="material-icons waves-effect waves-teal">perm_media</i>File Manager</a></li>
         @endrole
+        @role('ADMIN-USER')
+        <li class="no-padding" >
+            <ul class="collapsible" data-collapsible="accordion" style="padding-left:15px;">
+                <li>
+                    <a class="collapsible-header">
+                        <i class="material-icons waves-effect waves-teal">storage</i>Database
+                    </a>
+                    <div class="collapsible-body no-padding">
+                        <ul class="">
+                            <li><a href="#">Loans Approve</a></li>
+                            <li><a href="#">Customers</a></li>
+                            <li><a href="#">Ledgers</a></li>
+                            <li><a href="#">Loans</a></li>
+                            <li><a href="#">Notifications</a></li>
+                            <li><a href="#">Password_resets</a></li>
+                            <li><a href="#">Payments</a></li>
+                            <li><a href="#">Permissions</a></li>
+                            <li><a href="#">Permission Roles</a></li>
+                            <li><a href="#">Roles</a></li>
+                            <li><a href="#">Role User</a></li>
+                            <li><a href="#">Users</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        @endrole
         <li class="no-padding" >
             <ul class="collapsible" data-collapsible="accordion" style="padding-left:15px;">
                 <li>

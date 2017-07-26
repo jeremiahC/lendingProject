@@ -12,7 +12,7 @@ body {
   border-radius: 50px;
 }
 
-header,
+#logo,
 main,
 footer {
   padding-left: 300px;
@@ -105,7 +105,7 @@ main {
 }
 
 @media only screen and (max-width: 992px) {
-  header,
+  #logo,
   main,
   footer {
     padding-left: 0;
