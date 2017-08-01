@@ -88,6 +88,23 @@ Route::get('/markAsRead', function (){
     auth()->user()->unreadNotifications->markAsRead();
 });
 
+/*Investments Routes*/
+//get
+Route::get('/investments', 'InvestmentController@index');
+Route::get('/investments/add/customer{id}', 'InvestmentController@create');
+Route::get('/investments/edit/{id}', 'InvestmentController@edit');
+Route::get('/investments/show/{id}', 'InvestmentController@show');
+Route::get('/investments/approve/{id}', 'InvestmentController@createAmtApp');
+Route::get('/investments/interest/customer{id}', 'InvestmentController@getInterest');
+
+//post
+Route::post('/addInvestment', 'InvestmentController@store');
+Route::post('/editInvestment', 'InvestmentController@update');
+Route::post('/deleteInvestment', 'InvestmentController@destory');
+Route::post('/addInvApprove', 'InvestmentController@storeInvAmt');
+Route::post('/invapprove', 'InvestmentController@approve');
+Route::post('/invdisapprove', 'InvestmentController@disapprove');
+Route::post('/invinterest', 'InvestmentController@postInterest');
 /*admin routes*/
 
 //Route::get('/database/amountApprove','AdminController@index')->name('LoanAmount');

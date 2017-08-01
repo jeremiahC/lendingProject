@@ -48,7 +48,6 @@ $(document).ready(function () {
                 //
                 // if(data.date === today) {
                 $('#ledger').append(txt);
-                console.log(data);
                 // }
             },
             error: function(data){

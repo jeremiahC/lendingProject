@@ -20,9 +20,27 @@ class Customer extends Model
 
     }
 
+    public function investment(){
+
+        return $this->hasMany(Loan::class);
+
+    }
+
+    public function investments(){
+
+        return $this->hasManyThrough(InvestAmount::class,Investments::class);
+
+    }
+
     public function ledger(){
 
         return $this->hasMany(Ledger::class);
+
+    }
+
+    public function invledger(){
+
+        return $this->hasMany(InvestmentLedger::class);
 
     }
 
@@ -47,6 +65,14 @@ class Customer extends Model
 
     public function findFirstId($customerId){
         $ledger = DB::table('ledgers')
+            ->where('customer_id', '=', $customerId)
+            ->first();
+
+        return $ledger;
+    }
+
+    public function findFirstInvId($customerId){
+        $ledger = DB::table('investment_ledgers')
             ->where('customer_id', '=', $customerId)
             ->first();
 

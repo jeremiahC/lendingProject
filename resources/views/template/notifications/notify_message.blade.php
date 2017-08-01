@@ -1,5 +1,6 @@
-<a href="#">
+
     <li>
-        {{$notification->data['user']['name']}}have created a new customer <strong>{{$notification->data['thread']['fname']}}</strong>
+        <a href="#">
+            <strong>{{$notification->data['user']['name']}}</strong> have created a new customer <strong>{{$notification->data['thread']['fname']}}</strong>
+        </a>
     </li>
-</a>

@@ -16,7 +16,7 @@ body{
 }
 
 
-header, main, footer {
+#logo, main, footer {
 	padding-left: 300px;
 }
 
@@ -110,7 +110,7 @@ main{
 
 
 @media only screen and (max-width : 992px) {
-	header, main, footer {
+	#logo, main, footer {
 		padding-left: 0;
 	}
 }

@@ -42,6 +42,13 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
+        ],
+        "dump-database-dev":[
+            "php artisan migrate:refresh",
+            "php artisan db:seed",
+            "php artisan customer:import",
+            "php artisan loan:import loanApplied.csv",
+            "php artisan loan:import loanSheet.csv"
         ]
     },
     "config": {

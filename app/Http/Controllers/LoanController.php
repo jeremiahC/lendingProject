@@ -187,17 +187,16 @@ class LoanController extends Controller
     public function payLoan(Request $request, Customer $customer, Payment $payment){
         $customerId = $request->customer_id;
         $cust = $customer->find($customerId);
+        $balance = str_replace(",","",$request->balance);
+        $payAmount = str_replace(",","",$request->amount);
+        $subAmount = $balance - $payAmount;
         //save to payments table
 
         $payment->customer_id = $customerId;
         $payment->payment_for = $request->payment_for;
-        $payment->amount = $request->amount;
+        $payment->amount = $payAmount;
         $payment->ledger_id = $request->ledId;
         $payment->save();
-
-        $balance = $request->balance;
-        $payAmount =  $request->amount;
-
 
 
         foreach ($cust->loan as $loan){
@@ -205,19 +204,19 @@ class LoanController extends Controller
                 $ledger = Ledger::find($request->ledId);
                 $ledger->withdraw = $payAmount;
                 $ledger->net = $payAmount - $balance;
+                $ledger->save();
             }else{
                 $ledger = new Ledger();
                 $ledger->customer_id = $customerId;
                 $ledger->date = date('Y-m-d');
                 $ledger->payments = $payAmount;
                 $ledger->transaction = "withdraw";
-                $ledger->balance = $balance - $payAmount;
+                $ledger->balance = $subAmount;
+                $ledger->save();
             }
         }
 
-        $ledger->save();
-
-        return  $balance - $payAmount;
+        return  $subAmount;
     }
 
 
