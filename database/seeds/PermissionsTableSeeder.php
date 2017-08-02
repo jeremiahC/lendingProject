@@ -30,6 +30,15 @@ class PermissionsTableSeeder extends Seeder
             ['name' => 'pass_page', 'display_name' => 'Password Page'],
             ['name' => 'user_list_page', 'display_name' => 'User List Page'],
             ['name' => 'role_prev_page', 'display_name' => 'Roles Prev Page'],
+            ['name' => 'inv_page', 'display_name' => 'Investments Page'],
+            ['name' => 'add_inv_page', 'display_name' => 'Add Investments Page'],
+            ['name' => 'appr_inv_page', 'display_name' => 'Approve Investments Page'],
+            ['name' => 'add_inv', 'display_name' => 'add investments'],
+            ['name' => 'edit_inv', 'display_name' => 'edit investments'],
+            ['name' => 'view_inv', 'display_name' => 'view investments'],
+            ['name' => 'delete_inv', 'display_name' => 'delete investments'],
+            ['name' => 'appr_inv', 'display_name' => 'approve investments'],
+            ['name' => 'disappr_inv', 'display_name' => 'disapprove investments'],
         ]);
 
         DB::table('permission_role')->insert([
@@ -51,6 +60,12 @@ class PermissionsTableSeeder extends Seeder
             ['permission_id' => 12, 'role_id' => 3],
             ['permission_id' => 13, 'role_id' => 3],
             ['permission_id' => 14, 'role_id' => 3],
+            ['permission_id' => 19, 'role_id' => 3],
+            ['permission_id' => 22, 'role_id' => 3],
+            ['permission_id' => 23, 'role_id' => 3],
+            ['permission_id' => 24, 'role_id' => 3],
+            ['permission_id' => 26, 'role_id' => 3],
+            ['permission_id' => 27, 'role_id' => 3],
             ['permission_id' => 5, 'role_id' => 4],
             ['permission_id' => 6, 'role_id' => 4],
             ['permission_id' => 9, 'role_id' => 4],
@@ -58,6 +73,15 @@ class PermissionsTableSeeder extends Seeder
             ['permission_id' => 11, 'role_id' => 4],
             ['permission_id' => 13, 'role_id' => 4],
             ['permission_id' => 14, 'role_id' => 4],
+            ['permission_id' => 19, 'role_id' => 4],
+            ['permission_id' => 20, 'role_id' => 4],
+            ['permission_id' => 21, 'role_id' => 4],
+            ['permission_id' => 22, 'role_id' => 4],
+            ['permission_id' => 23, 'role_id' => 4],
+            ['permission_id' => 24, 'role_id' => 4],
+            ['permission_id' => 25, 'role_id' => 4],
+            ['permission_id' => 26, 'role_id' => 4],
+            ['permission_id' => 27, 'role_id' => 4],
         ]);
     }
 }

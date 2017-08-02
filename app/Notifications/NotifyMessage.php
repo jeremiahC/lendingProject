@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,14 +12,16 @@ class NotifyMessage extends Notification
 {
     use Queueable;
 
+    protected $thread;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($thread)
     {
-        //
+        $this->thread = $thread;
     }
 
     /**
@@ -35,7 +38,8 @@ class NotifyMessage extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            //
+            'thread' => $this->thread,
+            'user'   => $notifiable
         ];
     }
 

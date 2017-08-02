@@ -48,7 +48,6 @@ $(document).ready(function () {
                 //
                 // if(data.date === today) {
                 $('#ledger').append(txt);
-                console.log(data);
                 // }
             },
             error: function(data){
@@ -72,7 +71,7 @@ $(document).ready(function () {
                 {
                     label: ['january'],
                     data: balanceData,
-                    hoverBackgroundColor: "#FF6384",
+                    hoverBackgroundColor: "#FF6384"
                 }],
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October','November','December']
         },

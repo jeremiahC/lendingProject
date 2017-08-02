@@ -30,6 +30,7 @@ class CreateLedgersTable extends Migration
             $table->string('net')->nullable();
             $table->integer('customer_id')->unsigned()->nullable();
             $table->foreign('customer_id')->references('id')->on('customers');
+            $table->date('inpass_at')->nullable();
             $table->timestamps();
         });
 
@@ -37,8 +38,8 @@ class CreateLedgersTable extends Migration
             $table->increments('id');
             $table->integer('customer_id')->unsigned()->nullable();
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->string('payment_for');
-            $table->decimal('amount');
+            $table->string('payment_for')->nullable();
+            $table->string('amount');
             $table->string('acnt_no')->nullable();
             $table->integer('ledger_id')->unsigned()->nullable();
             $table->foreign('ledger_id')->references('id')->on('ledgers');

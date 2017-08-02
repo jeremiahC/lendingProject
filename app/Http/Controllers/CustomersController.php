@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ledger;
 use App\Loan;
 use App\LoanAmount;
+use App\Notifications\NotifyMessage;
 use Illuminate\Http\Request;
 use App\Customer;
 
@@ -76,6 +77,8 @@ class CustomersController extends Controller
         }
 
         $customer->save();
+
+        auth()->user()->notify(new NotifyMessage($customer));
 
     }
 

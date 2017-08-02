@@ -45,11 +45,11 @@
         @role('REG-EMPLOYEE')
         {{--<button id="int" class="btn">interest</button>--}}
         <div class="right">
-            <a class='dropdown-button btn' href='#' id="dropBtn" data-activates='dropdown1'>
+            <a class='dropdown-button btn' href='#' id="dropBtn" data-activates="options">
                 <i class="material-icons left">list</i>Options
             </a>
             <!-- Dropdown Structure -->
-            <ul id='dropdown1' class='dropdown-content'>
+            <ul id='options' class='dropdown-content'>
                 <li>
                     <a href="/customer{{$customer->id}}/payLoan/{{$ledgerId}}">Pay</a>
                 </li>

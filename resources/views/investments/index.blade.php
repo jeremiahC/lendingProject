@@ -7,9 +7,9 @@
         <div class="col s12 m12 l11">
             <div class="card">
                 <div class="card-title">Pending Loans</div>
-                    <div class="card-content articles">
-                        @include('loanPages.pending')
-                    </div>
+                <div class="card-content articles">
+                    @include('investments.pending')
+                </div>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
             <div class="card grey lighten-2">
                 <div class="card-title">Loans To be Approved</div>
                 <div class="card-content">
-                    @include('loanPages.forappr')
+                    @include('investments.forappr')
                 </div>
             </div>
         </div>
@@ -42,17 +42,17 @@
                         </thead>
 
                         <tbody id="apprloans">
-                            @foreach($amounts as $amount)
-                                @if($amount->approved !== null)
-                                    <tr>
-                                        <td>{{$amount->approved}}</td>
-                                        <td>{{$amount->amt_apr}}</td>
-                                        <td>{{$amount->transaction}}</td>
-                                        <td>{{$amount->interest}}</td>
-                                        <td><a class="btn" href="/show/loan/{{$amount->loan_id}}">view</a></td>
-                                    </tr>
-                                @endif
-                            @endforeach
+                        @foreach($investamount as $invamt)
+                            @if($invamt->approved !== null)
+                                <tr>
+                                    <td>{{$invamt->approved}}</td>
+                                    <td>{{$invamt->amt_apr}}</td>
+                                    <td>{{$invamt->transaction}}</td>
+                                    <td>{{$invamt->interest}}</td>
+                                    <td><a class="btn" href="/investments/show/{{$invamt->investments_id}}">view</a></td>
+                                </tr>
+                            @endif
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

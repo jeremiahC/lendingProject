@@ -40,7 +40,8 @@
     <div class="row">
         <div class="col s12 m11 l11">
             <ul class="tabs">
-                <li class="tab col s3"><a class="active" href="#test1">Ledger</a></li>
+                <li class="tab col s3"><a class="active" href="#test1">Loans</a></li>
+                <li class="tab col s3"><a href="#test4">Investments</a></li>
                 <li class="tab col s3"><a href="#test2">Insights</a></li>
                 <li class="tab col s3"><a href="#test3">Archives</a></li>
             </ul>
@@ -83,16 +84,41 @@
         <div id="test3" class="col s12 m11 l11">
            archive
         </div>
+        <div id="test4" class="col s12 m11 l11">
+            <div class="card">
+                <div class="card-content">
+                    @include('customerPage.ledgers.investments')
+                </div>
+                @role('REG-EMPLOYEE')
+                <div class="right">
+                    <a class='dropdown-button btn' href='#' id="dropBtn" data-activates="invoptions">
+                        <i class="material-icons left">list</i>Options
+                    </a>
+                    <!-- Dropdown Structure -->
+                    <ul id='invoptions' class='dropdown-content'>
+                        <li><a href="/investments/interest/customer{{$customer->id}}">Interest</a></li>
+                        <li><a>Withdraw</a></li>
+                    </ul>
+
+                </div>
+                @endrole
+            </div>
+        </div>
 
     </div>
     <div class="fixed-action-btn click-to-toggle">
         <a class="btn-floating btn-large red">
-            <i class="large material-icons">assignment</i>
+            <i class="large material-icons">add</i>
         </a>
         <ul>
             <li>
-                <a class="btn-floating green" href="/customerPage/customer{{$customer->id}}/addLoan">
-                    <i class="material-icons">add</i>
+                <a class="btn-floating green" href="/investments/add/customer{{$customer->id}}">
+                    <i class="material-icons">attach_money</i>
+                </a>
+            </li>
+            <li>
+                <a class="btn-floating blue-grey" href="/customerPage/customer{{$customer->id}}/addLoan">
+                    <i class="material-icons">assignment</i>
                 </a>
             </li>
         </ul>

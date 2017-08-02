@@ -17,5 +17,6 @@
 <script src="/js/bin/materialize-pagination.min.js"></script>
 <script src="/js/animationCounter.js"></script>
 <script src="/js/jquery-money/dist/jquery.maskMoney.js" type="text/javascript"></script>
+<script src="{{asset('/js/main.js')}}"></script>
 
 
