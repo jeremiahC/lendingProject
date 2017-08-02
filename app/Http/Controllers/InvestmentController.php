@@ -171,6 +171,11 @@ class InvestmentController extends Controller
 
         return redirect('/customerPage/customer'. $request->id);
     }
+
+    public function withdraw(){
+        return "1";
+    }
+
     /**
      * Remove the specified resource from storage.
      *

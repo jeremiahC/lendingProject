@@ -89,19 +89,7 @@
                 <div class="card-content">
                     @include('customerPage.ledgers.investments')
                 </div>
-                @role('REG-EMPLOYEE')
-                <div class="right">
-                    <a class='dropdown-button btn' href='#' id="dropBtn" data-activates="invoptions">
-                        <i class="material-icons left">list</i>Options
-                    </a>
-                    <!-- Dropdown Structure -->
-                    <ul id='invoptions' class='dropdown-content'>
-                        <li><a href="/investments/interest/customer{{$customer->id}}">Interest</a></li>
-                        <li><a>Withdraw</a></li>
-                    </ul>
-
-                </div>
-                @endrole
+                @include('customerPage.ledgers.invoptions')
             </div>
         </div>
 
@@ -128,4 +116,29 @@
 
 @section('script')
     <script src="/js/script.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.modal').modal();
+
+            var CSRF_TOKEN = $('input[name="_token"]').val();
+            $('#widthrawBtn').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '/withdraw',
+                    type: 'post',
+                    data:{
+                        '_token'     : CSRF_TOKEN,
+                        'balance': $('#balance').val(),
+                        'amount' : $('#amount').val()
+                    },
+                    success: function (data) {
+                        console.log(data+'success');
+                    },
+                    error: function (data) {
+                        console.log(data + 'error');
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
