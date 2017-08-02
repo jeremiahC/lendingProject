@@ -71,7 +71,7 @@ $(document).ready(function () {
                 {
                     label: ['january'],
                     data: balanceData,
-                    hoverBackgroundColor: "#FF6384"
+                    hoverBackgroundColor: "#FF6384",
                 }],
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October','November','December']
         },
