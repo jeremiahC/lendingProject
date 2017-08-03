@@ -15,12 +15,12 @@
             <form>
                 {{csrf_field()}}
                 <div class="col s12 m4 l4 input-field">
-                    <label for="balance">Balance</label>
-                    <input type="text" class="" id="balance">
+                    <label for="invbalance">Balance</label>
+                    <input type="text" class="" id="invbalance" value="{{$invId->balance}}">
                 </div>
                 <div class="col s12 m4 l4 input-field">
-                    <label for="amount">Amount</label>
-                    <input type="text" class="" id="amount">
+                    <label for="invamount">Amount</label>
+                    <input type="text" class="" id="invamount">
                 </div>
             </form>
         </div>

@@ -123,16 +123,30 @@
             var CSRF_TOKEN = $('input[name="_token"]').val();
             $('#widthrawBtn').click(function (e) {
                 e.preventDefault();
+
+                var txt = "";
                 $.ajax({
                     url: '/withdraw',
                     type: 'post',
                     data:{
                         '_token'     : CSRF_TOKEN,
-                        'balance': $('#balance').val(),
-                        'amount' : $('#amount').val()
+                        'balance': $('#invbalance').val(),
+                        'amount' : $('#invamount').val(),
+                        'customer_id': $('#customer_id').val()
                     },
                     success: function (data) {
                         console.log(data+'success');
+                        txt += "<tr>";
+                        txt += "<td></td>";
+                        txt += "<td>" + data.transaction + "</td>";
+                        txt += "<td>" + data.withdraw + "</td>";
+                        txt += "<td></td>";
+                        txt += "<td></td>";
+                        txt += "<td>" + data.balance + "</td>";
+                        txt += "<td></td>";
+                        txt += "</tr>";
+
+                        $('#invledger').append(txt);
                     },
                     error: function (data) {
                         console.log(data + 'error');

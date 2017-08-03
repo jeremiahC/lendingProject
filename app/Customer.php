@@ -22,7 +22,7 @@ class Customer extends Model
 
     public function investment(){
 
-        return $this->hasMany(Loan::class);
+        return $this->hasMany(Investments::class);
 
     }
 

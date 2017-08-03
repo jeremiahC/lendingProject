@@ -11,10 +11,10 @@
     </tr>
     </thead>
 
-    <tbody id="ledger">
+    <tbody id="invledger">
 
     @foreach($customer->invledger as $myInvestment)
-        <tr class="ledger">
+        <tr class="invledger">
             <td>{{$myInvestment->date}}</td>
             <td>{{$myInvestment->transaction}}</td>
             <td id="addLoan">{{$myInvestment->withdraw}}</td>
