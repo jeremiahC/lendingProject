@@ -105,6 +105,7 @@ Route::post('/addInvApprove', 'InvestmentController@storeInvAmt');
 Route::post('/invapprove', 'InvestmentController@approve');
 Route::post('/invdisapprove', 'InvestmentController@disapprove');
 Route::post('/invinterest', 'InvestmentController@postInterest');
+Route::post('/withdraw', 'InvestmentController@withdraw');
 /*admin routes*/
 
 //Route::get('/database/amountApprove','AdminController@index')->name('LoanAmount');

@@ -65,23 +65,8 @@
                             <label>Interest</label>
                             <input type="text" value="{{$id->amount->interest}}" class="amtApr" readonly>
 
-                            <label>Gives</label>
-                            <input type="text" value="{{$id->amount->gives}}" class="amtApr" readonly>
-
                             <label>Date Start</label>
                             <input type="text" value="{{$id->amount->date_start}}" class="amtApr" readonly>
-
-                            <label>Less</label>
-                            <input type="text" value="{{$id->amount->less}}" class="amtApr" readonly>
-
-                            <label>Service Charge</label>
-                            <input type="text" value="{{$id->amount->serv_charge}}" class="amtApr" readonly>
-
-                            <label>Notarial</label>
-                            <input type="text" value="{{$id->amount->notarial}}" class="amtApr" readonly>
-
-                            <label>Others</label>
-                            <input type="text" value="{{$id->amount->others}}" class="amtApr" readonly>
 
                             <input type="text" value="{{$id->amount->id}}" name="amount_id" id="amount_id" hidden>
                             {{csrf_field()}}

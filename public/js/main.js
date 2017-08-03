@@ -30,3 +30,4 @@ $('.dropdown-link').dropdown(
         stopPropagation: false // Stops event propagation
     }
 );
+

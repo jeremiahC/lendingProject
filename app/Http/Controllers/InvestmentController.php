@@ -7,6 +7,7 @@ use App\InvestAmount;
 use App\InvestmentLedger;
 use App\Investments;
 use App\Ledger;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -171,6 +172,25 @@ class InvestmentController extends Controller
 
         return redirect('/customerPage/customer'. $request->id);
     }
+
+    public function withdraw(Request $request, InvestmentLedger $investmentLedger){
+
+        $balance = str_replace(",","",$request->balance);
+        $amount = str_replace(",","",$request->amount);
+        $customerId = $request->customer_id;
+
+        $newBalance = $balance - $amount;
+
+        $investmentLedger->customer_id = $customerId;
+        $investmentLedger->balance = $newBalance;
+        $investmentLedger->withdraw = $amount;
+        $investmentLedger->transaction = "WITHDRAW";
+//        $investmentLedger->date = Carbon::today();
+        $investmentLedger->save();
+
+        return $investmentLedger;
+    }
+
     /**
      * Remove the specified resource from storage.
      *
