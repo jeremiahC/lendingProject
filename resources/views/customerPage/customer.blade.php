@@ -47,7 +47,6 @@
             </ul>
         </div>
         <div id="test1" class="col s12">
-
             @if($customer->ledger->count() > 0)
                 @foreach($customer->loan as $loans)
                     @if($loans->short_term === "yes")
@@ -85,12 +84,22 @@
            archive
         </div>
         <div id="test4" class="col s12 m11 l11">
-            <div class="card">
-                <div class="card-content">
-                    @include('customerPage.ledgers.investments')
+            @if($customer->invledger->count() > 0)
+                <div class="card">
+                    <div class="card-content">
+                        @include('customerPage.ledgers.investments')
+                    </div>
                 </div>
                 @include('customerPage.ledgers.invoptions')
-            </div>
+            @else
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <div class="card">
+                            <div class="card-content center-align">No Investments</div>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
 
     </div>

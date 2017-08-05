@@ -131,10 +131,29 @@ main {
   background: #357bd8;
 }
 
+/*error messages*/
+
+.alert{
+  padding:          10px;
+}
+
+.alert i{
+  padding-left:     340px;
+}
+
+.alert-success{
+  background-color: #00cd00;
+  color:            white;
+}
+
 @media only screen and (max-width: 992px) {
   #logo,
   main,
-  footer {
+  footer{
+    padding-left: 0;
+  }
+
+  .alert i{
     padding-left: 0;
   }
 }
@@ -144,7 +163,6 @@ main {
 }
 
 @media only screen and (min-width :720px) {
-
 
   table.scroll {
     width: 100%; /* Optional */

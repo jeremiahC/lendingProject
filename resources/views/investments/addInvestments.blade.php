@@ -18,14 +18,6 @@
                         <input type="text" id="amt_app" class="currency" name="amt_app"/>
                         <label for="amt_app">Amount applied</label>
                     </div>
-                    {{--<div class="input-field">--}}
-                        {{--<input type="text" id="colat" class="validate" name="col_off">--}}
-                        {{--<label for="colat">Colateral offered</label>--}}
-                    {{--</div>--}}
-                    {{--<div class="input-field">--}}
-                        {{--<input type="text" id="co_make" class="validate" name="co_makers">--}}
-                        {{--<label for="co_make">Co-maker(s)</label>--}}
-                    {{--</div>--}}
                 </div>
                 <div class="col s12 m12 l5 right">
                     <div class="input-field">
@@ -38,18 +30,6 @@
                         <label>Prepared By</label>
                     </div>
                 </div>
-
-                {{--<div class="col s12 m12 l5 right">--}}
-                    {{--<input type="checkbox" value="yes" id="short_term" name="short_term">--}}
-                    {{--<label for="short_term">Is this loan for short term?</label>--}}
-                    {{--<select id="months" name="months">--}}
-                        {{--<option value="" disabled selected>Choose your option</option>--}}
-                        {{--<option value="1">1 month</option>--}}
-                        {{--<option value="2">2 months</option>--}}
-                        {{--<option value="3">3 months</option>--}}
-                        {{--<option value="4">4 months</option>--}}
-                    {{--</select>--}}
-                {{--</div>--}}
             </div>
         </div>
         <div class="right">
@@ -99,8 +79,9 @@
 
                     },
                     success: function (data) {
-                        console.log(data + "success");
-                        window.location.replace("/investments/show/" + data);
+                        if(data.success === "ok"){
+                            window.location.replace("/investments/show/" + data.invId);
+                        }
                     },
                     error: function (data) {
                         var errors = '';

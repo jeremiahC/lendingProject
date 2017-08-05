@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+
     <div class="row">
         <div class=" col s12 m6 l6 right">
             <div class="card blue accent-1 white-text">
@@ -91,10 +92,10 @@
             @if(!empty($id->amount))
                 <!-- Dropdown Trigger -->
                     @if($id->amount->approved === null)
-                        <a class='dropdown-button btn right red' href='#' data-activates='dropdown1'>Options</a>
+                        <a class='dropdown-button btn right red' href='#' data-activates='loandropdown'>Options</a>
 
                         <!-- Dropdown Structure -->
-                        <ul id='dropdown1' class='dropdown-content '>
+                        <ul id='loandropdown' class='dropdown-content '>
                             @role('MANAGER-EMPLOYEE')
                                 <li><a href="#!" class="green-text" id="approve">Approve</a></li>
                                 <li><a href="#!" class="red-text" id="disapprove">Disapprove</a></li>
@@ -124,8 +125,9 @@
                     'amount_id': id
                 },
                 success: function(data){
-                    Materialize.toast('You have Approved this Loan', 5000);
-                    console.log(data);
+                    if(data.success === "ok"){
+                        Materialize.toast('You have Approved this Loan', 5000);
+                    }
                 },
                 error: function(data){
                     console.log(data);
@@ -144,8 +146,9 @@
                     'amount_id': id
                 },
                 success: function(data){
-                    Materialize.toast('You have Dispproved this Loan', 5000);
-                    console.log(data);
+                    if(data.success === "ok"){
+                        Materialize.toast('You have Dispproved this Loan', 5000);
+                    }
                 },
                 error: function(data){
                     console.log(data);
