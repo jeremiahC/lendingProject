@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="row" id="addLoan">
-    <form class="col s12 m12 l11" method="post">
+    <form class="col s12 m12 l11" method="post" action="/addLoan/store/">
         {{csrf_field()}}
         <input type="text" value="{{$customer->id}}" id="customer_id" hidden>
         <div class="card-panel">
@@ -102,8 +102,9 @@
 
                     },
                     success: function (data) {
-                        console.log(data + "success");
-                        window.location.replace("/show/loan/" + data);
+                        if(data.success === "ok"){
+                            window.location.replace("/show/loan/" + data.loanId);
+                        }
                     },
                     error: function (data) {
                         var errors = '';

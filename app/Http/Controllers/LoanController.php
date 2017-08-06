@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Ledger;
 use App\LoanAmount;
+use App\Notifications\NotifyMessage;
 use App\Payment;
 use App\User;
 use Illuminate\Http\Request;
@@ -80,7 +81,12 @@ class LoanController extends Controller
             $loanData->months_to_pay = request('months');
             $loanData->save();
 
-            return $loanData->id;
+            $request->session()->flash('status', 'Successfully added a Loan');
+
+            return response()->json([
+                'success' => 'ok',
+                'loanId'  => $loanData->id
+            ]);
     }
 
     public function storeAmtApp(Request $request, LoanAmount $loanData)
@@ -104,7 +110,7 @@ class LoanController extends Controller
         $loanData->date_start = $newDate;
         $loanData->save();
 
-        return redirect('/show/loan/'.$request->loan_id);
+        return redirect('/show/loan/'.$request->loan_id)->with('status', 'You have Added Amount!');
     }
 
     public function newTransac($id){
@@ -168,12 +174,19 @@ class LoanController extends Controller
             $ledgerData->save();
         }
 
+        return response()->json([
+            'success' => 'ok'
+        ]);
     }
 
     public function disapproveLoan(Request $request, LoanAmount $amountData){
         $amount = $amountData->find($request->amount_id);
         $amount->approved = "no";
         $amount->save();
+
+        return response()->json([
+            'success' => 'ok'
+        ]);
     }
 
 

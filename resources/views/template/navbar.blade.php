@@ -27,3 +27,9 @@
         </nav>
     </div>
 </header>
+@if (session('status'))
+<div class="alert alert-success">
+    <i class="material-icons left">check_circle</i>
+    <span>{{ session('status') }}</span>
+</div>
+@endif

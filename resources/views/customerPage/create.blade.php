@@ -122,9 +122,9 @@
                                 type: form.method,
                                 data: all_data,
                                 success: function(data){
-                                    console.log('success');
-                                    window.location.replace("/customerPage");
-                                    $('#my-modal').modal('open');
+                                    if(data.success === "ok"){
+                                        window.location.replace("/customerPage");
+                                    }
                                 },
                                 error: function(data){
                                     console.log(data);

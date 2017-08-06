@@ -45,7 +45,7 @@ class CustomersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|string
      */
     public function store(Request $request)
     {
@@ -81,6 +81,11 @@ class CustomersController extends Controller
 
         auth()->user()->notify(new NotifyMessage($customer));
 
+        $request->session()->flash('status', 'Successfully added a new customer!');
+
+        return response()->json([
+            'success' => 'ok'
+        ]);
     }
 
     /**
@@ -154,7 +159,7 @@ class CustomersController extends Controller
 
         $customer->save();
 
-        return redirect('/customerPage/customer'.$id);
+        return redirect('/customerPage/customer'.$id)->with('status', 'Successfully edited '. $request->fname. " " . $request->lname . "'s profile");
     }
 
     /**

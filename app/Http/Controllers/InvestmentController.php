@@ -68,7 +68,12 @@ class InvestmentController extends Controller
         $investments->amt_app = request('amt_app');
         $investments->save();
 
-        return $investments->id;
+        $request->session()->flash('status', 'Successfully added new Investment');
+
+        return response()->json([
+            'success' => 'ok',
+            'invId'  => $investments->id
+        ]);
     }
 
     public function storeInvAmt(Request $request, InvestAmount $investAmount)
@@ -86,7 +91,7 @@ class InvestmentController extends Controller
         $investAmount->date_start = $newDate;
         $investAmount->save();
 
-        return redirect('investments/show/'.$request->investment_id);
+        return redirect('investments/show/'.$request->investment_id)->with('status', 'Successfully add Investment Amount');
     }
 
     /**
@@ -142,12 +147,22 @@ class InvestmentController extends Controller
         $investmentLedger->transaction = "DEPOSIT";
         $investmentLedger->balance = $theAmount;
         $investmentLedger->save();
+
+        $request->session()->flash('status', 'Successfully added new Investment');
+
+        return response()->json([
+            'success' => 'ok',
+        ]);
     }
 
-    public function disapprove(Request $request, LoanAmount $amountData){
-        $amount = $amountData->find($request->amount_id);
+    public function disapprove(Request $request, InvestAmount $investAmount){
+        $amount = $investAmount->find($request->amount_id);
         $amount->approved = "no";
         $amount->save();
+
+        return response()->json([
+            'success' => 'ok',
+        ]);
     }
 
     public function getInterest(Customer $id, InvestmentLedger $investmentLedger){
