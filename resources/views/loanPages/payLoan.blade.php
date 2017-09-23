@@ -132,9 +132,10 @@
                 'balance': balance
             },
             success: function (data) {
-                Materialize.toast('You have payed', 5000);
-                Materialize.toast('Go To <a href="/customerPage/customer{{$id->id}}"> {{$id->fname . "'s'"}} </a> profile');
-                console.log(data);
+                if(data.success === 'ok'){
+                    window.location.replace("/customerPage/customer"+data.customerId);
+                }
+
             },
             error: function (data) {
                 console.log(data);

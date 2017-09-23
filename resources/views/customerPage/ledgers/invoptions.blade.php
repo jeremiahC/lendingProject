@@ -6,10 +6,10 @@
     <!-- Dropdown Structure -->
     <ul id='invoptions' class='dropdown-content'>
         <li><a href="/investments/interest/customer{{$customer->id}}">Interest</a></li>
-        <li><a class="modal-trigger" href="#modal1">Withdraw</a></li>
+        <li><a class="modal-trigger" href="#withdraw-modal">Withdraw</a></li>
     </ul>
     <!-- Modal Structure -->
-    <div id="modal1" class="modal">
+    <div id="withdraw-modal" class="modal">
         <div class="modal-content">
             <h4>Withdrawal Form</h4>
             <form>

@@ -34,6 +34,13 @@
                             <td class="balance">{{$myLoans->balance}}</td>
                             <td id="received"></td>
                             <td></td>
+                            <td class="delete">
+                                <form method="post" action="/delete/ledger{{ $myLoans->id }}">
+                                    {{csrf_field()}}
+                                    <input type="text" value="{{$myLoans->id}}" name="ledgerId" class="ledger_Id" hidden>
+                                    <button type="submit" class="btn-floating red delLedgerBtn"><i class="material-icons">close</i></button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
 

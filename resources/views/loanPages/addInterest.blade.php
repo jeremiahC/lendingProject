@@ -38,11 +38,18 @@
         var intrate = $('#intrate').val();
         var currtBal = $('#currtBal').val();
 
-        $('#newBal').text(Math.round((intrate/100) * currtBal.replace(',','') + Number(currtBal.replace(',',''))));
+        $('#newBal').text(commaSeparateNumber(Math.round((intrate/100) * currtBal.replace(',','') + Number(currtBal.replace(',','')))));
 
         $('#intrate').keyup(function () {
             intrate = $(this).val();
-            $('#newBal').text(Math.round((intrate/100) * currtBal.replace(',','') + Number(currtBal.replace(',',''))));
+            $('#newBal').text(commaSeparateNumber(Math.round((intrate/100) * currtBal.replace(',','') + Number(currtBal.replace(',','')))));
         });
+
+        function commaSeparateNumber(val){
+            while (/(\d+)(\d{3})/.test(val.toString())){
+                val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+            }
+            return val;
+        }
     </script>
 @endsection

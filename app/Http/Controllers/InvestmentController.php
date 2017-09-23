@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Auth;
 
 class InvestmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -214,6 +219,12 @@ class InvestmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer = new Customer();
+
+        $customer->destroy($id);
+
+        return response()->json([
+            'success' => 'ok'
+        ]);
     }
 }

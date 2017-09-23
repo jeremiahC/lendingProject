@@ -199,4 +199,9 @@ main {
   }
 }
 
+/*profile image*/
 
+.profile{
+  display: block;
+  margin: 0 auto;
+}

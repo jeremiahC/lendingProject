@@ -16,9 +16,4 @@ class Investments extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function count(){
-        $loans = DB::table('investments')->count();
-
-        return $loans;
-    }
 }

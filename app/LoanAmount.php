@@ -30,4 +30,5 @@ class LoanAmount extends Model
 
         return $amount;
     }
+
 }

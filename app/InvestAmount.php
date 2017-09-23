@@ -29,4 +29,5 @@ class InvestAmount extends Model
 
         return $amount;
     }
+
 }

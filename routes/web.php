@@ -23,12 +23,12 @@ Route::get('/pendingLoans', 'HomeController@listOfLoans');
 //Route for customers page
 Route::get('/customerPage', 'CustomersController@index');
 Route::get('/customerPage/customer{id}', 'CustomersController@show');
-
 Route::get('/customerPage/create', 'CustomersController@create');
-Route::post('/customerPage/store', 'CustomersController@store');
 Route::get('/customerPage/customer{id}/edit', 'CustomersController@edit');
-Route::post('/customerPage/update/{id}', 'CustomersController@update');
 
+Route::post('/customerPage/update/{id}', 'CustomersController@update');
+Route::post('/customerPage/store', 'CustomersController@store');
+Route::post('/delete/customer{id}', 'CustomersController@destroy');
 
 //Route for loan pages
 
@@ -41,6 +41,7 @@ Route::get('/customerPage/customer{id}/addLoan', 'LoanController@create');
 Route::get('/loan/{id}/amountapprove', 'LoanController@createAmtApp');
 Route::get('/loan/{id}/edit', 'LoanController@edit');
 Route::post('/loan/{id}/update', 'LoanController@update');
+Route::post('/loan/{id}/delete', 'LoanController@destroyAmtApr');
 Route::post('/addLoan/store/{id}', 'LoanController@store');
 Route::get('/customer{id}/payLoan/{ledgId}', 'LoanController@payLoanPage');
 Route::post('/pay', 'LoanController@payLoan');
@@ -56,6 +57,8 @@ Route::get('/customerPage/customer{id}/approveAddLoan', function () {
 });
 
 Route::get('/show/loan/{id}', 'LoanController@show');
+Route::post('/delete/loan{id}', 'LoanController@destroy');
+Route::post('/delete/ledger{id}', 'LoanController@destroyLedger');
 
 //file manager
 Route::get('/addFile', 'UploadController@index');

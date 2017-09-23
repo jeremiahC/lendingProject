@@ -20,7 +20,15 @@
                 <td>{{$loan->amt_app}}</td>
                 <td>{{$loan->customer->fname ." ". $loan->customer->lname }}</td>
                 <td>{{$loan->prep_by}}</td>
-                <td><a class="btn" href="/show/loan/{{$loan->id}}">view</a></td>
+                <td>
+                    <a class="btn" href="/show/loan/{{$loan->id}}">view</a>
+                    <a href="/delete/loan{{$loan->id}}" class="btn red delete" onclick="event.preventDefault(); document.getElementById('delete-loan').submit();">
+                        Delete
+                    </a>
+                    <form id="delete-loan" action="/delete/loan{{$loan->id}}" method="post">
+                        {{ csrf_field() }}
+                    </form>
+                </td>
             </tr>
         @endif
     @endforeach

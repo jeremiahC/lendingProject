@@ -59,6 +59,19 @@
             </div>
         </div>
     </div>
+    <div class="fixed-action-btn click-to-toggle">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">settings</i>
+        </a>
+        <ul>
+            <li>
+                <a class="btn-floating green" id="delete">
+                    <i class="material-icons">delete</i>
+                </a>
+            </li>
+
+        </ul>
+    </div>
 @endsection
 
 @section('script')
@@ -80,5 +93,10 @@
                 $(v).width(colWidth[i]);
             });
         }).resize(); // Trigger resize handler
+
+        $('.delete').hide();
+        $('#delete').click(function () {
+            $('.delete').show();
+        });
     </script>
 @endsection

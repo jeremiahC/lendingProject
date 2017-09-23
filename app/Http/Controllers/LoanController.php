@@ -121,7 +121,7 @@ class LoanController extends Controller
         $ledger = new Ledger();
 
         $balance =  $ledger->findLatestId($request->customer_id)->balance;
-        $newBal = $balance + str_replace(',','',$request->amount);
+        $newBal = str_replace(',','',$balance) + str_replace(',','',$request->amount);
 
         $ledger->transaction = $request->transaction;
         $ledger->customer_id = $request->customer_id;
@@ -137,10 +137,10 @@ class LoanController extends Controller
             $ledger->amount = $request->amount;
         }
 
-        $ledger->balance = $newBal;
+        $ledger->balance = number_format($newBal);
         $ledger->save();
 
-        return redirect('/customerPage');
+        return redirect('/customerPage/customer'.$request->customer_id);
     }
 
     public function approveLoan(Request $request, LoanAmount $amountData)
@@ -173,6 +173,8 @@ class LoanController extends Controller
             $ledgerData->balance = $theAmount;
             $ledgerData->save();
         }
+
+        $request->session()->flash('status', 'You have successfully approved this loan');
 
         return response()->json([
             'success' => 'ok'
@@ -222,14 +224,19 @@ class LoanController extends Controller
                 $ledger = new Ledger();
                 $ledger->customer_id = $customerId;
                 $ledger->date = date('Y-m-d');
-                $ledger->payments = $payAmount;
+                $ledger->payments = number_format($payAmount);
                 $ledger->transaction = "withdraw";
-                $ledger->balance = $subAmount;
+                $ledger->balance = number_format($subAmount);
                 $ledger->save();
             }
         }
 
-        return  $subAmount;
+        $request->session()->flash('status', 'You successfully payed for the balance');
+
+        return  response()->json([
+            'success' => 'ok',
+            'customerId' => $customerId
+        ]);
     }
 
 
@@ -265,11 +272,11 @@ class LoanController extends Controller
 
         $ledger->customer_id = $request->id;
         $ledger->transaction = "Interest";
-        $ledger->interest = round($amountInt);
-        $ledger->balance = round($newBal);
+        $ledger->interest = number_format(round($amountInt));
+        $ledger->balance = number_format(round($newBal));
         $ledger->save();
 
-        return redirect('/customerPage/customer'. $request->id);
+        return redirect('/customerPage/customer'. $request->id)->with('status', 'Successfully Added Interest');
     }
 
     /**
@@ -320,8 +327,34 @@ class LoanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $loan = new Loan();
+
+        $loan->destroy($id);
+
+        $request->session()->flash('status', 'You have successfully deleted a Loan');
+
+        return redirect('/loanPage');
+    }
+
+    public function destroyAmtApr(Request $request, $id)
+    {
+        $loan = new LoanAmount();
+
+        $loan->destroy($id);
+
+        $request->session()->flash('status', 'You have successfully deleted a Loan Amount');
+
+        return redirect('/loanPage');
+    }
+
+    public function destroyLedger($id)
+    {
+        $loan = new Ledger();
+
+        $loan->destroy($id);
+
+        return redirect()->back()->with('status', 'Successfully deleted ledger entry');
     }
 }

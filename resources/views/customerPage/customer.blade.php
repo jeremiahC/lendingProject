@@ -1,42 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <div class="row">
-        <div class="col s12 m12 l11">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <img src="/images/background.jpg" width="300" height="300">
-                </div>
-                <div class="card-content">
-                    <div class="row">
-                        <div class="col s12 l7">
-                            <b>Full Name:</b>
-                            {{$customer->fname. " " .substr($customer->mname,-6,1).". ".$customer->lname}}
-                        </div>
-                        <div class="col s12 l7">
-                            <b>Birthday:</b>
-                            {{$customer->birthday}}
-                        </div>
-                        <div class="col s12 l7">
-                            <b>Cellphone No.:</b>
-                            +63{{$customer->cell_no}}
-                        </div>
-                        <div class="col s12 l7">
-                            <b>Home Address:</b>
-                            {{$customer->home_add}}
-                        </div>
-                        <div class="col s12 l7">
-                            <b>Company Address:</b>
-                            {{$customer->comp_add}}
-                        </div>
-                    </div>
-                    @role('REG-EMPLOYEE')
-                        <a href="/customerPage/customer{{$customer->id}}/edit" class="btn-floating halfway-fab waves-effect waves-light red" id="editBtn"><i class="material-icons">edit</i></a>
-                    @endrole
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('customerPage.profile')
     <div class="row">
         <div class="col s12 m11 l11">
             <ul class="tabs">
@@ -66,14 +31,6 @@
             @endif
         </div>
         <div id="test2" class="col s12 m11 l11">
-            <div class="row">
-                <div class="card red">
-                    <div class="card-content white-text center-align">
-                        <span>Total Loans</span>
-                        <h3>{{$customer->loans->count()}}</h3>
-                    </div>
-                </div>
-            </div>
            <div class="row">
                 <div class="card">
                     <canvas id="myChart" height="50" width="100"></canvas>
@@ -118,6 +75,11 @@
                     <i class="material-icons">assignment</i>
                 </a>
             </li>
+            <li>
+                <a class="btn-floating red" id="delete">
+                    <i class="material-icons">delete</i>
+                </a>
+            </li>
         </ul>
     </div>
     <input type="text" value="{{$customer->id}}" id="customer_id" hidden>
@@ -125,43 +87,4 @@
 
 @section('script')
     <script src="/js/script.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.modal').modal();
-
-            var CSRF_TOKEN = $('input[name="_token"]').val();
-            $('#widthrawBtn').click(function (e) {
-                e.preventDefault();
-
-                var txt = "";
-                $.ajax({
-                    url: '/withdraw',
-                    type: 'post',
-                    data:{
-                        '_token'     : CSRF_TOKEN,
-                        'balance': $('#invbalance').val(),
-                        'amount' : $('#invamount').val(),
-                        'customer_id': $('#customer_id').val()
-                    },
-                    success: function (data) {
-                        console.log(data+'success');
-                        txt += "<tr>";
-                        txt += "<td></td>";
-                        txt += "<td>" + data.transaction + "</td>";
-                        txt += "<td>" + data.withdraw + "</td>";
-                        txt += "<td></td>";
-                        txt += "<td></td>";
-                        txt += "<td>" + data.balance + "</td>";
-                        txt += "<td></td>";
-                        txt += "</tr>";
-
-                        $('#invledger').append(txt);
-                    },
-                    error: function (data) {
-                        console.log(data + 'error');
-                    }
-                });
-            });
-        });
-    </script>
 @endsection

@@ -8,6 +8,7 @@
                 <div class="card-content">
                     <div class="card-title">Customer Info</div>
                     <div class="center-align">
+                        <input type="text" value="{{$id->customer_id}}" id="customer_id" hidden>
                         <img class="responsive-img circle" src="/images/profile.png" height="100" width="100">
                         <p>Name: {{$id->customer->fname ." ". $id->customer->lname}}</p>
                         <p>Cell no.: 0{{$id->customer->cell_no}}</p>
@@ -97,10 +98,18 @@
                         <!-- Dropdown Structure -->
                         <ul id='loandropdown' class='dropdown-content '>
                             @role('MANAGER-EMPLOYEE')
-                                <li><a href="#!" class="green-text" id="approve">Approve</a></li>
-                                <li><a href="#!" class="red-text" id="disapprove">Disapprove</a></li>
+                                <li><a href="#!" class="" id="approve">Approve</a></li>
+                                <li><a href="#!" class="" id="disapprove">Disapprove</a></li>
                             @endrole
-                            <li><a href="/loan/{{$id->amount->id}}/edit" class="yellow-text">Edit</a></li>
+                            <li><a href="/loan/{{$id->amount->id}}/edit" class="">Edit</a></li>
+                            <li>
+                                <a href="/loan/{{$id->amount->id}}/delete" class=""onclick="event.preventDefault(); document.getElementById('delete-amount').submit();">
+                                    Delete
+                                </a>
+                                <form id="delete-amount" action="/loan/{{$id->amount->id}}/delete" method="post">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
                         </ul>
                     @endif
             @endif
@@ -117,6 +126,7 @@
         $('#approve').click(function () {
             var id = $('#amount_id').val();
             var CSRF_TOKEN = $('input[name="_token"]').val();
+            var customer_id = $('#customer_id').val();
             $.ajax({
                 url: '/amount/approve',
                 type: 'post',
@@ -126,7 +136,7 @@
                 },
                 success: function(data){
                     if(data.success === "ok"){
-                        Materialize.toast('You have Approved this Loan', 5000);
+                        window.location.replace("/customerPage/customer" + customer_id);
                     }
                 },
                 error: function(data){

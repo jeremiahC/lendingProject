@@ -17,9 +17,4 @@ class Loan extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function count(){
-        $loans = DB::table('loans')->count();
-
-        return $loans;
-    }
 }

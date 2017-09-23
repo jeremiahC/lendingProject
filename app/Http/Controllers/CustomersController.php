@@ -170,7 +170,13 @@ class CustomersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer = new Customer();
+
+        $customer->destroy($id);
+
+        return response()->json([
+            'success' => 'ok'
+        ]);
     }
 
 }

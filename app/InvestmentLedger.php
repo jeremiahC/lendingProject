@@ -27,4 +27,5 @@ class InvestmentLedger extends Model
 
         return $ledger;
     }
+
 }
